@@ -13,4 +13,4 @@ Here is a [simplified version](https://tldrlegal.com/license/gnu-affero-general-
 
 ## Privacy
 
-Privacy policy for both the bot and website is avalabile in the bot's [repo](https://github.com/AnotherCat/message-bot/blob/master/PRIVACY_POLICY.md)
+Privacy policy for both the bot and website is available in the bot's [repo](https://github.com/AnotherCat/message-bot/blob/master/PRIVACY_POLICY.md)
