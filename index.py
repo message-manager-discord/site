@@ -30,7 +30,7 @@ async def index():
 @blueprint.route("/invite")
 async def invite():
     return redirect(
-        "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=388176&scope=bot"
+        "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=379968&scope=bot"
     )
 
 
