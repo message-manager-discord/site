@@ -19,7 +19,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from quart import Quart
 
-from .config import secret_key
+from .config import default_values, secret_key
 from .error_handlers import blueprint as error_handlers
 from .index import blueprint as index_blueprint
 
@@ -29,6 +29,7 @@ def create_app():
     app.secret_key = secret_key
     app.register_blueprint(index_blueprint)
     app.register_blueprint(error_handlers)
+    app.default_values = default_values
     return app
 
 

@@ -8,18 +8,18 @@
     <div><img src="{{url_for('static', filename='img/avatar.png') }}" alt="Bot&#39;s avatar"></div>
     <div class='buttons'>
         <a href="{{url_for('index.invite') }}">Invite</a>
-        <a href="{{url_for('index.docs') }}">Documentation</a>
+        <a href="{{ default_values.docs }}">Documentation</a>
     </div>
 </div>
 <hr>
-<div class=description>
+<div class='description info-section'>
     <h2 class='header'>About</h2>
     <p>Message Manager is designed to make the management of important messages in servers
         easier.<br>It
         allows the editing on a single message by more than one staff member.</p>
 </div>
 <hr>
-<div class='features'>
+<div class='features info-section'>
     <h2 id="features" class='header'>Features</h2>
     <ul>
         <li>Message management (editing and sending)</li>
@@ -27,7 +27,7 @@
     </ul>
 </div>
 <hr>
-<div class='setup'>
+<div class='setup info-section'>
     <h2 id="setup" class='header'>Setup</h2>
     <ol>
         <li>Invite the bot to your server</li>
@@ -36,7 +36,7 @@
     </ol>
 </div>
 <hr>
-<div class='contributing'>
+<div class='contributing info-section'>
     <h2 id="contributing" class='header'>Contributing</h2>
     <p>This bot is open source, the bots code can be found at <a href='https://github.com/AnotherCat/message-bot'
             target='_blank'>AnotherCat/message-bot</a>. And the website's code can be found at <a

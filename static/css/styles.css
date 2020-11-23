@@ -117,7 +117,7 @@ h1 {
     background-color: #ffd6665e;
 }
 
-.description, .features, .setup, .contributing {
+.info-section {
     padding: 1% 10%;
 }
 
