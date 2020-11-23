@@ -22,7 +22,7 @@ nav img {
     align-items: center;
     display: flex;
     min-width: 17.5rem;
-    max-width: 25rem;
+    max-width: 30rem;
 }
 
 .right-header {
@@ -52,7 +52,7 @@ nav img {
 }
 
 .left-header li {
-    padding: 0.625rem;
+    padding: 0.3rem;
 }
 
 /* Main Body / Content styles */
@@ -121,6 +121,14 @@ h1 {
     padding: 1% 10%;
 }
 
+.example .video{
+    text-align: center;
+}
+
+.example video {
+    width: 80%;
+}
+
 .setup code {
     background-color: #333333;
     border-radius: 4px;
@@ -175,6 +183,9 @@ h1 {
     }
     .left-header ul {
         padding: 0 0 0 1rem;
+    }
+    .left-header li {
+        padding: 0.625rem;
     }
     .splash img {
         height: 25rem;
