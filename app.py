@@ -19,9 +19,9 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from quart import Quart
 
-from config import default_values, secret_key
-from error_handlers import blueprint as error_handlers
-from index import blueprint as index_blueprint
+from .config import default_values, secret_key
+from .error_handlers import blueprint as error_handlers
+from .index import blueprint as index_blueprint
 
 
 def create_app() -> Quart:
