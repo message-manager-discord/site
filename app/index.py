@@ -1,4 +1,4 @@
-# web/index.py
+# app/index.py
 """
 Message Manager - A bot for discord
 Copyright (C) 2020  AnotherCat

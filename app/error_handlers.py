@@ -1,4 +1,4 @@
-# app.py
+# app/error_handlers.py
 """
 Message Manager - A bot for discord
 Copyright (C) 2020  AnotherCat
@@ -16,22 +16,13 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
+from quart import Blueprint, render_template
 
-from quart import Quart
-
-from .config import default_values, secret_key
-from .error_handlers import blueprint as error_handlers
-from .index import blueprint as index_blueprint
+blueprint = Blueprint("error_handlers", __name__)
 
 
-def create_app() -> Quart:
-    app = Quart(__name__)
-    app.secret_key = secret_key
-    app.register_blueprint(index_blueprint)
-    app.register_blueprint(error_handlers)
-    app.config["default_values"] = default_values
-    return app
-
-
-if __name__ == "__main__":
-    create_app().run()
+@blueprint.app_errorhandler(404)
+async def handle404() -> str:
+    return await render_template(
+        "error.html", title="404 - ", error_code=404, error="That page does not exist!"
+    )
