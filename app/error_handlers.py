@@ -16,13 +16,17 @@ GNU Affero General Public License for more details.
 You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
-from quart import Blueprint, render_template
+from quart import Blueprint, current_app, render_template
 
 blueprint = Blueprint("error_handlers", __name__)
 
 
 @blueprint.app_errorhandler(404)
-async def handle404() -> str:
+async def handle404(error: Exception) -> str:
     return await render_template(
-        "error.html", title="404 - ", error_code=404, error="That page does not exist!"
+        "error.html",
+        title="404 - ",
+        error_code=404,
+        error="That page does not exist!",
+        default_values=current_app.config["default_values"],
     )
