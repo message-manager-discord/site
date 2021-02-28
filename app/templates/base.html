@@ -25,43 +25,97 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     {% block head %}
     <meta charset='utf-8'>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>{{ title }}Message Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Message Manager is a utility discord bot. It makes the management of important messages easier.">
-    <meta name="og:title" content= "{{ title }}Message Manager Bot">
-    <meta name="og:description" content="Message Manager is a utility discord bot. It makes the management of important messages easier.">
+    <meta name="description"
+        content="Message Manager is a utility discord bot. It makes the management of important messages easier.">
+    <meta name="og:title" content="{{ title }}Message Manager Bot">
+    <meta name="og:description"
+        content="Message Manager is a utility discord bot. It makes the management of important messages easier.">
     <meta name="og:type" content="website">
     <meta name="og:image" content="{{ url_for('static', filename='img/avatar.png') }}">
     {% endblock %}
 </head>
 
-<body>
-    <nav>
-        <div class='left-header'>
-            <img src="{{ url_for('static', filename='img/favicon.ico') }}">
-            <ul>
-                <li><a {% block nav_home %} {% endblock %} href="{{ url_for('index.index') }}">Home</a></li>
-                <li><a {% block nav_docs %} {% endblock %} href="{{ default_values.docs }}">Docs</a></li>
-                <li><a {% block nav_invite %} {% endblock %} href="{{ url_for('index.invite') }}">Invite</a></li>
-                <li><a {% block nav_support %} {% endblock %} href="{{ default_values.support_invite }}">Support</a></li>
-            </ul>
+<body class="has-navbar-fixed-top">
+    <nav class='navbar is-primary is-fixed-top'>
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="{{ url_for('static', filename='img/favicon.ico') }}" height="28">
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-        <div class='right-header'></div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{{ url_for('index.index') }}">
+                    Home
+                </a>
+
+                <a class="navbar-item" href="{{ default_values.docs }}">
+                    Documentation
+                </a>
+                <a class="navbar-item" href="{{ url_for('index.invite') }}">
+                    Invite
+                </a>
+                <a class="navbar-item" href="{{ default_values.support_invite }}">
+                    Support
+                </a>
+
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-light">
+                            Log in
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </nav>
     <div class="content">{% block content %}{% endblock %}
     </div>
     <div class="footer">
-        {% block footer %} 
-            <ul>
-                <li>&copy; 2020 AnotherCat; AGPL v3</li>
-                <li><a href="{{ default_values.support_invite}}" target='_blank'>Support Server</a></li>
-                <li><a href="{{ url_for('index.privacy') }}"" target='_blank'>Privacy Policy</a> </li>
-                <li><a href="{{ default_values.docs }}" target='_blank'>Docs</a></li>
-                <li><a href="{{ default_values.source }}">Source Code</a></li>
-            </ul>
+        {% block footer %}
+        <ul>
+            <li>&copy; 2020 AnotherCat; AGPL v3</li>
+            <li><a href="{{ default_values.support_invite}}" target='_blank'>Support Server</a></li>
+            <li><a href="{{ url_for('index.privacy') }}"" target='_blank'>Privacy Policy</a> </li>
+                <li><a href=" {{ default_values.docs }}" target='_blank'>Docs</a></li>
+            <li><a href="{{ default_values.source }}">Source Code</a></li>
+        </ul>
         {% endblock %}
     </div>
+    <script>
+        $(document).ready(function () {
+
+            // Check for click events on the navbar burger icon
+            $(".navbar-burger").click(function () {
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                $(".navbar-burger").toggleClass("is-active");
+                $(".navbar-menu").toggleClass("is-active");
+
+            });
+        });
+        $(document).on("click", function (event) {
+            var $trigger = $(".navbar-menu");
+            if (!$(event.target).hasClass("navbar-burger") && !$trigger.has(event.target).length) {
+                console.log("toggling is-active off");
+                $(".navbar-burger").removeClass("is-active")
+                $(".navbar-menu").removeClass("is-active");
+            }
+        });
+    </script>
     <!-- Cloudflare Web Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js'
         data-cf-beacon='{"token": {{ default_values.cloudflare_analytics_token }}}'></script>
