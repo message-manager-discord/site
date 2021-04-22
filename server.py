@@ -1,4 +1,6 @@
 import multiprocessing
+import os
+import pathlib
 
 from typing import Any, Awaitable
 
@@ -10,7 +12,13 @@ from sanic.response import HTTPResponse, html, redirect
 from config import default_values, running_config
 
 env = Environment(
-    loader=FileSystemLoader("templates"),
+    loader=FileSystemLoader(
+        pathlib.Path(
+            os.path.join(
+                pathlib.Path(__file__).parent.absolute(), pathlib.Path("templates")
+            )
+        )
+    ),
     autoescape=select_autoescape(["html", "xml"]),
     enable_async=True,
 )
