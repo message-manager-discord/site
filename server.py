@@ -67,6 +67,11 @@ async def handle_exceptions(request: Request, exception: Exception) -> HTTPRespo
     )
 
 
+@app.on_response
+async def disable_floc(request: Request, response: HTTPResponse) -> None:
+    response.headers["Permissions-Policy"] = "interest-cohort=()"
+
+
 if "workers" not in running_config:
     running_config["workers"] = multiprocessing.cpu_count()
 
