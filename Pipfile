@@ -4,7 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-quart = "*"
+sanic = "*"
+jinja2 = "*"
 
 [dev-packages]
 mypy = "==0.812"
