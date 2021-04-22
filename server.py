@@ -11,23 +11,25 @@ from sanic.response import HTTPResponse, html, redirect
 
 from config import default_values, running_config
 
+
+def get_complete_path(path: str) -> pathlib.Path:
+    return pathlib.Path(
+        os.path.join(pathlib.Path(__file__).parent.absolute(), pathlib.Path(path))
+    )
+
+
 env = Environment(
-    loader=FileSystemLoader(
-        pathlib.Path(
-            os.path.join(
-                pathlib.Path(__file__).parent.absolute(), pathlib.Path("templates")
-            )
-        )
-    ),
+    loader=FileSystemLoader(get_complete_path("templates")),
     autoescape=select_autoescape(["html", "xml"]),
     enable_async=True,
 )
 
-app = Sanic("Message Manager Site")
-app.static("/robots.txt", "static/robots.txt")
-app.static("/sitemap.xml", "static/sitemap.xml")
 
-app.static("/static", "static")
+app = Sanic("Message Manager Site")
+app.static("/robots.txt", get_complete_path("static/robots.txt"))
+app.static("/sitemap.xml", get_complete_path("static/sitemap.xml"))
+
+app.static("/static", get_complete_path("static"))
 
 app.config.default_values = default_values
 
