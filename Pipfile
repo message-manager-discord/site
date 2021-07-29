@@ -14,4 +14,4 @@ black = "==20.8b1"
 pre-commit = "~=2.12"
 
 [requires]
-python_version = "3.8"
+python_version = "3.7"
