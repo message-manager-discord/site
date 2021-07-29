@@ -1,0 +1,6 @@
+/invite {{default_values.invite}}
+/docs {{default_values.docs}}
+/privacy {{default_values.privacy}}
+/favicon.ico /static/img/favicon.ico
+/robots.txt /static/robots.txt
+/sitemap.xml /static/sitemap.xml
