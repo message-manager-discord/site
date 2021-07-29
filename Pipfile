@@ -6,6 +6,11 @@ name = "pypi"
 [packages]
 sanic = "*"
 jinja2 = "*"
+cryptography = "*"
+pyjwt = "*"
+tortoise-orm = {extras = ["asyncpg"], version = "*"}
+aerich = "*"
+aiohttp = "*"
 
 [dev-packages]
 mypy = "==0.812"
