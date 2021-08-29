@@ -25,187 +25,202 @@
 </head>
 
 <body class="bg-white dark:bg-gray-800" cz-shortcut-listen="true">
-    <nav class="w-screen px-6 md:px-10 py-2 flex flex-col md:flex-row md:items-center bg-blue-100 dark:bg-indigo-600" role="navigation">
-        <!-- Our logo and button -->
-        <section class="w-full md:w-max flex justify-between">
-            <!-- Logo -->
-            <span class="font-black tracking-tight text-xl text-blue-600 dark:text-blue-100 py-2">
-                MessageManager
-            </span>
+    <div class="flex flex-col h-screen">
+        <nav class="w-screen px-6 md:px-10 py-2 flex flex-col md:flex-row md:items-center bg-blue-100 dark:bg-indigo-600"
+            role="navigation">
+            <!-- Our logo and button -->
+            <section class="w-full md:w-max flex justify-between">
+                <!-- Logo -->
+                <span class="font-black tracking-tight text-xl text-blue-600 dark:text-blue-100 py-2">
+                    MessageManager
+                </span>
 
-            <!-- open/close buttons -->
-            <!-- Open menu -->
-            <button class="hidden md:hidden" id="open-menu" aria-label="Open navigation menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    display="block" id="TextAlignJustified">
-                    <path d="M3 6h18M3 12h18M3 18h18"></path>
-                </svg>
-            </button>
+                <!-- open/close buttons -->
+                <!-- Open menu -->
+                <button class="hidden md:hidden" id="open-menu" aria-label="Open navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        display="block" id="TextAlignJustified">
+                        <path d="M3 6h18M3 12h18M3 18h18"></path>
+                    </svg>
+                </button>
 
-            <!-- Close menu -->
-            <button class="hidden" id="close-menu" aria-label="Close navigation menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                    display="block" id="Cross">
-                    <path d="M20 20L4 4m16 0L4 20"></path>
-                </svg>
-            </button>
-        </section>
+                <!-- Close menu -->
+                <button class="hidden" id="close-menu" aria-label="Close navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        display="block" id="Cross">
+                        <path d="M20 20L4 4m16 0L4 20"></path>
+                    </svg>
+                </button>
+            </section>
 
-        <!-- Our list of items -->
-        <ul id="menu-items" class="md:flex w-full flex-col md:flex-row md:pl-6">
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="/">Home</a></li>
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="https://docs.messagemanager.xyz">Docs</a></li>
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="/invite">Invite</a></li>
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="https://discord.gg/xFZu29t">Support</a></li>
-        </ul>
-    </nav>
-    <div class="container mx-auto px-6">
-        <div class="mt-3 mb-2 md:mb-8 text-center">
-            <h2 class="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
-                Message
-                Manager</h2>
-            <p class="mt-2 text-xl leading-8 tracking-tight text-gray-800 dark:text-white md:text-2xl">
-                A better way to manage messages
-            </p>
-        </div>
-        <div class="flex flex-wrap my-0 md:my-12 dark:text-white">
-            <div class="w-full border-b md:w-1/2 md:border-r  p-8">
-                <div class="flex items-center mb-6">
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 dark:text-indigo-300"
-                        viewBox=" 0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <div class="ml-4 text-xl">
-                        About
-                    </div>
-                </div>
-                <p class="leading-loose text-gray-500 dark:text-gray-200 text-md">
-                    Message Manager is designed to make the management of important messages in servers easier, allowing
-                    the editing of a single message by more than one staff member.
-                </p>
-            </div>
-            <div class="w-full border-b md:w-1/2 p-8">
-                <div class="flex items-center mb-6">
-
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 dark:text-indigo-300"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                            d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
-                        </path>
-                    </svg>
-                    <div class="ml-4 text-xl">
-                        Features
-                    </div>
-                </div>
-                <ul class="list-disc list-inside leading-loose text-gray-500 dark:text-gray-200 text-md">
-                    <li>Message management (editing and sending)</li>
-                    <li>Customizable prefix and server settings</li>
-                </ul>
-            </div>
-            <div class="w-full border-b md:w-1/2 md:border-r md:border-b-0 p-8">
-                <div class="flex items-center mb-6">
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 dark:text-indigo-300"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <div class="ml-4 text-xl">
-                        Setup
-                    </div>
-                </div>
-                <ol class="list-decimal list-inside leading-loose text-gray-500 dark:text-gray-200 text-md">
-                    <li>Invite the bot to your server</li>
-                    <li>Setup the prefix with <code>~setup prefix</code></li>
-                    <li>Then setup the rest of the configuration. </li>
-                </ol>
-            </div>
-            <div class="w-full md:w-1/2  p-8">
-                <div class="flex items-center mb-6">
-                    <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 dark:text-indigo-300"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <div class="ml-4 text-xl">
-                        Contributing
-                    </div>
-                </div>
-                <p class="leading-loose text-gray-500 dark:text-gray-200 text-md">
-                    Open source code can be found on the <a href="https://github.com/orgs/message-manager-discord"
-                    rel="noopener" target="_blank" class="border-b transition duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-300">github organization.</a>
-                    <br>
-                    Github issues (on the relevant repository) and the support server can be used to raise issues or
-                    feature requests, and pull requests are always welcome.
-                </p>
-            </div>
-        </div>
-    </div>
-    <footer class="bg-white dark:bg-gray-800 w-full pb-6">
-        <div class="max-w-screen-xl mx-auto px-4">
-            <ul
-                class="max-w-screen-md mx-auto text-lg font-light flex flex-wrap flex-col text-center sm:flex-row sm:text-left justify-between px-6">
-                <li class="my-2">
-                    <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
-                        href="https://discord.gg/xFZu29t">
-                        Support Server
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
-                        href="/privacy">
-                        Privacy Policy
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
-                        href="https://docs.messagemanager.xyz">
-                        Docs
-                    </a>
-                </li>
-                <li class="my-2">
-                    <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
-                        href="https://github.com/message-manager-discord/site">
-                        Source
-                    </a>
-                </li>
-                <li class="hidden" id="toggle-dark-li">
-                    <div class="my-2 mb-3">
-                        <div class="relative inline-block w-10 mr-2 align-middle select-none">
-                            <input type="checkbox" name="toggle" id="toggle-dark" aria-label="Dark mode toggle"
-                                class="checked:bg-gray-800 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                            <label aria-hidden="true" for="Dark Mode" class="block overflow-hidden h-6 rounded-full bg-gray-300 hover:bg-gray-400 dark:bg-gray-300 dark:hover:bg-white transition-colors duration-200 ease-in cursor-pointer">
-                            </label>
-                        </div>
-                        <span class="text-lg text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 pb-1" aria-hidden="true">
-                            Dark Mode
-                        </span>
-                    </div>
-                </li>
+            <!-- Our list of items -->
+            <ul id="menu-items" class="md:flex w-full flex-col md:flex-row md:pl-6">
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="/">Home</a></li>
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="https://docs.messagemanager.xyz">Docs</a></li>
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="/invite">Invite</a></li>
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="https://discord.gg/xFZu29t">Support</a></li>
             </ul>
-            <div
-                class="text-center text-gray-500 dark:text-gray-200 pt-2 sm:pt-4 font-light flex items-center justify-center">
-                © 2020-2021 AnotherCat; AGPL v3
+        </nav>
+
+        <div class="container mx-auto px-6 flex-grow">
+            <div class="mt-3 mb-2 md:mb-8 text-center">
+                <h2
+                    class="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
+                    Message
+                    Manager</h2>
+                <p class="mt-2 text-xl leading-8 tracking-tight text-gray-800 dark:text-white md:text-2xl">
+                    A better way to manage messages
+                </p>
+            </div>
+            <div class="flex flex-wrap my-0 md:my-12 dark:text-white">
+                <div class="w-full border-b md:w-1/2 md:border-r  p-8">
+                    <div class="flex items-center mb-6">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 text-indigo-500 dark:text-indigo-300" viewBox=" 0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="ml-4 text-xl">
+                            About
+                        </div>
+                    </div>
+                    <p class="leading-loose text-gray-500 dark:text-gray-200 text-md">
+                        Message Manager is designed to make the management of important messages in servers easier,
+                        allowing
+                        the editing of a single message by more than one staff member.
+                    </p>
+                </div>
+                <div class="w-full border-b md:w-1/2 p-8">
+                    <div class="flex items-center mb-6">
+
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 text-indigo-500 dark:text-indigo-300" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z">
+                            </path>
+                        </svg>
+                        <div class="ml-4 text-xl">
+                            Features
+                        </div>
+                    </div>
+                    <ul class="list-disc list-inside leading-loose text-gray-500 dark:text-gray-200 text-md">
+                        <li>Message management (editing and sending)</li>
+                        <li>Customizable prefix and server settings</li>
+                    </ul>
+                </div>
+                <div class="w-full border-b md:w-1/2 md:border-r md:border-b-0 p-8">
+                    <div class="flex items-center mb-6">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 text-indigo-500 dark:text-indigo-300" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="ml-4 text-xl">
+                            Setup
+                        </div>
+                    </div>
+                    <ol class="list-decimal list-inside leading-loose text-gray-500 dark:text-gray-200 text-md">
+                        <li>Invite the bot to your server</li>
+                        <li>Setup the prefix with <code>~setup prefix</code></li>
+                        <li>Then setup the rest of the configuration. </li>
+                    </ol>
+                </div>
+                <div class="w-full md:w-1/2  p-8">
+                    <div class="flex items-center mb-6">
+                        <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6 text-indigo-500 dark:text-indigo-300" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <div class="ml-4 text-xl">
+                            Contributing
+                        </div>
+                    </div>
+                    <p class="leading-loose text-gray-500 dark:text-gray-200 text-md">
+                        Open source code can be found on the <a href="https://github.com/orgs/message-manager-discord"
+                            rel="noopener" target="_blank"
+                            class="border-b transition duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-300">github
+                            organization.</a>
+                        <br>
+                        Github issues (on the relevant repository) and the support server can be used to raise issues or
+                        feature requests, and pull requests are always welcome.
+                    </p>
+                </div>
             </div>
         </div>
-    </footer>
+        <footer class="bg-white dark:bg-gray-800 w-full pb-6">
+            <div class="max-w-screen-xl mx-auto px-4">
+                <ul
+                    class="max-w-screen-md mx-auto text-lg font-light flex flex-wrap flex-col text-center sm:flex-row sm:text-left justify-between px-6">
+                    <li class="my-2">
+                        <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
+                            href="https://discord.gg/xFZu29t">
+                            Support Server
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
+                            href="/privacy">
+                            Privacy Policy
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
+                            href="https://docs.messagemanager.xyz">
+                            Docs
+                        </a>
+                    </li>
+                    <li class="my-2">
+                        <a class="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
+                            href="https://github.com/message-manager-discord/site">
+                            Source
+                        </a>
+                    </li>
+                    <li class="hidden" id="toggle-dark-li">
+                        <div class="my-2 mb-3">
+                            <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                                <input type="checkbox" name="toggle" id="toggle-dark" aria-label="Dark mode toggle"
+                                    class="checked:bg-gray-800 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+                                <label aria-hidden="true" for="Dark Mode"
+                                    class="block overflow-hidden h-6 rounded-full bg-gray-300 hover:bg-gray-400 dark:bg-gray-300 dark:hover:bg-white transition-colors duration-200 ease-in cursor-pointer">
+                                </label>
+                            </div>
+                            <span
+                                class="text-lg text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 pb-1"
+                                aria-hidden="true">
+                                Dark Mode
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+                <div
+                    class="text-center text-gray-500 dark:text-gray-200 pt-2 sm:pt-4 font-light flex items-center justify-center">
+                    © 2020-2021 AnotherCat; AGPL v3
+                </div>
+            </div>
+        </footer>
+    </div>
     <script>
-         // this hides the menu, the menu is shown by default so that users that disable js can still use it
-         // also hides the dark mode picker if js is disabled
-         const openMenu = document.getElementById("open-menu")
+        // this hides the menu, the menu is shown by default so that users that disable js can still use it
+        // also hides the dark mode picker if js is disabled
+        const openMenu = document.getElementById("open-menu")
         const closeMenu = document.getElementById("close-menu")
         const menuItems = document.getElementById("menu-items")
         const darkToggle = document.getElementById("toggle-dark-li")
