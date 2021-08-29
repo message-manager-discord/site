@@ -10,6 +10,8 @@ Website for the [Message Manager Discord Bot](https://github.com/AnotherCat/mess
 2. Build files: `npm run build`
 3. Built files are located in the `/build` dir
 
+Note: environmental variable `NODE_ENV` needs to be `'production'` for the css to be only what's required, otherwise it'll include the entire tailwindcss base.
+
 ## License
 
 Message Manager is licensed under the [GNU Affero General Public License](https://github.com/AnotherCat/message-bot/blob/master/LICENSE)  
