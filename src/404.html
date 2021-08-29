@@ -26,62 +26,65 @@
 
 <body class="bg-white dark:bg-gray-800" cz-shortcut-listen="true">
     <div class="flex flex-col h-screen">
-    <nav class="w-screen px-6 md:px-10 py-2 flex flex-col md:flex-row md:items-center bg-blue-100 dark:bg-indigo-600" role="navigation">
-        <!-- Our logo and button -->
-        <section class="w-full md:w-max flex justify-between">
-            <!-- Logo -->
-            <span class="font-black tracking-tight text-xl text-blue-600 dark:text-blue-100 py-2">
-                MessageManager
-            </span>
+        <nav class="w-screen px-6 md:px-10 py-2 flex flex-col md:flex-row md:items-center bg-blue-100 dark:bg-indigo-600"
+            role="navigation">
+            <!-- Our logo and button -->
+            <section class="w-full md:w-max flex justify-between">
+                <!-- Logo -->
+                <span class="font-black tracking-tight text-xl text-blue-600 dark:text-blue-100 py-2">
+                    MessageManager
+                </span>
 
-            <!-- open/close buttons -->
-            <!-- Open menu -->
-            <button class="hidden md:hidden" id="open-menu" aria-label="Open navigation menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    display="block" id="TextAlignJustified">
-                    <path d="M3 6h18M3 12h18M3 18h18"></path>
-                </svg>
-            </button>
+                <!-- open/close buttons -->
+                <!-- Open menu -->
+                <button class="hidden md:hidden" id="open-menu" aria-label="Open navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        display="block" id="TextAlignJustified">
+                        <path d="M3 6h18M3 12h18M3 18h18"></path>
+                    </svg>
+                </button>
 
-            <!-- Close menu -->
-            <button class="hidden" id="close-menu" aria-label="Close navigation menu">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-                    display="block" id="Cross">
-                    <path d="M20 20L4 4m16 0L4 20"></path>
-                </svg>
-            </button>
-        </section>
+                <!-- Close menu -->
+                <button class="hidden" id="close-menu" aria-label="Close navigation menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                        display="block" id="Cross">
+                        <path d="M20 20L4 4m16 0L4 20"></path>
+                    </svg>
+                </button>
+            </section>
 
-        <!-- Our list of items -->
-        <ul id="menu-items" class="md:flex w-full flex-col md:flex-row md:pl-6">
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="/">Home</a></li>
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="https://docs.messagemanager.xyz">Docs</a></li>
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="/invite">Invite</a></li>
-            <li class="py-2"><a
-                    class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
-                    href="https://discord.gg/xFZu29t">Support</a></li>
-        </ul>
-    </nav>
-    
+            <!-- Our list of items -->
+            <ul id="menu-items" class="md:flex w-full flex-col md:flex-row md:pl-6">
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="/">Home</a></li>
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="https://docs.messagemanager.xyz">Docs</a></li>
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="/invite">Invite</a></li>
+                <li class="py-2"><a
+                        class="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+                        href="https://discord.gg/xFZu29t">Support</a></li>
+            </ul>
+        </nav>
+
         <div class="container mx-auto px-6 flex-grow">
-        <div class="container mx-auto px-6">
-            <div class="mt-3 mb-2 md:mb-8 text-center">
-                <h2 class="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
-                    Not Found</h2>
-                <p class="mt-2 text-xl leading-8 tracking-tight text-gray-800 dark:text-white md:text-2xl">
-                    That page could not be found! Go <a href="/">home?</a>
-                </p>
+            <div class="container mx-auto px-6">
+                <div class="mt-3 mb-2 md:mb-8 text-center">
+                    <h2
+                        class="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
+                        Not Found</h2>
+                    <p class="mt-2 text-xl leading-8 tracking-tight text-gray-800 dark:text-white md:text-2xl">
+                        That page could not be found! Go <a href="/"
+                            class="border-b transition duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-300">home?</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </div>
         <footer class="bg-white dark:bg-gray-800 w-full pb-6">
             <div class="max-w-screen-xl mx-auto px-4">
                 <ul
@@ -115,10 +118,13 @@
                             <div class="relative inline-block w-10 mr-2 align-middle select-none">
                                 <input type="checkbox" name="toggle" id="toggle-dark" aria-label="Dark mode toggle"
                                     class="checked:bg-gray-800 outline-none focus:outline-none right-4 checked:right-0 duration-200 ease-in absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
-                                <label aria-hidden="true" for="Dark Mode" class="block overflow-hidden h-6 rounded-full bg-gray-300 hover:bg-gray-400 dark:bg-gray-300 dark:hover:bg-white transition-colors duration-200 ease-in cursor-pointer">
+                                <label aria-hidden="true" for="Dark Mode"
+                                    class="block overflow-hidden h-6 rounded-full bg-gray-300 hover:bg-gray-400 dark:bg-gray-300 dark:hover:bg-white transition-colors duration-200 ease-in cursor-pointer">
                                 </label>
                             </div>
-                            <span class="text-lg text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 pb-1" aria-hidden="true">
+                            <span
+                                class="text-lg text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 pb-1"
+                                aria-hidden="true">
                                 Dark Mode
                             </span>
                         </div>
@@ -132,9 +138,9 @@
         </footer>
     </div>
     <script>
-         // this hides the menu, the menu is shown by default so that users that disable js can still use it
-         // also hides the dark mode picker if js is disabled
-         const openMenu = document.getElementById("open-menu")
+        // this hides the menu, the menu is shown by default so that users that disable js can still use it
+        // also hides the dark mode picker if js is disabled
+        const openMenu = document.getElementById("open-menu")
         const closeMenu = document.getElementById("close-menu")
         const menuItems = document.getElementById("menu-items")
         const darkToggle = document.getElementById("toggle-dark-li")
