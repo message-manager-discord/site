@@ -6,7 +6,9 @@ Website for the [Message Manager Discord Bot](https://github.com/AnotherCat/mess
 
 ## Hosting
 
-See the self hosting section in the docs [docs.messagemanager.xyz](https://docs.messagemanager.xyz)
+1. Install requirements: `npm install -D`
+2. Build files: `npm run build`
+3. Built files are located in the `/build` dir
 
 ## License
 

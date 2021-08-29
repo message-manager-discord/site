@@ -1,0 +1,25 @@
+{
+  "name": "message-manager-site",
+  "description": "Website for the Message Manager Bot",
+  "scripts": {
+    "build": "rm -fr build && npm run copy && npm run build:css",
+    "build:css": "postcss src/static/css/styles.css -o build/static/css/styles.css",
+    "copy": "cp -r src build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/message-manager-discord/site.git"
+  },
+  "author": "",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/message-manager-discord/site/issues"
+  },
+  "homepage": "https://github.com/message-manager-discord/site#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.3.3",
+    "postcss": "^8.3.6",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^2.2.8"
+  }
+}
