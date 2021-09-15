@@ -47,17 +47,27 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     }
   }
   let innerContent;
-  if (Component.isMDXComponent) {
-    innerContent = (
-      <div className="flex flex-row">
-        <Menu pathname={router.pathname} />
-        <div className="container flex-shrink mx-auto px-14 min-w-0">
-          <MDXProvider components={COMPONENTS}>
-            <Component {...pageProps} />
-          </MDXProvider>
-        </div>
+  if (
+    Component.isMDXComponent ||
+    router.pathname === "/privacy" // next-mdx-remote doesn't have isMDXComponent
+  ) {
+    const mdxContent = (
+      <div className="container flex-shrink mx-auto px-14 min-w-0">
+        <MDXProvider components={COMPONENTS}>
+          <Component {...pageProps} />
+        </MDXProvider>
       </div>
     );
+    if (isDoc) {
+      innerContent = (
+        <div className="flex flex-row">
+          <Menu pathname={router.pathname} />
+          {mdxContent}
+        </div>
+      );
+    } else {
+      innerContent = mdxContent;
+    }
   } else {
     innerContent = <Component {...pageProps} />;
   }
