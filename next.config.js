@@ -13,7 +13,7 @@ module.exports = withMDX({
         source: "/invite",
         destination:
           "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands",
-        permanent: true,
+        permanent: false,
       },
     ];
   },
