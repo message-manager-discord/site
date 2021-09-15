@@ -74,12 +74,13 @@ export default function Footer() {
             </a>
           </li>
           <li className="my-2">
+            <Link href="/privacy" scroll={true}>
             <a
               className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
-              href="/privacy"
             >
               Privacy Policy
             </a>
+            </Link>
           </li>
           <li className="my-2">
             <Link href="/docs">
