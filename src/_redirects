@@ -1,6 +1,0 @@
-/invite https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands
-/docs https://docs.messagemanager.xyz
-/privacy https://github.com/message-manager-discord/bot/blob/master/PRIVACY_POLICY.md
-/favicon.ico /static/img/favicon.ico
-/robots.txt /static/robots.txt
-/sitemap.xml /static/sitemap.xml

@@ -1,25 +1,43 @@
 {
   "name": "message-manager-site",
   "description": "Website for the Message Manager Bot",
+  "version": "0.1.0",
+  "license": "AGPL-3.0-or-later",
+  "private": true,
   "scripts": {
-    "build": "rm -fr build && npm run copy && npm run build:css",
-    "build:css": "postcss src/static/css/styles.css -o build/static/css/styles.css",
-    "copy": "cp -r src build"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/message-manager-discord/site.git"
   },
-  "author": "",
-  "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/message-manager-discord/site/issues"
   },
-  "homepage": "https://github.com/message-manager-discord/site#readme",
   "dependencies": {
-    "autoprefixer": "^10.3.3",
+    "@mdx-js/loader": "^1.6.22",
+    "@mdx-js/react": "^1.6.22",
+    "@next/mdx": "^11.1.2",
+    "@types/mdx-js__react": "^1.5.4",
+    "classnames": "^2.3.1",
+    "next": "11.1.2",
+    "next-themes": "^0.0.15",
+    "prism-react-renderer": "^1.2.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.20",
+    "autoprefixer": "^10.3.4",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
     "postcss": "^8.3.6",
-    "postcss-cli": "^8.3.1",
-    "tailwindcss": "^2.2.8"
+    "prettier": "2.4.0",
+    "tailwindcss": "^2.2.15",
+    "typescript": "4.4.2"
   }
 }

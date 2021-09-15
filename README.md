@@ -1,21 +1,18 @@
 # Message Manager Site
 
-[![wakatime tracker](https://wakatime.com/badge/github/AnotherCat/message-manager-site.svg)](https://wakatime.com/badge/github/AnotherCat/message-manager-site) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black) 
+[![wakatime tracker](https://wakatime.com/badge/github/AnotherCat/message-manager-site.svg)](https://wakatime.com/badge/github/AnotherCat/message-manager-site) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Website for the [Message Manager Discord Bot](https://github.com/AnotherCat/message-bot) located at [messagemanager.xyz](https://messagemanager.xyz)
 
-## Hosting
+## Using
 
-1. Install requirements: `npm install -D`
-2. Build files: `npm run build`
-3. Built files are located in the `/build` dir
-
-Note: environmental variable `NODE_ENV` needs to be `'production'` for the css to be only what's required, otherwise it'll include the entire tailwindcss base.
+1. Install requirements: `yarn install -D`
+2. Run `yarn dev`
 
 ## License
 
 Message Manager is licensed under the [GNU Affero General Public License](https://github.com/AnotherCat/message-bot/blob/master/LICENSE)  
-Here is a [simplified version](https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)#summary)
+Here is a [simplified version](<https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)#summary>)
 
 ## Privacy
 
