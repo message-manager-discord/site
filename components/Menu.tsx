@@ -190,7 +190,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
       <div
         className={classNames(
           active ? "" : "hidden",
-          "fixed md:relative bg-white md:flex flex-col sm:flex-row sm:justify-around ",
+          "fixed md:relative bg-white dark:bg-gray-800 md:flex flex-col sm:flex-row sm:justify-around ",
         )}
       >
         <div className="w-64 h-screen border-r-2">
