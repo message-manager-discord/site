@@ -21,9 +21,9 @@ const pages = [
 
 const Menu = ({ pathname }: { pathname: string }) => {
   const linkInactiveClass =
-    "hover:text-gray-800 font-thin text-gray-500 dark:text-gray-300 hover:bg-gray-100 flex items-center p-2 my-2 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start rounded-md";
+    "hover:text-gray-800 font-thin text-gray-500 dark:text-gray-300 hover:bg-gray-100 flex items-center p-2 md:p-1 my-1 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start rounded-md";
   const linkActiveClass =
-    "hover:text-gray-800 text-gray-600 bg-gray-100 dark:bg-gray-600 dark:text-gray-300 hover:bg-gray-100 flex items-center p-2 my-2 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start  rounded-md";
+    "hover:text-gray-800 text-gray-600 bg-gray-100 dark:bg-gray-600 dark:text-gray-300 hover:bg-gray-100 flex items-center p-2 md:p-1 my-1 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start  rounded-md";
   const sectionHeadClass =
     "text-gray-400 dark:text-gray-300 ml-2 w-full border-b-2 pb-2 border-gray-100 mb-4 text-md font-normal";
   const sectionHeadActiveClass =
