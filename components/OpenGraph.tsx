@@ -6,7 +6,7 @@ export default function OpenGraph({
   description = "Message Manager is a utility discord bot, making the management of important messages easier.",
 }) {
   const router = useRouter();
-  const url = `https://messagemanager.xyz${router.asPath}`;
+  const url = `https://message.anothercat.me${router.asPath}`;
 
   return (
     <Head>
