@@ -23,7 +23,10 @@ export default function Nav() {
         {/* open/close buttons */}
         {/* Open menu */}
         <button
-          className={classNames(active ? "hidden" : "", "md:hidden")}
+          className={classNames(
+            active ? "hidden" : "",
+            "md:hidden text-gray-800 dark:text-indigo-50",
+          )}
           id="open-menu"
           aria-label="Open navigation menu"
           onClick={handleClick}
@@ -47,7 +50,10 @@ export default function Nav() {
 
         {/*  Close menu */}
         <button
-          className={active ? "" : "hidden"}
+          className={classNames(
+            active ? "" : "hidden",
+            "text-gray-800 dark:text-indigo-50",
+          )}
           id="close-menu"
           aria-label="Close navigation menu"
           onClick={handleClick}

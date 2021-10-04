@@ -164,7 +164,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
       <button
         className={classNames(
           active ? "hidden" : "",
-          "md:hidden p-4 py-7 fixed",
+          "md:hidden p-4 py-7 fixed text-gray text-gray-800 dark:text-indigo-50",
         )}
         id="open-menu"
         aria-label="Open navigation menu"
@@ -202,7 +202,10 @@ const Menu = ({ pathname }: { pathname: string }) => {
                 </a>
               </Link>
               <button
-                className={classNames(active ? "" : "hidden", "pt-1")}
+                className={classNames(
+                  active ? "" : "hidden",
+                  "pt-1 text-gray-800 dark:text-indigo-50",
+                )}
                 id="close-menu"
                 aria-label="Close navigation menu"
                 onClick={handleClick}
