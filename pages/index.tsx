@@ -6,14 +6,6 @@ import Info from "../components/icons/info";
 export default function Page() {
   return (
     <div className="container mx-auto px-10">
-      <button
-        type="button"
-        onClick={() => {
-          throw new Error("SentAdfry Frontend Error");
-        }}
-      >
-        Throw error
-      </button>
       <div className="flex-grow">
         <div className="mb-2 md:mb-8 text-center">
           <h2 className="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
