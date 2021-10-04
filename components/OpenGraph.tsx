@@ -25,7 +25,7 @@ export default function OpenGraph({
         content="Message Manager is a utility discord bot, making the management of important messages easier."
       />
       <meta name="og:type" content="website" />
-      <meta name="og:image" content="static/img/avatar.png" />
+      <meta name="og:image" content="img/avatar.png" />
       <meta name="og:url" content={url} />
     </Head>
   );
