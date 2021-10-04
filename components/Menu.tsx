@@ -50,10 +50,6 @@ const Menu = ({ pathname }: { pathname: string }) => {
 
   const parsedPages = pages.map((page) => {
     let sectionHead;
-    if (page.filenames.findIndex((page) => page === "index") > 0) {
-      page.filenames = page.filenames.filter((page) => page !== "index");
-      page.filenames = [page.dirname].concat(page.filenames);
-    }
     sectionHead = (
       <div className={sectionHeadClass}>{sanitizeTitle(page.dirname)}</div>
     );
