@@ -99,7 +99,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   }
   return (
     <ThemeProvider attribute="class">
-      <div className="flex flex-col h-screen bg-white dark:bg-gray-800">
+      <div className="flex flex-col bg-white dark:bg-gray-800">
         <OpenGraph
           title={title ? `${title}Message Manager` : "Message Manager"}
         />
