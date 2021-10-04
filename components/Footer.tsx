@@ -40,7 +40,10 @@ const ThemeChanger = () => {
   return (
     <li id="toggle-dark-li">
       <div className="my-2 mb-3">
-        <div className="relative inline-block w-10 mr-2 align-middle select-none">
+        <div
+          className="relative inline-block w-10 mr-2 align-middle select-none"
+          id="toggle-dark-div"
+        >
           <ThemeCheckBox />
 
           <label
@@ -75,11 +78,9 @@ export default function Footer() {
           </li>
           <li className="my-2">
             <Link href="/privacy" scroll={true}>
-            <a
-              className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0"
-            >
-              Privacy Policy
-            </a>
+              <a className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0">
+                Privacy Policy
+              </a>
             </Link>
           </li>
           <li className="my-2">
