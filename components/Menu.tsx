@@ -77,17 +77,22 @@ const Menu = ({ pathname }: { pathname: string }) => {
   let items = [headLink, ...parsedPages];
   const [active, setActive] = useState(false);
 
-  const handleClick = () => {
-    setActive(!active);
+  const handleSetActive = (activeStatus: boolean | undefined) => {
+    if (!activeStatus) activeStatus = !active;
+    setActive(activeStatus);
     const toggle = document.getElementById("toggle-dark");
-    toggle?.classList.toggle("absolute", active);
+    toggle?.classList.toggle("absolute", !activeStatus);
     const toggleDiv = document.getElementById("toggle-dark-div");
-    toggleDiv?.classList.toggle("relative", active);
+    toggleDiv?.classList.toggle("relative", !activeStatus);
+  };
+
+  const handleClick = () => {
+    handleSetActive(undefined);
   };
   const router = useRouter();
   useEffect(() => {
     const handleRouteChange = () => {
-      setActive(false);
+      handleSetActive(false);
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
