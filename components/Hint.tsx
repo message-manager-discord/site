@@ -17,10 +17,10 @@ function getHintHeadStyle(type: HintType) {
 
   return {
     classes: classNames(
-      "text-xs font-light inline-block py-1 px-2 uppercase rounded-full text-white",
+      "text-xs font-light inline-block py-1 px-2 uppercase rounded-full text-gray-600 dark:text-gray-200",
       {
-        "bg-red-400": type === "warn",
-        "bg-blue-400": type === "info",
+        "bg-red-200 dark:bg-red-700": type === "warn",
+        "bg-blue-200 dark:bg-blue-700": type === "info",
       },
     ),
     name,
