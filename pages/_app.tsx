@@ -1,4 +1,5 @@
 import "tailwindcss/tailwind.css";
+import "../styles/prism.css";
 import type { AppProps } from "next/app";
 import { COMPONENTS } from "../components/MDX";
 import { MDXProvider, withMDXComponents } from "@mdx-js/react";

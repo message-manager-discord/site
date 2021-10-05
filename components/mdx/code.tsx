@@ -2,24 +2,14 @@
 
 import React from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import darkTheme from "prism-react-renderer/themes/palenight";
-import lightTheme from "prism-react-renderer/themes/duotoneLight";
 import classNames from "classnames";
-import { useTheme } from "next-themes";
 
 export default function Code({
   children,
   className,
 }: JSX.IntrinsicElements["code"]) {
   const language = className && className.replace(/language-/, "");
-  const { resolvedTheme } = useTheme();
-  console.log(resolvedTheme);
-  let theme;
-  if (resolvedTheme === "light") {
-    theme = lightTheme;
-  } else if (resolvedTheme === "dark") {
-    theme = darkTheme;
-  }
+
   return (
     <div>
       <div className="flex items-end justify-end text-gray-500 dark:text-gray-200 px-4">
@@ -29,7 +19,7 @@ export default function Code({
         {...defaultProps}
         code={children}
         language={language}
-        theme={theme}
+        theme={undefined}
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
