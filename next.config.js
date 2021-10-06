@@ -21,7 +21,20 @@ const moduleExports = withMDX({
           "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands",
         permanent: false,
       },
+      {
+        source: "/login",
+        destination: "https://auth--message.anothercat.me/auth/login",
+        permanent: false,
+      },
+      {
+        source: "/logout",
+        destination: "https://auth--message.anothercat.me/auth/logout",
+        permanent: false,
+      },
     ];
+  },
+  images: {
+    domains: ["cdn.discordapp.com"],
   },
 });
 
@@ -39,4 +52,5 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
+//module.exports = moduleExports;
 module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
