@@ -78,7 +78,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
   const [active, setActive] = useState(false);
 
   const handleSetActive = (activeStatus: boolean | undefined) => {
-    if (!activeStatus) activeStatus = !active;
+    if (activeStatus === undefined) activeStatus = !active;
     setActive(activeStatus);
     const toggle = document.getElementById("toggle-dark");
     toggle?.classList.toggle("absolute", !activeStatus);
