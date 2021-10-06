@@ -1,14 +1,9 @@
-# Production context:
-# All deploys from the main repository branch
-# will inherit these settings.
-[context.production]
-  [context.production.environment]
-    NEXT_PUBLIC_AUTH_URL = "https://auth--message.anothercat.me
 
-# Branch deploy context:
-# All deploys that are not from a pull/merge request
-# or from the production branch will inherit these settings.
+[context.production]
+  environment = { NEXT_PUBLIC_AUTH_URL = "https://auth--message.anothercat.me" }
+    
+
 [context.branch-deploy]
-  [context.production.environment]
-    NEXT_PUBLIC_AUTH_URL = "https://auth--staging--message.anothercat.me
+  environment = { NEXT_PUBLIC_AUTH_URL = "https://auth--staging--message.anothercat.me" }
+    
 
