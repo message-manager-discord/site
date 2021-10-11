@@ -52,6 +52,10 @@ export default function useUser() {
   const { data, mutate, error } = useSWR(
     `${process.env.NEXT_PUBLIC_AUTH_URL}/api/user`,
     fetcher,
+    {
+      revalidateOnFocus: false,
+      shouldRetryOnError: false, // The API returns an error when not logged in,
+    },
   );
 
   const loading = !data && !error;
