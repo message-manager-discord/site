@@ -47,14 +47,12 @@ function UserBanner() {
         height="32"
         className="rounded-full"
       />
-      <button
-        onClick={() => {
-          logout();
-          mutate(); // after logging out, we revalidate the SWR
-        }}
+      <a
+        href={`${process.env.NEXT_PUBLIC_AUTH_URL}/auth/logout`}
+        className="px-2 pt-1 transition duration-300 ease-in-out text-normal font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
       >
-        <span className="px-2 pt-1 transition duration-300 ease-in-out text-normal font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">{`${user.username}#${user.discriminator}`}</span>
-      </button>
+        <span>{`${user.username}#${user.discriminator}`}</span>
+      </a>
     </div>
   );
 }
