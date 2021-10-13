@@ -76,11 +76,12 @@ export default function Nav() {
             </Link>
           </li>
           <li className="py-1 md:py-2">
-            <Link href="/invite">
-              <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
-                Invite
-              </a>
-            </Link>
+            <a
+              className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+              href="/invite"
+            >
+              Invite
+            </a>
           </li>
           <li className="py-1 md:py-2">
             <a
