@@ -1,8 +1,7 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useState } from "react";
-import UserBanner from "./Profile";
-import StaffLink from "./StaffLink";
+import UserMenu from "./Profile";
 
 export default function Nav() {
   const [active, setActive] = useState(false);
@@ -10,6 +9,7 @@ export default function Nav() {
   const handleClick = () => {
     setActive(!active);
   };
+
   return (
     <nav
       className="w-screen px-6 mb-3 md:px-10 py-2 flex md:items-center justify-between bg-blue-100 dark:bg-indigo-600"
@@ -87,28 +87,28 @@ export default function Nav() {
             "md:flex w-full flex-col md:flex-row md:pl-6",
           )}
         >
-          <li className="py-2">
+          <li className="py-1 md:py-2">
             <Link href="/">
               <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
                 Home
               </a>
             </Link>
           </li>
-          <li className="py-2">
+          <li className="py-1 md:py-2">
             <Link href="/docs">
               <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
                 Docs
               </a>
             </Link>
           </li>
-          <li className="py-2">
+          <li className="py-1 md:py-2">
             <Link href="/invite">
               <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
                 Invite
               </a>
             </Link>
           </li>
-          <li className="py-2">
+          <li className="py-1 md:py-2">
             <a
               className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
               href="https://discord.gg/xFZu29t"
@@ -116,16 +116,13 @@ export default function Nav() {
               Support
             </a>
           </li>
-          <StaffLink />
-          <li>
-            <div className="py-2 md:hidden">
-              <UserBanner />
-            </div>
+          <li className="py-1 md:py-2 md:hidden border-t-2 border-gray-500">
+            <UserMenu mobile />
           </li>
         </ul>
       </div>
-      <div className="py-2 hidden md:block">
-        <UserBanner />
+      <div className="hidden md:block">
+        <UserMenu />
       </div>
     </nav>
   );
