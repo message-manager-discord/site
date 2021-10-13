@@ -6,36 +6,9 @@
 /** @type {import('next').NextConfig} */
 
 const { withSentryConfig } = require("@sentry/nextjs");
+const withPlugins = require("next-compose-plugins");
 const withMDX = require("@next/mdx")({
   extension: /\.mdx$/,
-});
-
-const moduleExports = withMDX({
-  reactStrictMode: true,
-  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
-  async redirects() {
-    return [
-      {
-        source: "/invite",
-        destination:
-          "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands",
-        permanent: false,
-      },
-      {
-        source: "/login",
-        destination: "https://auth--message.anothercat.me/auth/login",
-        permanent: false,
-      },
-      {
-        source: "/logout",
-        destination: "https://auth--message.anothercat.me/auth/logout",
-        permanent: false,
-      },
-    ];
-  },
-  images: {
-    domains: ["cdn.discordapp.com"],
-  },
 });
 
 const SentryWebpackPluginOptions = {
@@ -50,7 +23,35 @@ const SentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
 
-// Make sure adding Sentry options is the last code to run before exporting, to
-// ensure that your source maps include changes from all other Webpack plugins
-//module.exports = moduleExports;
-module.exports = withSentryConfig(moduleExports, SentryWebpackPluginOptions);
+module.exports = withPlugins([
+  [
+    withMDX,
+    {
+      reactStrictMode: true,
+      pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+    },
+  ],
+  [withSentryConfig, SentryWebpackPluginOptions],
+  {
+    async redirects() {
+      return [
+        {
+          source: "/invite",
+          destination:
+            "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands",
+          permanent: false,
+        },
+        {
+          source: "/login",
+          destination: "https://auth--message.anothercat.me/auth/login",
+          permanent: false,
+        },
+        {
+          source: "/logout",
+          destination: "https://auth--message.anothercat.me/auth/logout",
+          permanent: false,
+        },
+      ];
+    },
+  },
+]);
