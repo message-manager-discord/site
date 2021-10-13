@@ -7,3 +7,21 @@
   environment = { NEXT_PUBLIC_AUTH_URL = "https://auth--staging--message.anothercat.me" }
     
 
+[[redirects]]
+  from = "/invite"
+  to = "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/login"
+  to = "https://auth--message.anothercat.me/auth/login"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/logout"
+  to = "https://auth--message.anothercat.me/auth/logout"
+  status = 302
+  force = true
+
