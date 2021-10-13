@@ -5,6 +5,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    target-branch: "staging"
 
   - package-ecosystem: "npm" # See documentation for possible values
     directory: "/" # Location of package manifests
