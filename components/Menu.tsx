@@ -5,6 +5,8 @@ import { sanitizeTitle } from "../lib/utils";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import CloseMenu from "./icons/closeMenu";
+import OpenMenu from "./icons/openMenu";
 
 // TODO fix this later
 const pages = [
@@ -171,21 +173,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
         aria-label="Open navigation menu"
         onClick={handleClick}
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          display="block"
-          id="TextAlignJustified"
-        >
-          <path d="M3 6h18M3 12h18M3 18h18"></path>
-        </svg>
+        <OpenMenu />
       </button>
 
       <div
@@ -211,21 +199,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
                 aria-label="Close navigation menu"
                 onClick={handleClick}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="15"
-                  height="15"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  display="block"
-                  id="Cross"
-                >
-                  <path d="M20 20L4 4m16 0L4 20"></path>
-                </svg>
+                <CloseMenu height="15" width="15" />
               </button>
             </div>
             {items}

@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import Link from "next/link";
 import { useState } from "react";
+import CloseMenu from "./icons/closeMenu";
+import OpenMenu from "./icons/openMenu";
 import UserMenu from "./Profile";
 
 export default function Nav() {
@@ -34,48 +36,20 @@ export default function Nav() {
             aria-label="Open navigation menu"
             onClick={handleClick}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              display="block"
-              id="TextAlignJustified"
-            >
-              <path d="M3 6h18M3 12h18M3 18h18"></path>
-            </svg>
+            <OpenMenu />
           </button>
 
           {/*  Close menu */}
           <button
             className={classNames(
               active ? "" : "hidden",
-              "text-gray-800 dark:text-indigo-50",
+              "md:hidden text-gray-800 dark:text-indigo-50",
             )}
             id="close-menu"
             aria-label="Close navigation menu"
             onClick={handleClick}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              display="block"
-              id="Cross"
-            >
-              <path d="M20 20L4 4m16 0L4 20"></path>
-            </svg>
+            <CloseMenu />
           </button>
         </section>
 
