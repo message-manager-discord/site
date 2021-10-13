@@ -12,7 +12,6 @@ import ChevronUp from "./icons/chevronUp";
 type LinkProps = JSX.IntrinsicElements["a"] & {
   internal?: boolean;
   href: string;
-  keyLabel?: string;
 };
 
 function InternalOrExternalLink({
@@ -20,12 +19,11 @@ function InternalOrExternalLink({
   className,
   internal,
   children,
-  keyLabel,
   role,
 }: LinkProps) {
   if (internal) {
     return (
-      <Link href={href} key={keyLabel}>
+      <Link href={href}>
         <a className={className} role={role}>
           {children}
         </a>
@@ -33,7 +31,7 @@ function InternalOrExternalLink({
     );
   } else {
     return (
-      <a className={className} href={href} key={keyLabel} role={role}>
+      <a className={className} href={href} role={role}>
         {children}
       </a>
     );
@@ -180,7 +178,7 @@ function UserMenu({ mobile }: { mobile?: boolean }) {
                 }
                 return (
                   <InternalOrExternalLink
-                    keyLabel={item.label}
+                    key={item.label}
                     href={item.link.href}
                     internal={item.link.internal}
                     className={classNames(
@@ -206,12 +204,11 @@ function UserMenu({ mobile }: { mobile?: boolean }) {
         <UserBanner user={user} />
         {items.map((item) => {
           return (
-            <div className="flex pt-1 ml-1.5">
+            <div className="flex pt-1 ml-1.5" key={item.label}>
               <div>
                 <ChevronLeft className="h-5 w-5 mt-0.5" />
               </div>
               <InternalOrExternalLink
-                keyLabel={item.label}
                 href={item.link.href}
                 internal={item.link.internal}
                 className="px-2.5 transition duration-300 ease-in-out text-md  md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
