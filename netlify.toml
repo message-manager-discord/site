@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/invite"
-  to = "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=537250880&scope=bot%20applications.commands"
+  to = "https://discord.com/api/oauth2/authorize?client_id=735395698278924359&permissions=515933326400&scope=bot%20applications.commands"
   status = 302
   force = true
