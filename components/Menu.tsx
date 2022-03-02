@@ -10,13 +10,13 @@ import { useRouter } from "next/router";
 const pages = [
   {
     dirname: "features",
-    filenames: ["commands", "logging", "messages", "slash_commands"],
+    filenames: ["messages", "commands", "logging", "slash_commands"],
   },
+  { dirname: "setup", filenames: ["setup", "config", "permissions"] },
   {
     dirname: "self-hosting",
     filenames: ["installing", "maintaining", "migration"],
   },
-  { dirname: "setup", filenames: ["config", "index", "permissions"] },
 ];
 
 const Menu = ({ pathname }: { pathname: string }) => {
