@@ -84,6 +84,13 @@ export default function Footer() {
             </Link>
           </li>
           <li className="my-2">
+            <Link href="/terms" scroll={true}>
+              <a className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0">
+                Terms of Use
+              </a>
+            </Link>
+          </li>
+          <li className="my-2">
             <Link href="/docs">
               <a className="text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-gray-400 sm:border-b-0">
                 Docs
