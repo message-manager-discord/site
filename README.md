@@ -1,6 +1,7 @@
 # Message Manager Site
 
-[![wakatime tracker](https://wakatime.com/badge/github/AnotherCat/message-manager-site.svg)](https://wakatime.com/badge/github/AnotherCat/message-manager-site) [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![wakatime](https://wakatime.com/badge/github/message-manager-discord/site.svg)](https://wakatime.com/badge/github/message-manager-discord/site)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 Website for the [Message Manager Discord Bot](https://github.com/AnotherCat/message-bot) located at [message.anothercat.me](https://message.anothercat.me)
 
