@@ -47,7 +47,6 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     }
   }
   let innerContent;
-  console.log("HELLO");
 
   if (
     Component.isMDXComponent ||
