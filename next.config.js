@@ -8,7 +8,13 @@
 const { withSentryConfig } = require("@sentry/nextjs");
 const withPlugins = require("next-compose-plugins");
 const withMDX = require("@next/mdx")({
-  extension: /\.mdx$/,
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+    // If you use `MDXProvider`, uncomment the following line.
+    providerImportSource: "@mdx-js/react",
+  },
 });
 
 const SentryWebpackPluginOptions = {
@@ -43,5 +49,6 @@ module.exports = withPlugins([
         },
       ];
     },
+    swcMinify: true,
   },
 ]);

@@ -1,4 +1,4 @@
-import Anchor from "../../components/mdx/anchor";
+import { InternalAnchor } from "../../components/mdx/anchor";
 
 # Introduction
 
@@ -13,21 +13,14 @@ It provides an interface that allows more than one user to edit ("manage") the s
 
 ## Table of Contents
 
-- <Anchor internal href="/docs/quickstart">
-    Quickstart
-  </Anchor>
-- <Anchor internal href="/docs/message-management">
-    Message Management
-  </Anchor>
-- <Anchor internal href="/docs/permissions">
-    Permissions
-  </Anchor>
-- <Anchor internal href="/docs/logging">
-    Logging
-  </Anchor>
-- <Anchor internal href="/docs/common-issues">
-    Common Issues
-  </Anchor>
+{/* prettier-ignore*/}
+{/* This is becuase prettier will shortern the links (over multiple lines) in the list, which breaks the list */}
+
+- <InternalAnchor href="/docs/quickstart">Quickstart</InternalAnchor>
+- <InternalAnchor href="/docs/message-management">Message Management</InternalAnchor>
+- <InternalAnchor href="/docs/permissions">Permissions</InternalAnchor>
+- <InternalAnchor href="/docs/logging">Logging</InternalAnchor>
+- <InternalAnchor href="/docs/common-issues">Common Issues</InternalAnchor>
 
 ## Support
 
@@ -36,11 +29,11 @@ Your first place for support is always these docs, however if you find yourself 
 ## Privacy Policy
 
 To provide you with this service we do have to store data about you, for a number of reasons.  
-What, why and where we store this data is specified in our <Anchor href="/privacy" internal>privacy policy</Anchor>.  
+What, why and where we store this data is specified in our <InternalAnchor href="/privacy">privacy policy</InternalAnchor>.  
 You are required to be aware of, read, and agree to our privacy policy.
 
 ## Terms of Service
 
 We have a terms of service for a number of reasons, some of which are to protect you, and to protect us.  
-This is an agreement between us and you which can be found in our <Anchor href="/terms" internal>terms of service</Anchor>.  
+This is an agreement between us and you which can be found in our <InternalAnchor href="/terms">terms of service</InternalAnchor>.  
 Your use of this service is considered agreement to the terms of service.

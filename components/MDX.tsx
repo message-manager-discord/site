@@ -12,8 +12,9 @@ import {
   TableRow,
 } from "./mdx/table";
 import Anchor from "./mdx/anchor";
+import type { MDXComponents } from "mdx/types";
 
-export const COMPONENTS = {
+export const COMPONENTS: MDXComponents = {
   h1: H1,
   h2: H2,
   h3: H3,

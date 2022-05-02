@@ -1,6 +1,6 @@
 import { H1, H2 } from "../components/mdx/heading";
 import Paragraph from "../components/mdx/paragraph";
-import Anchor from "../components/mdx/anchor";
+import { InternalAnchor } from "../components/mdx/anchor";
 import Link from "next/link";
 
 export default function Custom404() {
@@ -13,10 +13,7 @@ export default function Custom404() {
           <H1>Not Found</H1>
           <H2>
             That page could not be found! Go{" "}
-            <Anchor internal href="/">
-              home
-            </Anchor>
-            ?
+            <InternalAnchor href="/">home</InternalAnchor>?
           </H2>
         </div>
       </div>

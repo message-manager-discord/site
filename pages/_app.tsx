@@ -2,20 +2,17 @@ import "tailwindcss/tailwind.css";
 import "../styles/prism.css";
 import type { AppProps } from "next/app";
 import { COMPONENTS } from "../components/MDX";
-import { MDXProvider, withMDXComponents } from "@mdx-js/react";
+import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider } from "next-themes";
 import OpenGraph from "../components/OpenGraph";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
-import { getAllDocPages } from "../lib/api";
-import { GetStaticProps, NextComponentType, NextPageContext } from "next";
+import { NextComponentType, NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { sanitizeTitle } from "../lib/utils";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import classNames from "classnames";
-
-withMDXComponents;
 
 type maybeMDXComponent = NextComponentType<NextPageContext, any, {}> & {
   isMDXComponent?: boolean;
@@ -28,7 +25,7 @@ type CustomAppProps = AppProps & {
 const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   const router = useRouter();
   let title: string;
-  const isDoc = router.pathname.startsWith("/docs");
+  const isDoc = router.pathname.search("docs") > 0;
   let docPages: string[] = [];
   if (isDoc) {
     const docPath = router.pathname.replace("/docs", "");
@@ -50,10 +47,12 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     }
   }
   let innerContent;
+  console.log("HELLO");
 
   if (
     Component.isMDXComponent ||
-    router.pathname === "/privacy" // next-mdx-remote doesn't have isMDXComponent
+    router.pathname === "/privacy" || // next-mdx-remote doesn't have isMDXComponent
+    isDoc
   ) {
     let smallPadding = "";
     if (isDoc) {

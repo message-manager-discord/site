@@ -1,36 +1,39 @@
 import classNames from "classnames";
 import Link from "next/link";
 
-type AnchorProps = JSX.IntrinsicElements["a"] & {
-  internal?: boolean;
-  href: string;
-};
+type AnchorProps = JSX.IntrinsicElements["a"];
 
-export default function Anchor({
-  className,
-  internal,
-  href,
-  ...props
-}: AnchorProps) {
+export default function Anchor({ className, href, ...props }: AnchorProps) {
   const classes = classNames(
     "border-b-2 border-gray-400 dark:border-gray-300 transition duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-300",
     className,
   );
-  if (internal) {
-    return (
-      <Link href={href}>
-        <a className={classes} {...props} />
-      </Link>
-    );
-  } else {
-    return (
-      <a
-        className={classes}
-        href={href}
-        target="_blank"
-        rel="noreferrer"
-        {...props}
-      />
-    );
-  }
+
+  return (
+    <a
+      className={classes}
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      {...props}
+    />
+  );
 }
+
+type InternalAnchorProps = JSX.IntrinsicElements["a"] & {
+  href: string;
+};
+
+function InternalAnchor({ className, href, ...props }: InternalAnchorProps) {
+  const classes = classNames(
+    "border-b-2 border-gray-400 dark:border-gray-300 transition duration-300 ease-in-out hover:text-blue-500 dark:hover:text-blue-300",
+    className,
+  );
+  return (
+    <Link href={href}>
+      <a className={classes} {...props} />
+    </Link>
+  );
+}
+
+export { InternalAnchor };
