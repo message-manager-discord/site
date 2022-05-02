@@ -1,4 +1,3 @@
-import { DocsDirectoryNames } from "../lib/api";
 import Link from "next/link";
 
 import { sanitizeTitle } from "../lib/utils";

@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 export default function Video({
   src,
   mobileSrc,
-  webm,
 }: {
   src: string;
   mobileSrc: boolean;
-  webm: boolean;
 }) {
   // All videos should have both `webm` and `mp4`
   // The path is the path without the extension

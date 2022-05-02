@@ -1,7 +1,5 @@
 import { H1, H2 } from "../components/mdx/heading";
-import Paragraph from "../components/mdx/paragraph";
 import { InternalAnchor } from "../components/mdx/anchor";
-import Link from "next/link";
 
 export default function Custom404() {
   return (

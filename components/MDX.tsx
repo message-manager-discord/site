@@ -1,4 +1,3 @@
-import React from "react";
 import { H1, H2, H3, H4, H5, H6 } from "./mdx/heading";
 import { ListItem, OrderedList, UnorderedList } from "./mdx/list";
 import Paragraph from "./mdx/paragraph";
