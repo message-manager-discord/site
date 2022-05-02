@@ -1,5 +1,5 @@
 import { H1, H2 } from "../components/mdx/heading";
-import { InternalAnchor } from "../components/mdx/anchor";
+import InternalAnchor from "../components/mdx/internalAnchor";
 
 export default function Custom404() {
   return (
