@@ -6,17 +6,17 @@ import Info from "../components/icons/info";
 export default function Page() {
   return (
     <div className="container mx-auto px-10">
-      <div className="flex-grow">
+      <div className="grow">
         <div className="mb-2 md:mb-8 text-center">
           <h2 className="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
             Message Manager
           </h2>
-          <p className="mt-2 text-xl leading-8 tracking-tight text-gray-800 dark:text-white md:text-2xl">
+          <p className="mt-2 text-xl leading-8 tracking-tight text-slate-800 dark:text-white md:text-2xl">
             Making managing messages easier
           </p>
         </div>
-        <div className="flex flex-wrap my-0 md:my-12 dark:text-white">
-          <div className="w-full border-b md:w-1/2 md:border-r  p-8">
+        <div className="flex flex-wrap my-0 md:my-12 dark:text-white ">
+          <div className="w-full border-b border-slate-300 md:w-1/2 md:border-r  p-8">
             <div className="flex items-center mb-6">
               <Info
                 width="20"
@@ -25,13 +25,13 @@ export default function Page() {
               />
               <div className="ml-4 text-xl">About</div>
             </div>
-            <p className="leading-loose text-gray-500 dark:text-gray-200 text-md">
+            <p className="leading-loose text-slate-500 dark:text-slate-200 text-md">
               Message Manager is designed to make the management of important
               messages in servers easier, allowing the editing of a single
               message by more than one staff member.
             </p>
           </div>
-          <div className="w-full border-b md:w-1/2 p-8">
+          <div className="w-full border-b border-slate-300 md:w-1/2 p-8">
             <div className="flex items-center mb-6">
               <Collection
                 width="20"
@@ -40,12 +40,12 @@ export default function Page() {
               />
               <div className="ml-4 text-xl">Features</div>
             </div>
-            <ul className="list-disc list-inside leading-loose text-gray-500 dark:text-gray-200 text-md">
+            <ul className="list-disc list-inside leading-loose text-slate-500 dark:text-slate-200 text-md">
               <li>Message management (editing and sending)</li>
               <li>Customizable prefix and server settings</li>
             </ul>
           </div>
-          <div className="w-full border-b md:w-1/2 md:border-r md:border-b-0 p-8">
+          <div className="w-full border-b border-slate-300 md:w-1/2 md:border-r md:border-b-0 p-8">
             <div className="flex items-center mb-6">
               <Gear
                 width="20"
@@ -54,7 +54,7 @@ export default function Page() {
               />
               <div className="ml-4 text-xl">Setup</div>
             </div>
-            <ol className="list-decimal list-inside leading-loose text-gray-500 dark:text-gray-200 text-md">
+            <ol className="list-decimal list-inside leading-loose text-slate-500 dark:text-slate-200 text-md">
               <li>Invite the bot to your server</li>
               <li>
                 Setup the prefix with <code>~setup prefix</code>
@@ -71,7 +71,7 @@ export default function Page() {
               />
               <div className="ml-4 text-xl">Contributing</div>
             </div>
-            <p className="leading-loose text-gray-500 dark:text-gray-200 text-md">
+            <p className="leading-loose text-slate-500 dark:text-slate-200 text-md">
               Open source code can be found on the{" "}
               <a
                 href="https://github.com/orgs/message-manager-discord"

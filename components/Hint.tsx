@@ -17,7 +17,7 @@ function getHintHeadStyle(type: HintType) {
 
   return {
     classes: classNames(
-      "text-xs font-light inline-block py-1 px-2 uppercase rounded-full text-gray-600 dark:text-gray-200",
+      "text-xs font-light inline-block py-1 px-2 uppercase rounded-full text-slate-600 dark:text-slate-200",
       {
         "bg-red-200 dark:bg-red-700": type === "warn",
         "bg-blue-200 dark:bg-blue-700": type === "info",
@@ -30,11 +30,11 @@ function getHintHeadStyle(type: HintType) {
 export default function Hint({ type, children }: HintProps) {
   const { classes, name } = getHintHeadStyle(type);
   return (
-    <aside className="dark:bg-gray-700 rounded-lg shadow block p-4 mx-auto my-2">
+    <aside className="dark:bg-slate-700 rounded-lg shadow block p-4 mx-auto my-2">
       <div className="pb-2">
         <span className={classes}>{name}</span>
       </div>
-      <div className="text-gray-500 dark:text-gray-200 ">{children}</div>
+      <div className="text-slate-500 dark:text-slate-200 ">{children}</div>
     </aside>
   );
 }

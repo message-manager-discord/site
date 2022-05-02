@@ -5,7 +5,7 @@ export function ListItem(props: JSX.IntrinsicElements["li"]) {
 }
 
 const listClasses =
-  "text-gray-500 dark:text-gray-200 text-base mb-4 list-inside leading-loose";
+  "text-slate-500 dark:text-slate-200 text-base mb-4 list-inside leading-loose";
 
 export function UnorderedList(props: JSX.IntrinsicElements["ul"]) {
   const classes = classNames(listClasses, "list-disc");

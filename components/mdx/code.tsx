@@ -12,7 +12,7 @@ export default function Code({
 
   return (
     <div>
-      <div className="flex items-end justify-end text-gray-500 dark:text-gray-200 px-4">
+      <div className="flex items-end justify-end text-slate-500 dark:text-slate-200 px-4">
         <span>{language}</span>
       </div>
       <Highlight

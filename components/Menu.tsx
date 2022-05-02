@@ -10,9 +10,9 @@ const pages = ["message-management", "permissions", "quickstart"];
 
 const Menu = ({ pathname }: { pathname: string }) => {
   const linkInactiveClass =
-    "hover:text-gray-800 font-thin text-gray-500 dark:text-gray-300 hover:bg-gray-100 flex items-center p-4 md:p-1.5 my-2 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start rounded-md";
+    "hover:text-slate-800 font-thin text-slate-500 dark:text-slate-300 hover:bg-slate-100 flex items-center p-4 md:p-1.5 my-2 transition-colors dark:hover:text-white dark:hover:bg-slate-600 duration-200 justify-start rounded-md";
   const linkActiveClass =
-    "hover:text-gray-800 text-gray-600 bg-gray-100 dark:bg-gray-600 dark:text-gray-300 hover:bg-gray-100 flex items-center p-4 md:p-1.5 my-2 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start  rounded-md";
+    "hover:text-slate-800 text-slate-600 bg-slate-100 dark:bg-slate-600 dark:text-slate-300 hover:bg-slate-100 flex items-center p-4 md:p-1.5 my-2 transition-colors dark:hover:text-white dark:hover:bg-slate-600 duration-200 justify-start  rounded-md";
 
   let headLink;
   if (pathname === "/docs") {
@@ -132,7 +132,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
     <div
       className={classNames(
         "md:sticky md:top-0" ? !active : "",
-        " bg-white dark:bg-gray-800",
+        " bg-white dark:bg-slate-800",
       )}
       id="nav"
     >
@@ -141,7 +141,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
       <button
         className={classNames(
           active ? "hidden" : "",
-          "md:hidden p-4 py-7 fixed text-gray text-gray-800 dark:text-indigo-50",
+          "md:hidden p-4 py-7 fixed text-slate text-slate-800 dark:text-indigo-50",
         )}
         id="open-menu"
         aria-label="Open navigation menu"
@@ -167,10 +167,10 @@ const Menu = ({ pathname }: { pathname: string }) => {
       <div
         className={classNames(
           active ? "" : "hidden",
-          "fixed md:relative bg-white dark:bg-gray-800 md:flex flex-col sm:flex-row sm:justify-around ",
+          "fixed md:relative bg-white dark:bg-slate-800 md:flex flex-col sm:flex-row sm:justify-around ",
         )}
       >
-        <div className="w-64 h-screen border-r-2">
+        <div className="w-64 h-screen border-r-2 border-slate-200 dark:border-slate-100">
           <nav className="pr-3 pl-4">
             <div className="flex justify-around pt-3">
               <Link href="/">
@@ -181,7 +181,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
               <button
                 className={classNames(
                   active ? "" : "hidden",
-                  "pt-1 text-gray-800 dark:text-indigo-50",
+                  "pt-1 text-slate-800 dark:text-indigo-50",
                 )}
                 id="close-menu"
                 aria-label="Close navigation menu"

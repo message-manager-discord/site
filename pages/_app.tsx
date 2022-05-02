@@ -64,7 +64,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     const mdxContent = (
       <div
         className={classNames(
-          "container flex-shrink mx-auto",
+          "container shrink mx-auto",
           smallPadding,
           "md:px-14 min-w-0 pt-5",
         )}
@@ -76,7 +76,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     );
     if (isDoc) {
       innerContent = (
-        <div className="flex flex-row flex-grow-0 items-start">
+        <div className="flex flex-row grow-0 items-start">
           <Menu pathname={router.pathname} />
           {mdxContent}
         </div>
@@ -99,7 +99,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   }
   return (
     <ThemeProvider attribute="class">
-      <div className="flex min-h-screen flex-col bg-white dark:bg-gray-800">
+      <div className="flex min-h-screen flex-col bg-white dark:bg-slate-800">
         <OpenGraph
           title={title ? `${title}Message Manager` : "Message Manager"}
         />

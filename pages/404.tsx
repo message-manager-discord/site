@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Custom404() {
   return (
-    <div className="container mx-auto px-6 flex-grow flex flex-col justify-center">
+    <div className="container mx-auto px-6 grow flex flex-col justify-center">
       {" "}
       {/*Flex box used to align content even though there is one child*/}
       <div className="container mx-auto px-6">
