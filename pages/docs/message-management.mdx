@@ -1,5 +1,6 @@
 import Video from "../../components/Video";
 import Hint from "../../components/Hint";
+import InlineCode from "../../components/mdx/inlineCode";
 
 # Message Management
 
@@ -8,7 +9,7 @@ Here's give a quick rundown of each feature, and how to use them.
 
 ## Fetching
 
-Bot permissions required: `@everyone`
+Bot permissions required: <InlineCode>@everyone</InlineCode>
 
 Fetching a message will return the raw message in a text file. This is useful as what you can copy from discord is often not the raw message (with emojis, mentions, etc), and you can end up with a mismatch.
 It does not send a log.
@@ -29,11 +30,11 @@ To use it, right click on a message, open the "Apps" section, and click "Fetch".
 
 ## Sending
 
-Bot permissions required: `SEND_MESSAGES`
+Bot permissions required: <InlineCode>SEND_MESSAGES</InlineCode>
 
-This will send a message through the bot account, to a channel specified. The message will be editable by anyone with the `EDIT_MESSAGES` bot permission.
+This will send a message through the bot account, to a channel specified. The message will be editable by anyone with the <InlineCode>EDIT_MESSAGES</InlineCode> bot permission.
 
-Use the `/send` command in any channel to do this.
+Use the <InlineCode>/send</InlineCode> command in any channel to do this.
 
 <Hint type="warn">This command will not work on outdated mobile devices!</Hint>
 
@@ -56,7 +57,7 @@ The response will only show actions you have permissions to do.
 
 ### Editing
 
-Bot permissions required: `EDIT_MESSAGES`
+Bot permissions required: <InlineCode>EDIT_MESSAGES</InlineCode>
 
 This will edit a message previously sent through the bot.
 
@@ -68,7 +69,7 @@ This will edit a message previously sent through the bot.
 
 ### Deleting
 
-Bot permissions required: `DELETE_MESSAGES`
+Bot permissions required: <InlineCode>DELETE_MESSAGES</InlineCode>
 
 This will delete a message previously sent through the bot.
 
@@ -82,7 +83,7 @@ This will delete a message previously sent through the bot.
 
 ### Reporting
 
-Bot permissions required: `@everyone`
+Bot permissions required: <InlineCode>@everyone</InlineCode>
 
 Reporting is currently in developement, when it is finished it will provide a way
 for any user to report a message to the developers, if they think it breaks our terms of service.

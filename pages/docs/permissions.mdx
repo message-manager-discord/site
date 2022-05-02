@@ -1,4 +1,5 @@
 import Hint from "../../components/Hint";
+import InlineCode from "../../components/mdx/inlineCode";
 
 # Permissions
 
@@ -13,22 +14,29 @@ These permissions can be set at a global level, or a per channel level.
 ### The Permissions
 
 An entity (user or role) can only be assigned a single permission, individula permissions grant access to permissions before.
-For example a user with the `EDIT_MESSAGES` permisison effectivity has the `VIEW_MESSAGES`, `SEND_MESSAGES` and `EDIT_MESSAGES` permissions.
+For example a user with the <InlineCode>EDIT_MESSAGES</InlineCode> permisison effectivity has the <InlineCode>VIEW_MESSAGES</InlineCode>, <InlineCode>SEND_MESSAGES</InlineCode> and <InlineCode>EDIT_MESSAGES</InlineCode> permissions.
 
 Since users may have multiple roles, the role with the higher permission is counted.
-So a user may have a role with `NONE` that is above another role they have with `DELETE_MESSAGES`, the permissions for that user would be `DELETE_MESSAGES`.
+So a user may have a role with <InlineCode>NONE</InlineCode> that is above another role they have with <InlineCode>DELETE_MESSAGES</InlineCode>, the permissions for that user would be <InlineCode>DELETE_MESSAGES</InlineCode>.
 
-- `NONE` - No permissions, used to deny permissions previously granted
-- `VIEW_MESSAGES` - Currently has no effect, will be used to grant access to web based features
-- `SEND_MESSAGES` - Grants access to sending messages wherever the bot is able
-- `EDIT_MESSAGES` - Grants access to editing messages previously sent via the bot
-- `DELETE_MESSAGES` - Grants access to deleting messages previously sent via the bot
-- `MANAGE_PERMISSIONS` - Allows a user to manage permissions (on a server and / or channel level) for other users / roles below their top role.
-- `MANAGE_CONFIG` - Allows a user to manage server level config (such as the logging channel, etc). **Cannot** be set on a channel.
+- <InlineCode>NONE</InlineCode> - No permissions, used to deny permissions previously
+  granted
+- <InlineCode>VIEW_MESSAGES</InlineCode> - Currently has no effect, will be used
+  to grant access to web based features
+- <InlineCode>SEND_MESSAGES</InlineCode> - Grants access to sending messages wherever
+  the bot is able
+- <InlineCode>EDIT_MESSAGES</InlineCode> - Grants access to editing messages previously
+  sent via the bot
+- <InlineCode>DELETE_MESSAGES</InlineCode> - Grants access to deleting messages previously
+  sent via the bot
+- <InlineCode>MANAGE_PERMISSIONS</InlineCode> - Allows a user to manage permissions
+  (on a server and / or channel level) for other users / roles below their top role.
+- <InlineCode>MANAGE_CONFIG</InlineCode> - Allows a user to manage server level config
+  (such as the logging channel, etc). **Cannot** be set on a channel.
 
 <Hint type="info">
-  If a user has the `ADMINISTRATOR` discord permission, they can carry out any
-  bot action.
+  If a user has the <InlineCode>ADMINISTRATOR</InlineCode> discord permission,
+  they can carry out any bot action.
 </Hint>
 
 ### Hierarchy
@@ -44,47 +52,47 @@ This means that permissions can be granted / denied for certain channels / users
 
 <Hint type="warn">
   This could lead to unintended denials! For example, a user has 'role 1' which
-  grants them `DELETE_MESSAGES` on the guild, however they also have 'role 2'
-  which grants them `VIEW_MESSAGES` on a channel. The user will **not** be able
-  to send, edit or delete messages in that channel, even though no permisisons
-  for 'role 1' are set on that channel.
+  grants them <InlineCode>DELETE_MESSAGES</InlineCode> on the guild, however
+  they also have 'role 2' which grants them
+  <InlineCode>VIEW_MESSAGES</InlineCode> on a channel. The user will **not** be able
+  to send, edit or delete messages in that channel, even though no permisisons for
+  'role 1' are set on that channel.
 </Hint>
 
 ### Commands
 
-On each command there is a `channel` option which will, if selected, act on a channel level instead of a server level.
+On each command there is a <InlineCode>channel</InlineCode> option which will, if selected, act on a channel level instead of a server level.
 
 #### Setting permissions
 
-Command: `/config permissions set`
+Command: <InlineCode>/config permissions set</InlineCode>
 
-This command will set the permission for the target passed in the `target` argument.
+This command will set the permission for the target passed in the <InlineCode>target</InlineCode> argument.
 User's cannot set permissions above their top role, and cannot set a permission where they do not have that permission, or the target has a permission above their permissions.
 This does not apply to administrators or the server owner.
 
 #### Removing permissions
 
-Command: `/config permissions remove`
+Command: <InlineCode>/config permissions remove</InlineCode>
 
-This command will remove the permission from the target passed in the `target` argument (this is the same as setting to `NONE`).
+This command will remove the permission from the target passed in the <InlineCode>target</InlineCode> argument (this is the same as setting to <InlineCode>NONE</InlineCode>).
 User's cannot remove permission from a target where the target's permission is above their permissions.
 This does not apply to administrators or the server owner.
 
 #### Listing permissions
 
-Command: `/config permissions list`
+Command: <InlineCode>/config permissions list</InlineCode>
 
-This command lists the permissions for the level provided (decided by the `channel` option).
-Any user with the `MANAGE_PERMISSIONS` permission on that level can use this command.
+This command lists the permissions for the level provided (decided by the <InlineCode>channel`option). Any user with the`MANAGE_PERMISSIONS</InlineCode> permission on that level can use this command.
 
 ## User Discord Permissions
 
-These are discord permissions a user must have, to be able to use a command. Currently the only restriction is on the `VIEW_CHANNELS` discord permission.
+These are discord permissions a user must have, to be able to use a command. Currently the only restriction is on the <InlineCode>VIEW_CHANNELS</InlineCode> discord permission.
 That permission is required for making message management actions, in the channel the message is / will be in.
 
 <Hint type="info">
-  If a user has the `ADMINISTRATOR` discord permission, they can carry out any
-  bot action.
+  If a user has the <InlineCode>ADMINISTRATOR</InlineCode> discord permission,
+  they can carry out any bot action.
 </Hint>
 
 ## Bot Discord Permissions
@@ -93,13 +101,17 @@ These are discord permissions the bot requires to function.
 
 To carry out message actions:
 
-- `VIEW_CHANNELS` / `READ_MESSAGES` (it might be either of these names)
-- `SEND_MESSAGES`
-- `EMBED_LINKS`
-- `ATTACH_FILES`
-- `SEND_MESSAGES_IN_THREADS` (only for threads)
-- `USE_EXTERNAL_EMOJIS` (only if required in the message)
+{/* prettier-ignore*/}
+{/* This is becuase prettier will shortern the links (over multiple lines) in the list, which breaks the list */}
+
+
+- <InlineCode>VIEW_CHANNELS</InlineCode> / <InlineCode>READ_MESSAGES</InlineCode> (it might be either of these names)
+- <InlineCode>SEND_MESSAGES</InlineCode>
+- <InlineCode>EMBED_LINKS</InlineCode>
+- <InlineCode>ATTACH_FILES</InlineCode>
+- <InlineCode>SEND_MESSAGES_IN_THREADS</InlineCode> (only for threads)
+- <InlineCode>USE_EXTERNAL_EMOJIS</InlineCode> (only if required in the message)
 
 To enable logging:
 
-- `MANAGE_WEBHOOKS` (on the logging channel)
+- <InlineCode>MANAGE_WEBHOOKS</InlineCode> (on the logging channel)

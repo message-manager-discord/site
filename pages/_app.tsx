@@ -51,6 +51,8 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   if (
     Component.isMDXComponent ||
     router.pathname === "/privacy" || // next-mdx-remote doesn't have isMDXComponent
+    router.pathname === "/typography" ||
+    router.pathname === "/terms" ||
     isDoc
   ) {
     let smallPadding = "";

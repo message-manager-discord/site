@@ -30,11 +30,11 @@ export default function Code({
             style={{ ...style, padding: "20px" }}
           >
             {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
+              <span key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
                   <span key={key} {...getTokenProps({ token, key })} />
                 ))}
-              </div>
+              </span>
             ))}
           </pre>
         )}
