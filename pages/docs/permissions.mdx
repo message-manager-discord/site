@@ -10,80 +10,86 @@ When talking about permissions there are three groups of permissions that may be
 These are permissions granted to users (or to users via roles) by server managers.
 These permissions grant access to bot actions, such as sending messages, editing messages, etc.  
 These permissions can be set at a global level, or a per channel level.
+Some permissions are limited to only guild level permissions, such as the management permisisons.
 
 ### The Permissions
 
-An entity (user or role) can only be assigned a single permission, individula permissions grant access to permissions before.
-For example a user with the <InlineCode>EDIT_MESSAGES</InlineCode> permisison effectivity has the <InlineCode>VIEW_MESSAGES</InlineCode>, <InlineCode>SEND_MESSAGES</InlineCode> and <InlineCode>EDIT_MESSAGES</InlineCode> permissions.
+Permissions work off a bitfield type model, with roles being able to be assigned permissions that they have.
+The base level is roles, and permission overrides can be assigned to users, roles (on channels) and users (on channels).
 
-Since users may have multiple roles, the role with the higher permission is counted.
-So a user may have a role with <InlineCode>NONE</InlineCode> that is above another role they have with <InlineCode>DELETE_MESSAGES</InlineCode>, the permissions for that user would be <InlineCode>DELETE_MESSAGES</InlineCode>.
+#### Permission Values
 
-- <InlineCode>NONE</InlineCode> - No permissions, used to deny permissions previously
-  granted
-- <InlineCode>VIEW_MESSAGES</InlineCode> - Currently has no effect, will be used
-  to grant access to web based features
-- <InlineCode>SEND_MESSAGES</InlineCode> - Grants access to sending messages wherever
-  the bot is able
-- <InlineCode>EDIT_MESSAGES</InlineCode> - Grants access to editing messages previously
-  sent via the bot
-- <InlineCode>DELETE_MESSAGES</InlineCode> - Grants access to deleting messages previously
-  sent via the bot
-- <InlineCode>MANAGE_PERMISSIONS</InlineCode> - Allows a user to manage permissions
-  (on a server and / or channel level) for other users / roles below their top role.
-- <InlineCode>MANAGE_CONFIG</InlineCode> - Allows a user to manage server level config
-  (such as the logging channel, etc). **Cannot** be set on a channel.
+Here is a table for each permission, its bitfield value and the description
 
-<Hint type="info">
-  If a user has the <InlineCode>ADMINISTRATOR</InlineCode> discord permission,
-  they can carry out any bot action.
-</Hint>
+---
 
-### Hierarchy
+| Permission           | Bitfield Value          | Description                                                                                       |
+| :------------------- | :---------------------- | :------------------------------------------------------------------------------------------------ |
+| `VIEW_MESSAGES`      | 0x00000001 (1 {'<<'} 0) | Grants access to viewing messages, currently has no effect                                        |
+| `EDIT_MESSAGES`      | 0x00000002 (1 {'<<'} 1) | Grants access to editing messages previously sent via the bot account                             |
+| `SEND_MESSAGES`      | 0x00000004 (1 {'<<'} 2) | Grants access to sending messages via the bot account                                             |
+| `DELETE_MESSAGES`    | 0x00000008 (1 {'<<'} 3) | Grants access to deleting messages previously sent via the bot account                            |
+| `MANAGE_PERMISSIONS` | 0x00000010 (1 {'<<'} 4) | Grants access to managing bot permissions for users and roles. Doesn't effect discord permissions |
+| `MANAGE_CONFIG`      | 0x00000020 (1 {'<<'} 5) | Grants access to managing the bot's configuration                                                 |
 
-Each "level" of permissions completly overrides the permissions from previous levels.
+#### Hierarchy
 
-1. Roles - Server
-2. User - Server
-3. Roles - Channel
-4. User - Channel
+The hierarchy of permissions is simaler to how discord's permissions work.
 
-This means that permissions can be granted / denied for certain channels / users.
+Permissions are first calculated for the first level, then applied moving down the levels.  
+For roles (at both levels) the user's permissions is the sum of all roles the user has.
 
-<Hint type="warn">
-  This could lead to unintended denials! For example, a user has 'role 1' which
-  grants them <InlineCode>DELETE_MESSAGES</InlineCode> on the guild, however
-  they also have 'role 2' which grants them
-  <InlineCode>VIEW_MESSAGES</InlineCode> on a channel. The user will **not** be able
-  to send, edit or delete messages in that channel, even though no permisisons for
-  'role 1' are set on that channel.
-</Hint>
+###### Levels
+
+1. Roles (guild)
+2. Users (guild)
+3. Roles (channel)
+4. Users (channel)
+
+At the top level (roles at the guild level) each permission only has a toggle for allowed.
+This means that if a permission is not toggled on for any of the user's roles they will not have that permission at this level.
+
+For all other levels each permission can be set to either allowed or denied, with an inbetween state of "inhert" or "reset".
+The inherit state means that the permission is inherited from the previous level(s).
+Otherwise an allow or deny state overrides all other levels above.
+
+Deny overrides are applied first, and then allow overrides,
+meaning a permission that is both denied and allowed at one of the levels will be allowed for that level.
 
 ### Commands
 
-On each command there is a <InlineCode>channel</InlineCode> option which will, if selected, act on a channel level instead of a server level.
+#### Managing permissions
 
-#### Setting permissions
+Command: <InlineCode>/config permissions manage</InlineCode>
 
-Command: <InlineCode>/config permissions set</InlineCode>
-
-This command will set the permission for the target passed in the <InlineCode>target</InlineCode> argument.
-User's cannot set permissions above their top role, and cannot set a permission where they do not have that permission, or the target has a permission above their permissions.
-This does not apply to administrators or the server owner.
-
-#### Removing permissions
-
-Command: <InlineCode>/config permissions remove</InlineCode>
-
-This command will remove the permission from the target passed in the <InlineCode>target</InlineCode> argument (this is the same as setting to <InlineCode>NONE</InlineCode>).
-User's cannot remove permission from a target where the target's permission is above their permissions.
-This does not apply to administrators or the server owner.
+Will return a select menu that can be used to change permissions.
 
 #### Listing permissions
 
 Command: <InlineCode>/config permissions list</InlineCode>
 
-This command lists the permissions for the level provided (decided by the <InlineCode>channel`option). Any user with the`MANAGE_PERMISSIONS</InlineCode> permission on that level can use this command.
+Will only return a list of roles / users that have permissions set. To view what permission each entity has use the manage command.
+
+#### Quickstart
+
+Command: <InlineCode>/config permissions quickstart</InlineCode>
+
+Will allow permissions for permissions in set presets. It's useful to get started quickly.
+
+##### The presets
+
+- Message access
+  - Edit
+  - Send
+  - Delete
+- Management access
+  - Manage permissions
+  - Manage config
+
+<Hint type="warn">
+  Setting a preset to false when running the command will **not** deny
+  permissions for that entity. Use the management command for that.
+</Hint>
 
 ## User Discord Permissions
 
@@ -101,11 +107,12 @@ These are discord permissions the bot requires to function.
 
 To carry out message actions:
 
-{/* prettier-ignore*/}
+{/* prettier-ignore */}
 {/* This is becuase prettier will shortern the links (over multiple lines) in the list, which breaks the list */}
 
-
-- <InlineCode>VIEW_CHANNELS</InlineCode> / <InlineCode>READ_MESSAGES</InlineCode> (it might be either of these names)
+- <InlineCode>VIEW_CHANNELS</InlineCode> / <InlineCode>
+    READ_MESSAGES
+  </InlineCode> (it might be either of these names)
 - <InlineCode>SEND_MESSAGES</InlineCode>
 - <InlineCode>EMBED_LINKS</InlineCode>
 - <InlineCode>ATTACH_FILES</InlineCode>
