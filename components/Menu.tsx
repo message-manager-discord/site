@@ -5,7 +5,13 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-const pages = ["quickstart", "message-management", "permissions", "config"];
+const pages = [
+  "quickstart",
+  "message-management",
+  "permissions",
+  "config",
+  "common-issues",
+];
 
 const Menu = ({ pathname }: { pathname: string }) => {
   const linkInactiveClass =
