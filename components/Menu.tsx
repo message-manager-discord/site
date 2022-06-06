@@ -11,7 +11,7 @@ const pages = [
   "permissions",
   "config",
   "common-issues",
-  "migrating",
+  "changelog-and-migrating",
 ];
 
 const Menu = ({ pathname }: { pathname: string }) => {
