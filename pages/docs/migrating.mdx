@@ -1,0 +1,41 @@
+import InternalAnchor from "../../components/mdx/internalAnchor";
+import InlineCode from "../../components/mdx/inlineCode";
+
+# Migrating
+
+Most of the bot's functions have changed in the latest update. Most have been migrated accross, however some will require some migrating from you.
+
+## Privacy policy and terms
+
+The privacy policy and the terms of use have been updated as part of the new version.
+By continiuing to use the new version you are agreeing to both.
+
+## Commands
+
+All commands have been moved to slash commands, or context menus.
+For message related commands see <InternalAnchor href="docs/message-management">the message management docs</InternalAnchor> and for config related commands see <InternalAnchor href="docs/config">the config docs</InternalAnchor>.
+
+## Messages
+
+The new version requires messages to be stored in the bot's database.
+This was not previously done.
+To add messages to the bot, first attempt to edit a message (through the actions context menu), then it should send an error with further instructions.
+The bot should add a new context menu that you can use to add a message, <InlineCode>Add Message</InlineCode>.
+
+## Config
+
+### Permissions
+
+Previously there was the concept of one role required for message actions.
+This is now a much more complicated system, see <InternalAnchor href="/docs/permissions">the permission docs</InternalAnchor> for more info on that.
+Previous admin roles have been set as the message management preset on the new system.
+This means that that role will be able to send, edit, and delete messages sent via the bot.
+If you don't want this to be the case, please the permissions for that role.
+
+### Logging channel
+
+This has not changed, other than what is sent to the channel.
+
+### Prefixes
+
+Prefixes have been removed, and are no longer used.
