@@ -37,6 +37,12 @@ This will send a message through the bot account, to a channel specified. The me
 Use the <InlineCode>/send</InlineCode> command in any channel to do this.
 
 <Hint type="warn">This command will not work on outdated mobile devices!</Hint>
+<Hint type="info">
+  Set the <InlineCode>content-only</InlineCode> option to{" "}
+  <InlineCode>true</InlineCode> to only send content - and not an embed. See the
+  edit section for an example of the flow for embeds - it's the same for edit
+  just prefilled.
+</Hint>
 
 <Video
   src="/video/docs/message-management/send-{theme}-{platform}"
@@ -60,6 +66,12 @@ The response will only show actions you have permissions to do.
 Bot permissions required: <InlineCode>EDIT_MESSAGES</InlineCode>
 
 This will edit a message previously sent through the bot.
+
+<Hint type="info">
+  Also shown here is embed editing, this involves a button and modal flow to set
+  all embed propreties. Existing embeds can also be removed by removing all
+  propreties (setting to empty).
+</Hint>
 
 <Video
   src="/video/docs/message-management/edit-{theme}-{platform}"
