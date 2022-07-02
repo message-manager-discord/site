@@ -1,3 +1,5 @@
+import InlineCode from "../components/mdx/inlineCode";
+
 # Privacy Policy
 
 Message Manager provides a service through the Website (the "Site"), and the Discord Bot (the "Bot"), collectivity (the 'Service'). These services are provided to you by the Message Manager Dev Team ('we' or 'us') for users ('you').
@@ -6,30 +8,63 @@ Message Manager provides a service through the Website (the "Site"), and the Dis
 
 ### Data you provide
 
+#### Config
+
 The Service has settings that administrators of servers can set up on a per server basis. Setting these settings will store the following data when provided.
 
 - Guild ids
 - Role ids
+- User ids
 - Channel ids
 - Webhook authorization details
 
+#### Messages
+
+The main function of the service involves managing message content. When a message is send, edited or deleted, the service will store the following data.
+
+- Guild id
+- Message id
+- Message content (encrypted)
+- Message author id (user id)
+- Channel Id
+- Message creation date
+- Message edit date
+
+The bot will also store message history for message edits.
+
 ### Data automatically collected
+
+#### The site
 
 When you connect to the site traffic is provided through a proxy from cloudflare for security and performance reasons. Cloudflare collects anonymous data which may include but is not limited IP addresses, country, device and browser type, http request type and time. Cloudflare's privacy policy can be found [here](https://www.cloudflare.com/privacy)
 
 We also use Cloudflare's privacy aware analytics service, which records: Referrer, Host, Country, Path, Browser, Operating System and Device Type. All data recorded is anonymous.
 
-We use a LFU (least frequently used) caching method for caching guild settings. Part of this means that the count of times that the data per guild has been access is stored in ram. Because the prefix is checked each time a message event is received to check if the message is a command (most bots work this way) this means that the count will roughly represent the amount of messages in that guild since the bot was loaded. This data will not be used for any other purpose than to maintain the cache.
-
-Command usage is logged for analytics purposes, the timestamp, server id, command name(s), and result (if it succeeded / errors thrown, etc). This data is only available to the bot team.
-
-#### Cookies
+##### Cookies
 
 Cookies are only currently used by Cloudflare to detect bad actors and block them, and to provide their other services to us. These cookies do not allow cross site tracking and in most cases log data retrieved using these cookies is only stored for 24 hours by Cloudflare on their servers.
 
+#### The API
+
+We may store data related to your request such as, the request type, the request url, the request body size, the request headers, the response status code, the response headers and the response body size.
+The data may also be used for analytics, but will not contain any identifing data.
+
+Cloudflare is also used to protect the api, refer above to what cloudflare may store about you.
+
+#### Interactions
+
+We store data related to the amount, and type, of interactions recived for analytics purposes.
+
+## Data we process, but do not collect
+
+We may process any data that is sent to use from discord via websocket, outgoing webhook, or api request response.
+We also may process any data that we recive as a result of you making a request to the api or site.
+We do not store data that is not specified in this privacy policy.
+
 ## Where do we store your data
 
-Data is currently stored in the US and both services are hosted in the US.
+Data is currently stored in Helsinki, finland. Cloudflare data may be stored on any of their servers (see their privacy policy for more detail).
+We may make copies of this data for backup and migrating purposes, and this data may be stored in other locations.
 
 ## Why do we need that data
 
@@ -40,12 +75,13 @@ Role ids are needed to confirm that a user has a set management role and thus pe
 Guild ids are needed to link server specific settings to their relative servers.
 Channel ids are needed to enable the vc-channel stats function to find the right channel.
 Webhook ids and tokens are needed for logging to function
+Message content is needed to provide a history to users, and to show content on an upcoming web platform.
 
 ### To protect the Service
 
 Data collected by Cloudflare is collected to protect the service from DDoS attacks among others attacks.
 
-Command usage data is also collected to help detect / identify users who are abusing the service.
+API and Interaction usage data is also collected to help detect / identify users who are abusing the service.
 
 ### To help us improve the Service
 
@@ -53,11 +89,7 @@ Anonymous data is collected by Cloudflare that contains approximate location, de
 
 Data may also be used in development and testing.
 
-Command usage data is collected to gain insight on command usage to help focus development and identify improvements, to improve the service.
-
-### To optimise the service
-
-Cache access frequency is required to ensure that the data in cache is the most likely to be needed, improving the speed of the bot.
+API and Interaction usage data is collected to gain insight on command usage to help focus development and identify improvements, to improve the service.
 
 ## Who is your data shared with
 
@@ -68,7 +100,7 @@ Other than Discord, users of the Service and developers of the Service your data
 If you have a concern you can contact us a few ways.  
 You can:
 
-- Join the discord [server](https://discord.gg/xFZu29t) and contact me at `Another Cat#4247`
+- Join the discord [server](https://discord.gg/xFZu29t) and contact me at <InlineCode>Another Cat#4247</InlineCode>
 - Emailing [messagemanagerdiscord@gmail.com](mailto:messagemanagerdiscord@gmail.com)
 
 ## How to get your data removed

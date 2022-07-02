@@ -1,4 +1,3 @@
-import React from "react";
 import { H1, H2, H3, H4, H5, H6 } from "./mdx/heading";
 import { ListItem, OrderedList, UnorderedList } from "./mdx/list";
 import Paragraph from "./mdx/paragraph";
@@ -12,8 +11,9 @@ import {
   TableRow,
 } from "./mdx/table";
 import Anchor from "./mdx/anchor";
+import type { MDXComponents } from "mdx/types";
 
-export const COMPONENTS = {
+export const COMPONENTS: MDXComponents = {
   h1: H1,
   h2: H2,
   h3: H3,

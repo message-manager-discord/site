@@ -25,7 +25,7 @@ export default function Nav() {
         <button
           className={classNames(
             active ? "hidden" : "",
-            "md:hidden text-gray-800 dark:text-indigo-50",
+            "md:hidden text-slate-800 dark:text-indigo-50",
           )}
           id="open-menu"
           aria-label="Open navigation menu"
@@ -52,7 +52,7 @@ export default function Nav() {
         <button
           className={classNames(
             active ? "" : "hidden",
-            "text-gray-800 dark:text-indigo-50",
+            "text-slate-800 dark:text-indigo-50",
           )}
           id="close-menu"
           aria-label="Close navigation menu"
@@ -86,28 +86,28 @@ export default function Nav() {
       >
         <li className="py-2">
           <Link href="/">
-            <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
+            <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white">
               Home
             </a>
           </Link>
         </li>
         <li className="py-2">
           <Link href="/docs">
-            <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
+            <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white">
               Docs
             </a>
           </Link>
         </li>
         <li className="py-2">
           <Link href="/invite">
-            <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white">
+            <a className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white">
               Invite
             </a>
           </Link>
         </li>
         <li className="py-2">
           <a
-            className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-gray-600 hover:text-blue-500 dark:text-gray-200 dark:hover:text-white"
+            className="transition duration-300 ease-in-out text-lg font-medium md:px-4 text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white"
             href="https://discord.gg/xFZu29t"
           >
             Support

@@ -1,7 +1,7 @@
 export function Table(props: JSX.IntrinsicElements["table"]) {
   return (
     <table
-      className="table p-6 my-6 dark:bg-gray-700 shadow rounded-lg overflow-y-auto"
+      className="table p-6 my-6 dark:bg-slate-700 shadow rounded-lg overflow-y-auto"
       {...props}
     />
   );
@@ -16,7 +16,7 @@ export function TableHead(props: JSX.IntrinsicElements["thead"]) {
 export function TableHeader(props: JSX.IntrinsicElements["th"]) {
   return (
     <th
-      className="whitespace-nowrap px-4 py-2 font-normal text-lg text-gray-500 dark:text-gray-200"
+      className="whitespace-nowrap px-4 py-2 font-normal text-lg text-slate-500 dark:text-slate-200"
       {...props}
     />
   );
@@ -31,7 +31,7 @@ export function TableRow(props: JSX.IntrinsicElements["tr"]) {
 export function TableData(props: JSX.IntrinsicElements["td"]) {
   return (
     <td
-      className="border-t-2 p-4 dark:border-gray-400 font-normal text-gray-500 dark:text-gray-200"
+      className="border-t-2 p-4 dark:border-slate-400 font-normal text-slate-500 dark:text-slate-200"
       {...props}
     />
   );

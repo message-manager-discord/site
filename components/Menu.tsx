@@ -1,4 +1,3 @@
-import { DocsDirectoryNames } from "../lib/api";
 import Link from "next/link";
 
 import { sanitizeTitle } from "../lib/utils";
@@ -6,34 +5,27 @@ import classNames from "classnames";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-// TODO fix this later
 const pages = [
-  {
-    dirname: "features",
-    filenames: ["messages", "commands", "logging", "slash_commands"],
-  },
-  { dirname: "setup", filenames: ["setup", "config", "permissions"] },
-  {
-    dirname: "self-hosting",
-    filenames: ["installing", "maintaining", "migration"],
-  },
+  "quickstart",
+  "message-management",
+  "permissions",
+  "config",
+  "common-issues",
+  "changelog-and-migrating",
 ];
 
 const Menu = ({ pathname }: { pathname: string }) => {
   const linkInactiveClass =
-    "hover:text-gray-800 font-thin text-gray-500 dark:text-gray-300 hover:bg-gray-100 flex items-center p-2 md:p-1.5 my-1 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start rounded-md";
+    "hover:text-slate-800 font-thin text-slate-500 dark:text-slate-300 hover:bg-slate-100 flex items-center p-4 md:p-1.5 my-2 transition-colors dark:hover:text-white dark:hover:bg-slate-600 duration-200 justify-start rounded-md";
   const linkActiveClass =
-    "hover:text-gray-800 text-gray-600 bg-gray-100 dark:bg-gray-600 dark:text-gray-300 hover:bg-gray-100 flex items-center p-2 md:p-1.5 my-1 transition-colors dark:hover:text-white dark:hover:bg-gray-600 duration-200 justify-start  rounded-md";
-  const sectionHeadClass =
-    "text-gray-400 dark:text-gray-300 ml-2 pl-2 pt-1 w-full border-b-2 pb-2 border-gray-100 mb-4 text-md font-normal";
-  const sectionHeadActiveClass =
-    "text-gray-400 dark:text-gray-300 ml-2 w-full border-b-2 p-2 border-gray-100 mb-4 text-md font-normal bg-gray-50 dark:bg-gray-600";
+    "hover:text-slate-800 text-slate-600 bg-slate-100 dark:bg-slate-600 dark:text-slate-300 hover:bg-slate-100 flex items-center p-4 md:p-1.5 my-2 transition-colors dark:hover:text-white dark:hover:bg-slate-600 duration-200 justify-start  rounded-md";
+
   let headLink;
   if (pathname === "/docs") {
     headLink = (
       <Link href="/docs" key="head">
         <a className={linkActiveClass}>
-          <span className="mx-4 text-md font-normal">Introduction</span>
+          <span className="mx-4  text-md font-normal">Introduction</span>
         </a>
       </Link>
     );
@@ -46,34 +38,24 @@ const Menu = ({ pathname }: { pathname: string }) => {
       </Link>
     );
   }
-  const currentPages = pathname.replace("/docs/", "").split("/");
+  const currentPage = pathname.replace("/docs/", "").split("/")[0]; // Only one page deep
 
   const parsedPages = pages.map((page) => {
-    let sectionHead;
-    sectionHead = (
-      <div className={sectionHeadClass}>{sanitizeTitle(page.dirname)}</div>
-    );
+    let linkClass = linkInactiveClass;
+    if (page === currentPage) {
+      linkClass = linkActiveClass;
+    }
     return (
-      <div key={page.dirname}>
-        {sectionHead}
-        {page.filenames.map((pageFile) => (
-          <Link href={`/docs/${page.dirname}/${pageFile}`} key={pageFile}>
-            <a
-              className={
-                currentPages[1] === pageFile
-                  ? linkActiveClass
-                  : linkInactiveClass
-              }
-            >
-              <span className="mx-4 text-md font-normal">
-                {sanitizeTitle(pageFile)}
-              </span>
-            </a>
-          </Link>
-        ))}
-      </div>
+      <Link href={`/docs/${page}`} key={page}>
+        <a className={linkClass}>
+          <span className="mx-4  text-md font-normal">
+            {sanitizeTitle(page)}
+          </span>
+        </a>
+      </Link>
     );
   });
+
   let items = [headLink, ...parsedPages];
   const [active, setActive] = useState(false);
 
@@ -156,7 +138,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
     <div
       className={classNames(
         "md:sticky md:top-0" ? !active : "",
-        " bg-white dark:bg-gray-800",
+        " bg-white dark:bg-slate-800",
       )}
       id="nav"
     >
@@ -165,7 +147,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
       <button
         className={classNames(
           active ? "hidden" : "",
-          "md:hidden p-4 py-7 fixed text-gray text-gray-800 dark:text-indigo-50",
+          "md:hidden p-4 py-7 fixed text-slate text-slate-800 dark:text-indigo-50",
         )}
         id="open-menu"
         aria-label="Open navigation menu"
@@ -191,10 +173,10 @@ const Menu = ({ pathname }: { pathname: string }) => {
       <div
         className={classNames(
           active ? "" : "hidden",
-          "fixed md:relative bg-white dark:bg-gray-800 md:flex flex-col sm:flex-row sm:justify-around ",
+          "fixed md:relative bg-white dark:bg-slate-800 md:flex flex-col sm:flex-row sm:justify-around ",
         )}
       >
-        <div className="w-64 h-screen border-r-2">
+        <div className="w-64 h-screen border-r-2 border-slate-200 dark:border-slate-100">
           <nav className="pr-3 pl-4">
             <div className="flex justify-around pt-3">
               <Link href="/">
@@ -205,7 +187,7 @@ const Menu = ({ pathname }: { pathname: string }) => {
               <button
                 className={classNames(
                   active ? "" : "hidden",
-                  "pt-1 text-gray-800 dark:text-indigo-50",
+                  "pt-1 text-slate-800 dark:text-indigo-50",
                 )}
                 id="close-menu"
                 aria-label="Close navigation menu"

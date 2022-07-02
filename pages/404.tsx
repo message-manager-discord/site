@@ -1,11 +1,9 @@
 import { H1, H2 } from "../components/mdx/heading";
-import Paragraph from "../components/mdx/paragraph";
-import Anchor from "../components/mdx/anchor";
-import Link from "next/link";
+import InternalAnchor from "../components/mdx/internalAnchor";
 
 export default function Custom404() {
   return (
-    <div className="container mx-auto px-6 flex-grow flex flex-col justify-center">
+    <div className="container mx-auto px-6 grow flex flex-col justify-center">
       {" "}
       {/*Flex box used to align content even though there is one child*/}
       <div className="container mx-auto px-6">
@@ -13,10 +11,7 @@ export default function Custom404() {
           <H1>Not Found</H1>
           <H2>
             That page could not be found! Go{" "}
-            <Anchor internal href="/">
-              home
-            </Anchor>
-            ?
+            <InternalAnchor href="/">home</InternalAnchor>?
           </H2>
         </div>
       </div>

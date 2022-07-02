@@ -2,20 +2,17 @@ import "tailwindcss/tailwind.css";
 import "../styles/prism.css";
 import type { AppProps } from "next/app";
 import { COMPONENTS } from "../components/MDX";
-import { MDXProvider, withMDXComponents } from "@mdx-js/react";
+import { MDXProvider } from "@mdx-js/react";
 import { ThemeProvider } from "next-themes";
 import OpenGraph from "../components/OpenGraph";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
-import { getAllDocPages } from "../lib/api";
-import { GetStaticProps, NextComponentType, NextPageContext } from "next";
+import { NextComponentType, NextPageContext } from "next";
 import { useRouter } from "next/router";
 import { sanitizeTitle } from "../lib/utils";
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import classNames from "classnames";
-
-withMDXComponents;
 
 type maybeMDXComponent = NextComponentType<NextPageContext, any, {}> & {
   isMDXComponent?: boolean;
@@ -28,7 +25,7 @@ type CustomAppProps = AppProps & {
 const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   const router = useRouter();
   let title: string;
-  const isDoc = router.pathname.startsWith("/docs");
+  const isDoc = router.pathname.search("docs") > 0;
   let docPages: string[] = [];
   if (isDoc) {
     const docPath = router.pathname.replace("/docs", "");
@@ -53,7 +50,10 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
 
   if (
     Component.isMDXComponent ||
-    router.pathname === "/privacy" // next-mdx-remote doesn't have isMDXComponent
+    router.pathname === "/privacy" || // next-mdx-remote doesn't have isMDXComponent
+    router.pathname === "/typography" ||
+    router.pathname === "/terms" ||
+    isDoc
   ) {
     let smallPadding = "";
     if (isDoc) {
@@ -65,7 +65,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     const mdxContent = (
       <div
         className={classNames(
-          "container flex-shrink mx-auto",
+          "container shrink mx-auto",
           smallPadding,
           "md:px-14 min-w-0 pt-5",
         )}
@@ -77,7 +77,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
     );
     if (isDoc) {
       innerContent = (
-        <div className="flex flex-row flex-grow-0 items-start">
+        <div className="flex flex-row grow-0 items-start">
           <Menu pathname={router.pathname} />
           {mdxContent}
         </div>
@@ -100,7 +100,7 @@ const MyApp = ({ Component, pageProps }: CustomAppProps) => {
   }
   return (
     <ThemeProvider attribute="class">
-      <div className="flex min-h-screen flex-col bg-white dark:bg-gray-800">
+      <div className="flex min-h-screen flex-col bg-white dark:bg-slate-800">
         <OpenGraph
           title={title ? `${title}Message Manager` : "Message Manager"}
         />

@@ -1,0 +1,124 @@
+import Hint from "../../components/Hint";
+import InlineCode from "../../components/mdx/inlineCode";
+
+# Permissions
+
+When talking about permissions there are three groups of permissions that may be talked about, user bot permissions, user discord permissions and bot discord permissions.
+
+## User Bot permissions
+
+These are permissions granted to users (or to users via roles) by server managers.
+These permissions grant access to bot actions, such as sending messages, editing messages, etc.  
+These permissions can be set at a global level, or a per channel level.
+Some permissions are limited to only guild level permissions, such as the management permisisons.
+
+### The Permissions
+
+Permissions work off a bitfield type model, with roles being able to be assigned permissions that they have.
+The base level is roles, and permission overrides can be assigned to users, roles (on channels) and users (on channels).
+
+#### Permission Values
+
+Here is a table for each permission, its bitfield value and the description
+
+---
+
+| Permission                                  | Bitfield Value          | Description                                                                                       |
+| :------------------------------------------ | :---------------------- | :------------------------------------------------------------------------------------------------ |
+| <InlineCode>VIEW_MESSAGES</InlineCode>      | 0x00000001 (1 {'<<'} 0) | Grants access to viewing messages, currently has no effect                                        |
+| <InlineCode>EDIT_MESSAGES</InlineCode>      | 0x00000002 (1 {'<<'} 1) | Grants access to editing messages previously sent via the bot account                             |
+| <InlineCode>SEND_MESSAGES</InlineCode>      | 0x00000004 (1 {'<<'} 2) | Grants access to sending messages via the bot account                                             |
+| <InlineCode>DELETE_MESSAGES</InlineCode>    | 0x00000008 (1 {'<<'} 3) | Grants access to deleting messages previously sent via the bot account                            |
+| <InlineCode>MANAGE_PERMISSIONS</InlineCode> | 0x00000010 (1 {'<<'} 4) | Grants access to managing bot permissions for users and roles. Doesn't effect discord permissions |
+| <InlineCode>MANAGE_CONFIG</InlineCode>      | 0x00000020 (1 {'<<'} 5) | Grants access to managing the bot's configuration                                                 |
+
+#### Hierarchy
+
+The hierarchy of permissions is simaler to how discord's permissions work.
+
+Permissions are first calculated for the first level, then applied moving down the levels.  
+For roles (at both levels) the user's permissions is the sum of all roles the user has.
+
+###### Levels
+
+1. Roles (guild)
+2. Users (guild)
+3. Roles (channel)
+4. Users (channel)
+
+At the top level (roles at the guild level) each permission only has a toggle for allowed.
+This means that if a permission is not toggled on for any of the user's roles they will not have that permission at this level.
+
+For all other levels each permission can be set to either allowed or denied, with an inbetween state of "inhert" or "reset".
+The inherit state means that the permission is inherited from the previous level(s).
+Otherwise an allow or deny state overrides all other levels above.
+
+Deny overrides are applied first, and then allow overrides,
+meaning a permission that is both denied and allowed at one of the levels will be allowed for that level.
+
+### Commands
+
+#### Managing permissions
+
+Command: <InlineCode>/config permissions manage</InlineCode>
+
+Will return a select menu that can be used to change permissions.
+
+#### Listing permissions
+
+Command: <InlineCode>/config permissions list</InlineCode>
+
+Will only return a list of roles / users that have permissions set. To view what permission each entity has use the manage command.
+
+#### Quickstart
+
+Command: <InlineCode>/config permissions quickstart</InlineCode>
+
+Will allow permissions for permissions in set presets. It's useful to get started quickly.
+
+##### The presets
+
+- Message access
+  - Edit
+  - Send
+  - Delete
+- Management access
+  - Manage permissions
+  - Manage config
+
+<Hint type="warn">
+  Setting a preset to false when running the command will **not** deny
+  permissions for that entity. Use the management command for that.
+</Hint>
+
+## User Discord Permissions
+
+These are discord permissions a user must have, to be able to use a command. Currently the only restriction is on the <InlineCode>VIEW_CHANNELS</InlineCode> discord permission.
+That permission is required for making message management actions, in the channel the message is / will be in.
+
+<Hint type="info">
+  If a user has the <InlineCode>ADMINISTRATOR</InlineCode> discord permission,
+  they can carry out any bot action.
+</Hint>
+
+## Bot Discord Permissions
+
+These are discord permissions the bot requires to function.
+
+To carry out message actions:
+
+{/* prettier-ignore */}
+{/* This is becuase prettier will shortern the links (over multiple lines) in the list, which breaks the list */}
+
+- <InlineCode>VIEW_CHANNELS</InlineCode> / <InlineCode>
+    READ_MESSAGES
+  </InlineCode> (it might be either of these names)
+- <InlineCode>SEND_MESSAGES</InlineCode>
+- <InlineCode>EMBED_LINKS</InlineCode>
+- <InlineCode>ATTACH_FILES</InlineCode>
+- <InlineCode>SEND_MESSAGES_IN_THREADS</InlineCode> (only for threads)
+- <InlineCode>USE_EXTERNAL_EMOJIS</InlineCode> (only if required in the message)
+
+To enable logging:
+
+- <InlineCode>MANAGE_WEBHOOKS</InlineCode> (on the logging channel)
