@@ -35,7 +35,7 @@ export default function Navbar() {
           aria-label="Open navigation menu"
           onClick={handleClick}
         >
-          <Hamburger />
+          <Hamburger width="24" height="24" />
         </button>
 
         {/*  Close menu */}
@@ -48,7 +48,7 @@ export default function Navbar() {
           aria-label="Close navigation menu"
           onClick={handleClick}
         >
-          <Cross />
+          <Cross width="24" height="24" />
         </button>
       </section>
 

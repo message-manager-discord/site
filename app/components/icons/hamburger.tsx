@@ -1,9 +1,9 @@
-export default function Hamburger() {
+import React from "react";
+
+export default function Hamburger(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -11,7 +11,7 @@ export default function Hamburger() {
       strokeLinecap="round"
       strokeLinejoin="round"
       display="block"
-      id="TextAlignJustified"
+      {...props}
     >
       <path d="M3 6h18M3 12h18M3 18h18"></path>
     </svg>
