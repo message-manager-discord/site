@@ -11,6 +11,8 @@ import {
 import type { LinksFunction } from "@remix-run/cloudflare"; // or cloudflare/deno
 
 import styles from "./styles/app.css";
+import Footer from "./components/footer";
+import Navbar from "./components/navbar";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -37,10 +39,16 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <div className="flex min-h-screen flex-col bg-white dark:bg-slate-800">
+          <Navbar />
+          <div className="container mx-auto px-10 grow">
+            <Outlet />
+          </div>
+          <Footer />
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </div>
       </body>
     </html>
   );
