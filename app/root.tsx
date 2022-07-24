@@ -14,10 +14,19 @@ import styles from "./styles/app.css";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
-export const meta: MetaFunction = () => ({
+export const meta: MetaFunction = ({ location }) => ({
   charset: "utf-8",
-  title: "New Remix App",
+  title: "Message Manager",
   viewport: "width=device-width,initial-scale=1",
+  description:
+    "Message Manager is a utility discord bot, making the management of important messages easier.",
+  "og:title": "Message Manager Bot",
+  "og:site_name": "Message Manager Bot",
+  "og:description":
+    "Message Manager is a utility discord bot, making the management of important messages easier.",
+  "og:type": "website",
+  "og:image": "/img/avatar.png",
+  "og:url": `https://message.anothercat.me/${location.pathname}`,
 });
 
 export default function App() {
