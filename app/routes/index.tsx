@@ -42,7 +42,7 @@ export default function Index() {
             </div>
             <ul className="list-disc list-inside leading-loose text-slate-500 dark:text-slate-200 text-md">
               <li>Message management (editing and sending)</li>
-              <li>Customizable prefix and server settings</li>
+              <li>Highly customizable permission system</li>
             </ul>
           </div>
           <div className="w-full border-b border-slate-300 md:w-1/2 md:border-r md:border-b-0 p-8">
@@ -56,10 +56,8 @@ export default function Index() {
             </div>
             <ol className="list-decimal list-inside leading-loose text-slate-500 dark:text-slate-200 text-md">
               <li>Invite the bot to your server</li>
-              <li>
-                Setup the prefix with <code>~setup prefix</code>
-              </li>
-              <li>Then setup the rest of the configuration. </li>
+              <li>Send a message with `/send`</li>
+              <li>Then setup configuration with commands under `/config`</li>
             </ol>
           </div>
           <div className="w-full md:w-1/2  p-8">
