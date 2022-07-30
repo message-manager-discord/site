@@ -1,4 +1,4 @@
-import { Link, NavLink } from "@remix-run/react";
+import { NavLink } from "@remix-run/react";
 import classNames from "classnames";
 import { useState } from "react";
 import Cross from "./icons/cross";
@@ -77,14 +77,14 @@ export default function Navbar() {
           </NavLink>
         </li>
         <li className="py-2">
-          <Link to="/invite" className={navLinkClasses}>
+          <a href="/invite" className={navLinkClasses}>
             Invite
-          </Link>
+          </a>
         </li>
         <li className="py-2">
-          <Link to="/support" className={navLinkClasses}>
+          <a href="/support" className={navLinkClasses}>
             Support
-          </Link>
+          </a>
         </li>
       </ul>
     </nav>

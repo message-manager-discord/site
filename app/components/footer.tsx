@@ -28,9 +28,9 @@ export default function Footer() {
             </Link>
           </li>
           <li className="my-2">
-            <Link to="/source" className={itemClasses}>
+            <a href="/source" className={itemClasses}>
               Source
-            </Link>
+            </a>
           </li>
         </ul>
         <div className="text-center text-slate-500 dark:text-slate-200 pt-2 sm:pt-4 font-light flex items-center justify-center">
