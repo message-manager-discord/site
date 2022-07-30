@@ -10,8 +10,14 @@ export default function Navbar() {
   const handleClick = () => {
     setActive(!active);
   };
-  const itemClasses =
+  const navLinkClasses =
     "transition duration-300 ease-in-out text-lg font-medium text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white md:px-4";
+
+  const navLinkClassesFunction: (props: {
+    isActive: boolean;
+  }) => string | undefined = (props): string | undefined =>
+    classNames(navLinkClasses, { underline: props.isActive });
+
   return (
     <nav
       className="w-screen px-6 mb-3 md:px-10 py-2 flex flex-col md:flex-row md:items-center bg-blue-100 dark:bg-indigo-600"
@@ -61,22 +67,22 @@ export default function Navbar() {
         )}
       >
         <li className="py-2">
-          <NavLink to="/" className={itemClasses}>
+          <NavLink to="/" className={navLinkClassesFunction}>
             Home
           </NavLink>
         </li>
         <li className="py-2">
-          <NavLink to="/docs" className={itemClasses}>
+          <NavLink to="/docs" className={navLinkClassesFunction}>
             Docs
           </NavLink>
         </li>
         <li className="py-2">
-          <Link to="/invite" className={itemClasses}>
+          <Link to="/invite" className={navLinkClasses}>
             Invite
           </Link>
         </li>
         <li className="py-2">
-          <Link to="/support" className={itemClasses}>
+          <Link to="/support" className={navLinkClasses}>
             Support
           </Link>
         </li>
