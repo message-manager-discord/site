@@ -8,9 +8,9 @@ export default function Footer() {
       <div className="max-w-screen-xl mx-auto px-4">
         <ul className="max-w-screen-md mx-auto text-lg font-light flex flex-wrap flex-col text-center sm:flex-row sm:text-left justify-between px-6  ">
           <li className="my-2">
-            <Link to="/support" className={itemClasses}>
+            <a href="/support" className={itemClasses}>
               Support Server
-            </Link>
+            </a>
           </li>
           <li className="my-2">
             <Link to="/privacy" className={itemClasses}>
