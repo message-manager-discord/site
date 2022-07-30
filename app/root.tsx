@@ -39,9 +39,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <div className="flex min-h-screen flex-col bg-white dark:bg-slate-800">
+        <div className="flex min-h-screen flex-col items-center bg-white dark:bg-slate-800">
           <Navbar />
-          <div className="container mx-auto px-10 grow">
+          <div className="grow w-full">
             <Outlet />
           </div>
           <Footer />

@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require("tailwindcss/colors");
 module.exports = {
-  content: ["./app/**/*.{ts,tsx,jsx,js}"],
+  content: ["./app/**/*.{ts,tsx,jsx,js}", "./remix.config.js"], // Remix.config.js has some themes for mdx parsing
   theme: {
     colors: {
       transparent: "transparent",

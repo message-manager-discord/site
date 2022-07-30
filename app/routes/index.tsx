@@ -5,7 +5,7 @@ import Code from "~/components/icons/code";
 
 export default function Index() {
   return (
-    <div className="container mx-auto px-10">
+    <div className="container grow mx-auto px-10">
       <div className="grow">
         <div className="mb-2 md:mb-8 text-center">
           <h2 className="text-2xl md:text-3xl text-indigo-600 dark:text-indigo-200 font-semibold tracking-wide uppercase">
