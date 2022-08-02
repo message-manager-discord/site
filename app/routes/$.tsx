@@ -1,5 +1,6 @@
 import Anchor from "~/components/anchor";
-import { H1, H2 } from "~/components/heading";
+import H1 from "~/components/headings/h1";
+import H2 from "~/components/headings/h2";
 
 export default function NotFound() {
   return (
