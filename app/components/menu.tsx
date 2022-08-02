@@ -31,25 +31,20 @@ export default function Menu() {
     toggleDiv?.classList.toggle("relative", !to);
   }, []);
 
-  const handleSetActive = (activeStatus: boolean | undefined) => {
-    if (!activeStatus) activeStatus = !active;
-    setActiveTo(activeStatus);
-  };
   useEffect(() => {
     const handlePopState = () => {
       setActiveTo(false);
     };
     window.addEventListener("popstate", handlePopState);
-   
+
     return () => {
       window.removeEventListener("popstate", handlePopState);
-   
     };
   }, [setActiveTo]);
 
-  const handleClick = () => {
-    handleSetActive(undefined);
-  };
+  const handleClick = useCallback(() => {
+    setActiveTo(!active);
+  }, [setActiveTo, active]);
 
   const linkSharedClasses =
     "hover:text-slate-800 dark:text-slate-300 flex items-center p-1.5 my-2 transition-colors dark:hover:text-white duration-200 justify-start rounded-md";
@@ -59,11 +54,14 @@ export default function Menu() {
 
   const linkClassesFunction: (props: {
     isActive: boolean;
-  }) => string | undefined = (props): string | undefined =>
-    classNames(linkSharedClasses, {
-      [linkActiveClasses]: props.isActive,
-      [linkInactiveClasses]: !props.isActive,
-    });
+  }) => string | undefined = useCallback(
+    (props): string | undefined =>
+      classNames(linkSharedClasses, {
+        [linkActiveClasses]: props.isActive,
+        [linkInactiveClasses]: !props.isActive,
+      }),
+    []
+  );
 
   const pageLinks = [
     <NavLink to={`/docs`} key="index" className={linkClassesFunction} end>

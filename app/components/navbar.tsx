@@ -1,22 +1,25 @@
 import { NavLink } from "@remix-run/react";
 import classNames from "classnames";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Cross from "./icons/cross";
 import Hamburger from "./icons/hamburger";
 
 export default function Navbar() {
   const [active, setActive] = useState(false);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     setActive(!active);
-  };
+  }, [active]);
   const navLinkClasses =
     "transition duration-300 ease-in-out text-lg font-medium text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white md:px-4";
 
   const navLinkClassesFunction: (props: {
     isActive: boolean;
-  }) => string | undefined = (props): string | undefined =>
-    classNames(navLinkClasses, { underline: props.isActive });
+  }) => string | undefined = useCallback(
+    (props): string | undefined =>
+      classNames(navLinkClasses, { underline: props.isActive }),
+    []
+  );
 
   return (
     <nav
