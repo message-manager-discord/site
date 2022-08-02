@@ -12,6 +12,7 @@
     "start": "cross-env NODE_ENV=production npm run dev:wrangler"
   },
   "dependencies": {
+    "@cloudflare/pages-plugin-sentry": "^1.0.0",
     "@remix-run/cloudflare": "^1.6.5",
     "@remix-run/cloudflare-pages": "^1.6.5",
     "@remix-run/react": "^1.6.5",
