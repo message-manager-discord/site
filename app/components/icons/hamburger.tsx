@@ -13,7 +13,7 @@ export default function Hamburger(props: React.SVGProps<SVGSVGElement>) {
       display="block"
       {...props}
     >
-      <path d="M3 6h18M3 12h18M3 18h18"></path>
+      <path d="M3 6h18M3 12h18M3 18h18" />
     </svg>
   );
 }

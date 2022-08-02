@@ -14,7 +14,7 @@ export default function Cross(props: React.SVGProps<SVGSVGElement>) {
       id="Cross"
       {...props}
     >
-      <path d="M20 20L4 4m16 0L4 20"></path>
+      <path d="M20 20L4 4m16 0L4 20" />
     </svg>
   );
 }
