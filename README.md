@@ -1,22 +1,22 @@
-# Welcome to Remix!
+# Message Manager Site
 
-- [Remix Docs](https://remix.run/docs)
+[![wakatime](https://wakatime.com/badge/github/message-manager-discord/site.svg)](https://wakatime.com/badge/github/message-manager-discord/site)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-## Development
+Website for the [Message Manager Discord Bot](https://github.com/AnotherCat/message-bot) located at [message.anothercat.me](https://message.anothercat.me)
 
-You will be utilizing Wrangler for local development to emulate the Cloudflare runtime. This is already wired up in your package.json as the `dev` script:
+## Using
 
-```sh
-# start the remix dev server and wrangler
-npm run dev
-```
+1.  Install requirements: `yarn install -D`
+2.  Run `yarn dev`
 
-Open up [http://127.0.0.1:8788](http://127.0.0.1:8788) and you should be ready to go!
+Note: The privacy policy is fetched on build from my repo. If you are hosting this site you need to change this and provide your own policy
 
-## Deployment
+## License
 
-Cloudflare Pages are currently only deployable through their Git provider integrations.
+Message Manager is licensed under the [GNU Affero General Public License](https://github.com/AnotherCat/message-bot/blob/master/LICENSE)  
+ Here is a [simplified version](<https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)#summary>)
 
-If you don't already have an account, then [create a Cloudflare account here](https://dash.cloudflare.com/sign-up/pages) and after verifying your email address with Cloudflare, go to your dashboard and follow the [Cloudflare Pages deployment guide](https://developers.cloudflare.com/pages/framework-guides/deploy-anything).
+## Privacy
 
-Configure the "Build command" should be set to `npm run build`, and the "Build output directory" should be set to `public`.
+Privacy policy for both the bot and website is available in the bot's [repo](https://github.com/AnotherCat/message-bot/blob/master/PRIVACY_POLICY.md)
