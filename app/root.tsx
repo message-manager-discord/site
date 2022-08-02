@@ -9,6 +9,7 @@ import {
 } from "@remix-run/react";
 
 import type { LinksFunction } from "@remix-run/cloudflare"; // or cloudflare/deno
+import { withSentry } from "@sentry/remix";
 
 import styles from "./styles/app.css";
 import Footer from "./components/footer";
@@ -31,7 +32,7 @@ export const meta: MetaFunction = ({ location }) => ({
   "og:url": `https://message.anothercat.me/${location.pathname}`,
 });
 
-export default function App() {
+function App() {
   return (
     <html lang="en">
       <head>
@@ -53,3 +54,5 @@ export default function App() {
     </html>
   );
 }
+
+export default withSentry(App);

@@ -2,6 +2,8 @@ import type { EntryContext } from "@remix-run/cloudflare";
 import { RemixServer } from "@remix-run/react";
 import { renderToString } from "react-dom/server";
 
+// Sentry should be working here anways due to function/_middlewar.ts
+
 export default function handleRequest(
   request: Request,
   responseStatusCode: number,
