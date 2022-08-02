@@ -57,7 +57,7 @@ export default function Video({
         autoPlay={false}
         loop
         muted
-        controls={true}
+        controls
         src={`${source}.mp4`}
         itemType="video/mp4"
         className="rounded-lg max-h-screen "
