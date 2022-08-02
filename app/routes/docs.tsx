@@ -1,5 +1,5 @@
 import { Outlet } from "@remix-run/react";
-import Menu from "~/components/Menu";
+import Menu from "~/components/menu";
 
 export default function Page() {
   return (
