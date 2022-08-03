@@ -1,4 +1,5 @@
 import classNames from "classnames";
+// skipcq: JS-E1010
 import { getText } from "./utils";
 
 // skipcq: JS-D1001

@@ -1,7 +1,9 @@
 import { NavLink } from "@remix-run/react";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
+// skipcq: JS-E1010
 import Cross from "./icons/cross";
+// skipcq: JS-E1010
 import Hamburger from "./icons/hamburger";
 
 export default function Navbar() {

@@ -1,7 +1,9 @@
 import classNames from "classnames";
 import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+// skipcq: JS-E1010
 import Cross from "./icons/cross";
+// skipcq: JS-E1010
 import RightChevron from "./icons/right";
 
 const pageNames = [
