@@ -9,9 +9,13 @@ import {
 } from "@remix-run/react";
 import { withSentry } from "@sentry/remix";
 
+// skipcq: JS-E1010
 import styles from "./styles/app.css";
+// skipcq: JS-E1010
 import Footer from "./components/footer";
+// skipcq: JS-E1010
 import Navbar from "./components/navbar";
+// No idea why deepsource is doing this, but it is
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
