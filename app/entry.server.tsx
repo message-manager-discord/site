@@ -16,6 +16,8 @@ export default function handleRequest(
 
   responseHeaders.set("Content-Type", "text/html");
 
+  // Ignore this rule as this is remix generated
+  // skipcq: JS-0246
   return new Response("<!DOCTYPE html>" + markup, {
     status: responseStatusCode,
     headers: responseHeaders,
