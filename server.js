@@ -7,6 +7,7 @@ const handleRequest = createPagesFunctionHandler({
   getLoadContext: (context) => context.env,
 });
 
+// Handles the requests sent to the cloudflare workers
 export function onRequest(context) {
   return handleRequest(context);
 }

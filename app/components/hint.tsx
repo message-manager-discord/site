@@ -7,6 +7,7 @@ interface HintProps {
   children: React.ReactNode;
 }
 
+// Returns tailwindcss classes based on the type of hint
 function getHintHeadStyle(type: HintType) {
   let name;
   if (type === "info") {
@@ -21,7 +22,7 @@ function getHintHeadStyle(type: HintType) {
       {
         "bg-red-200 dark:bg-red-700": type === "warn",
         "bg-blue-200 dark:bg-blue-700": type === "info",
-      },
+      }
     ),
     name,
   };

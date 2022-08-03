@@ -13,9 +13,11 @@ const pageNames = [
   "quickstart",
 ];
 
+// Capitalize the first letter of each word
 const capitalize = (sentence: string) =>
   sentence.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
 
+// Make the title better for display
 const sanitizeTitle = (title: string) =>
   capitalize(title.replace("_", " ").replace(`-`, " ").replace(`-`, " "));
 
@@ -31,6 +33,7 @@ export default function Menu() {
   }, []);
 
   useEffect(() => {
+    // Ensure that the menu is closed and close it when page changes
     const handlePopState = () => {
       setActiveTo(false);
     };

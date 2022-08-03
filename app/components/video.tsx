@@ -28,6 +28,7 @@ export default function Video({
 
   // Listen for window resize events and set the correct mobile state
   useEffect(() => {
+    // Check if mobile sizes should be used
     const setCorrectMobile = () => {
       if (window.innerWidth < 768 && !mobile) {
         setMobile(true);
