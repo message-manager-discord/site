@@ -6,6 +6,8 @@ enabled = true
 
   [analyzers.meta]
   plugins = ["react"]
+  module_system = "es-modules"
+  dialect = "typescript"
 
 [[transformers]]
 name = "prettier"
