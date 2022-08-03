@@ -38,7 +38,7 @@ module.exports = {
             tbody: "",
             th: "whitespace-nowrap px-4 py-2 font-normal text-lg text-slate-500 dark:text-slate-200",
             tr: "px-2",
-            td: "border-t-2 p-4 dark:border-slate-400 font-normal text-slate-500 dark:text-slate-200",
+            td: "border-t-2 p-2 dark:border-slate-400 font-normal text-slate-500 dark:text-slate-200",
             code: "text-slate-600 dark:text-slate-200 bg-slate-100 dark:bg-code-dark px-2 py-px rounded-md",
           },
         ],
