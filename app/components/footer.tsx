@@ -1,5 +1,6 @@
 import { Link } from "@remix-run/react";
 
+// skipcq: JS-D1001
 export default function Footer() {
   const itemClasses =
     "text-slate-500 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-slate-400 sm:border-b-0";

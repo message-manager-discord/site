@@ -1,5 +1,6 @@
 import { isValidElement } from "react";
 
+// Parse nodes for text for headings
 export function getText(node: React.ReactNode): string {
   if (typeof node === "string") {
     return node.toLowerCase().replaceAll(" ", "-");

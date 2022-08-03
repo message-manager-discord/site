@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import { getText } from "./utils";
 
+// skipcq: JS-D1001
 export default function H6({
   className,
   ...props

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { Link } from "@remix-run/react";
 import type { RemixLinkProps } from "@remix-run/react/dist/components";
 
+// This is used for the default classnames
 export default function Anchor({
   className,
   to,
