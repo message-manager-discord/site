@@ -1,16 +1,20 @@
 import { RemixBrowser, useLocation, useMatches } from "@remix-run/react";
 import { hydrate } from "react-dom";
 
-import Sentry from "@sentry/remix";
+import {
+  init as SentryInit,
+  BrowserTracing,
+  remixRouterInstrumentation,
+} from "@sentry/remix";
 import { useEffect } from "react";
 
 hydrate(<RemixBrowser />, document);
-Sentry.init({
+SentryInit({
   dsn: "https://f8067990d1364c54bdb55f50277f8d36@o917214.ingest.sentry.io/5990676",
   tracesSampleRate: 1,
   integrations: [
-    new Sentry.BrowserTracing({
-      routingInstrumentation: Sentry.remixRouterInstrumentation(
+    new BrowserTracing({
+      routingInstrumentation: remixRouterInstrumentation(
         useEffect,
         useLocation,
         useMatches
