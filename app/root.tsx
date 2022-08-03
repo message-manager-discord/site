@@ -1,4 +1,4 @@
-import type { MetaFunction } from "@remix-run/cloudflare";
+import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -7,8 +7,6 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-
-import type { LinksFunction } from "@remix-run/cloudflare"; // or cloudflare/deno
 import { withSentry } from "@sentry/remix";
 
 import styles from "./styles/app.css";

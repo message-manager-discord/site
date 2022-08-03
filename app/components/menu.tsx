@@ -1,6 +1,5 @@
 import classNames from "classnames";
-import { useCallback, useEffect } from "react";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Cross from "./icons/cross";
 import RightChevron from "./icons/right";

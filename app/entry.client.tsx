@@ -1,7 +1,6 @@
-import { RemixBrowser } from "@remix-run/react";
+import { RemixBrowser, useLocation, useMatches } from "@remix-run/react";
 import { hydrate } from "react-dom";
 
-import { useLocation, useMatches } from "@remix-run/react";
 import Sentry from "@sentry/remix";
 import { useEffect } from "react";
 
