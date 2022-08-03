@@ -7,15 +7,15 @@ Website for the [Message Manager Discord Bot](https://github.com/AnotherCat/mess
 
 ## Using
 
-1. Install requirements: `yarn install -D`
-2. Run `yarn dev`
+1.  Install requirements: `yarn install -D`
+2.  Run `yarn dev`
 
 Note: The privacy policy is fetched on build from my repo. If you are hosting this site you need to change this and provide your own policy
 
 ## License
 
 Message Manager is licensed under the [GNU Affero General Public License](https://github.com/AnotherCat/message-bot/blob/master/LICENSE)  
-Here is a [simplified version](<https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)#summary>)
+ Here is a [simplified version](<https://tldrlegal.com/license/gnu-affero-general-public-license-v3-(agpl-3.0)#summary>)
 
 ## Privacy
 

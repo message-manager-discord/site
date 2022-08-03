@@ -6,6 +6,10 @@ enabled = true
 
   [analyzers.meta]
   plugins = ["react"]
+  module_system = "es-modules"
+  dialect = "typescript"
+  style_guide="airbnb"
+  
 
 [[transformers]]
 name = "prettier"
