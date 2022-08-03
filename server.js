@@ -1,3 +1,4 @@
+// skipcq: JS-C1003
 import * as build from "@remix-run/dev/server-build";
 import { createPagesFunctionHandler } from "@remix-run/cloudflare-pages";
 
