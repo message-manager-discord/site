@@ -54,7 +54,7 @@ export default function Navbar() {
         <button
           className={classNames(
             active ? "" : "hidden",
-            "text-slate-800 dark:text-indigo-50"
+            "text-slate-800 dark:text-indigo-50 md:hidden"
           )}
           id="close-menu"
           aria-label="Close navigation menu"
