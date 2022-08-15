@@ -1,4 +1,9 @@
-import type { MetaFunction, LinksFunction } from "@remix-run/cloudflare";
+import { json } from "@remix-run/cloudflare";
+import type {
+  MetaFunction,
+  LinksFunction,
+  LoaderFunction,
+} from "@remix-run/cloudflare";
 import {
   Links,
   LiveReload,
@@ -6,6 +11,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import { withSentry } from "@sentry/remix";
 
@@ -15,7 +21,11 @@ import styles from "./styles/app.css";
 import Footer from "./components/footer";
 // skipcq: JS-E1010
 import Navbar from "./components/navbar";
+
 // No idea why deepsource is doing this, but it is
+
+import { getUser } from "./lib/user.server";
+import type { GetUserResponse } from "./lib/user.server";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -34,7 +44,11 @@ export const meta: MetaFunction = ({ location }) => ({
   "og:url": `https://message.anothercat.me/${location.pathname}`,
 });
 
-function App() {
+export const loader: LoaderFunction = async ({ request }) => {
+  return json<GetUserResponse>(await getUser({ request }));
+};
+
+function Document({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -43,11 +57,7 @@ function App() {
       </head>
       <body>
         <div className="flex min-h-screen flex-col items-center bg-white dark:bg-slate-800">
-          <Navbar />
-          <div className="grow w-full">
-            <Outlet />
-          </div>
-          <Footer />
+          {children}
           <ScrollRestoration />
           <Scripts />
           <LiveReload />
@@ -57,4 +67,30 @@ function App() {
   );
 }
 
-export default withSentry(App);
+function App() {
+  const user = useLoaderData<GetUserResponse>();
+
+  return (
+    <Document>
+      <Navbar user={user} />
+      <div className="grow w-full flex flex-col">
+        <Outlet />
+      </div>
+      <Footer />
+    </Document>
+  );
+}
+// Export error boundary function
+export function ErrorBoundary({ error }: { error: Error }) {
+  return (
+    <Document>
+      <h1>Something went wrong</h1>
+      <pre>{error.message}</pre>
+    </Document>
+  );
+}
+export default withSentry(App, {
+  errorBoundaryOptions: {
+    fallback: ErrorBoundary,
+  },
+});
