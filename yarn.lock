@@ -1343,13 +1343,21 @@
   dependencies:
     "@remix-run/cloudflare" "1.6.5"
 
-"@remix-run/cloudflare@1.6.5", "@remix-run/cloudflare@^1.6.5":
+"@remix-run/cloudflare@1.6.5":
   version "1.6.5"
   resolved "https://registry.npmjs.org/@remix-run/cloudflare/-/cloudflare-1.6.5.tgz"
   integrity sha512-lcHxhTez4QwQ8cqBc+0PAj9gcuVruByHxHxoIig6qAcYs9sip6mbjvEt7Mckecg5q7q9s7GpmnKQOjxX2Vkjjw==
   dependencies:
     "@cloudflare/kv-asset-handler" "^0.1.3"
     "@remix-run/server-runtime" "1.6.5"
+
+"@remix-run/cloudflare@^1.6.8":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@remix-run/cloudflare/-/cloudflare-1.6.8.tgz#29bea7abcfe5567ecfead3078aae171aeea332af"
+  integrity sha512-NHHpdmRHPPAaAml9c0Z0s/KcZzcrMXSH/J/MroDd7lT2Q6PpBCXuEm5Ua+TrGnAn6CdkPWr2LV1YaC2cyg9LRw==
+  dependencies:
+    "@cloudflare/kv-asset-handler" "^0.1.3"
+    "@remix-run/server-runtime" "1.6.8"
 
 "@remix-run/dev@^1.6.5":
   version "1.6.5"
@@ -1430,6 +1438,19 @@
   version "1.6.5"
   resolved "https://registry.npmjs.org/@remix-run/server-runtime/-/server-runtime-1.6.5.tgz"
   integrity sha512-4QJeIWFWcXZbSPaXUR3V0XzsF0TALuuoQJGEPhtaRP/oX/relE8T36hCmsBDwe0gQM6nyanU2q8vG8BoOQqulQ==
+  dependencies:
+    "@types/cookie" "^0.4.0"
+    "@web3-storage/multipart-parser" "^1.0.0"
+    cookie "^0.4.1"
+    jsesc "3.0.2"
+    react-router-dom "^6.2.2"
+    set-cookie-parser "^2.4.8"
+    source-map "^0.7.3"
+
+"@remix-run/server-runtime@1.6.8":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.6.8.tgz#4f6a947bfe0955756ec06b030301398944a87367"
+  integrity sha512-GLegRhNshF8fGRXzDNBxVfE66j1hj3IDH4CF4pWssBzzwIpV1peRw/dBunAu/l4KtpYfaLG6kcz6LPch4pBB9Q==
   dependencies:
     "@types/cookie" "^0.4.0"
     "@web3-storage/multipart-parser" "^1.0.0"
