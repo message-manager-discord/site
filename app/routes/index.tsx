@@ -1,3 +1,5 @@
+// Landing page
+// With basic information about the bot
 import Collection from "~/components/icons/collection";
 import Info from "~/components/icons/info";
 import Gear from "~/components/icons/gear";

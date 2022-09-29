@@ -1,3 +1,4 @@
+// SVG Icon
 import React from "react";
 
 export default function Code(props: React.SVGProps<SVGSVGElement>) {

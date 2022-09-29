@@ -1,6 +1,7 @@
 // Layout component
 
 // Takes react children from props
+// For markdown pages - adds correct margin and padding
 
 export default function MDGeneral({ children }: { children: React.ReactNode }) {
   return (

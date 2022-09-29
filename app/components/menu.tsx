@@ -1,3 +1,4 @@
+// Component to display alongside the docs for navigation (or hidden on mobile)
 import classNames from "classnames";
 import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -26,6 +27,7 @@ const sanitizeTitle = (title: string) =>
 export default function Menu() {
   const [active, setActive] = useState(false);
 
+  // Set the active state - this is used to show the menu on mobile
   const setActiveTo = useCallback((to: boolean) => {
     setActive(to);
     const toggle = document.getElementById("toggle-dark");
@@ -36,6 +38,7 @@ export default function Menu() {
 
   useEffect(() => {
     // Ensure that the menu is closed and close it when page changes
+    // As the component may not be reloaded on page change (remix does some magic)
     const handlePopState = () => {
       setActiveTo(false);
     };
@@ -56,6 +59,7 @@ export default function Menu() {
     "text-slate-500 font-thin hover:bg-slate-100 dark:hover:bg-slate-600";
   const linkActiveClasses = "text-slate-600 bg-slate-100 dark:bg-slate-600";
 
+  // Return different classes based on if the link is active or not (provide to NavLink)
   const linkClassesFunction: (props: {
     isActive: boolean;
   }) => string | undefined = useCallback(
@@ -66,7 +70,7 @@ export default function Menu() {
       }),
     []
   );
-
+  // Links for all the pages
   const pageLinks = [
     <NavLink to={`/docs`} key="index" className={linkClassesFunction} end>
       <span className="mx-4 text-md font-normal">Introduction</span>

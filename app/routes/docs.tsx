@@ -1,3 +1,4 @@
+// Docs wrapper for the docs pages - Outlet will render the page in /docs (if just going to /docs then index.mdx will be rendered)
 import { Outlet } from "@remix-run/react";
 import Menu from "~/components/menu";
 
