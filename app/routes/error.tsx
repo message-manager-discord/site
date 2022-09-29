@@ -1,4 +1,4 @@
-// For button that throws error
+// For button click that throws error - just for testing (isn't displayed on any link and to any bot so has no impact on the user)
 function onClick() {
   throw new Error("Sentry Frontend Error");
 }

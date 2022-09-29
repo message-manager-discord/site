@@ -1,3 +1,4 @@
+// Heading class for consistency of style across usage
 import classNames from "classnames";
 // skipcq: JS-E1010
 import { getText } from "./utils";

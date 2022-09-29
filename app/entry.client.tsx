@@ -1,3 +1,5 @@
+// Entry point for the client bundle
+// Sentry is registered here so that it can catch errors in the client
 import { RemixBrowser, useLocation, useMatches } from "@remix-run/react";
 import { hydrate } from "react-dom";
 

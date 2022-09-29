@@ -1,8 +1,9 @@
+// Footer component to display on all pages
 import { Link } from "@remix-run/react";
 
 // skipcq: JS-D1001
 export default function Footer() {
-  const itemClasses =
+  const itemClasses = // Classes for the list items (the links at the bottom of the footer)
     "text-slate-500 hover:text-slate-900 dark:text-slate-300 dark:hover:text-white transition-colors duration-200 border-b pb-1 border-slate-400 sm:border-b-0";
   return (
     <footer className="bg-white dark:bg-slate-800 w-full pb-6 mt-2">

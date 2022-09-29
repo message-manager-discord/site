@@ -1,3 +1,4 @@
+// Navbar displayed at the top of all pages
 import { NavLink } from "@remix-run/react";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
@@ -7,6 +8,7 @@ import Cross from "./icons/cross";
 import Hamburger from "./icons/hamburger";
 
 export default function Navbar() {
+  // Active is used to toggle the hamburger menu on mobile screens
   const [active, setActive] = useState(false);
 
   const handleClick = useCallback(() => {
@@ -15,6 +17,7 @@ export default function Navbar() {
   const navLinkClasses =
     "transition duration-300 ease-in-out text-lg font-medium text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white md:px-4";
 
+  // Function for if the link is active or not
   const navLinkClassesFunction: (props: {
     isActive: boolean;
   }) => string | undefined = useCallback(
