@@ -1343,13 +1343,21 @@
   dependencies:
     "@remix-run/cloudflare" "1.6.5"
 
-"@remix-run/cloudflare@1.6.5", "@remix-run/cloudflare@^1.6.5":
+"@remix-run/cloudflare@1.6.5":
   version "1.6.5"
   resolved "https://registry.npmjs.org/@remix-run/cloudflare/-/cloudflare-1.6.5.tgz"
   integrity sha512-lcHxhTez4QwQ8cqBc+0PAj9gcuVruByHxHxoIig6qAcYs9sip6mbjvEt7Mckecg5q7q9s7GpmnKQOjxX2Vkjjw==
   dependencies:
     "@cloudflare/kv-asset-handler" "^0.1.3"
     "@remix-run/server-runtime" "1.6.5"
+
+"@remix-run/cloudflare@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/cloudflare/-/cloudflare-1.9.0.tgz#f56f36034f09b4908cdba6ff15c9f3afc26fd7ef"
+  integrity sha512-p2uaMZGRl9tV1UG38Ey7NnZALy/Q1Ey4CHMtgn1b1K0yGazZqE22D/6DApq+nPFOKUNC1T+1xLxc8ymPzw2dWg==
+  dependencies:
+    "@cloudflare/kv-asset-handler" "^0.1.3"
+    "@remix-run/server-runtime" "1.9.0"
 
 "@remix-run/dev@^1.6.5":
   version "1.6.5"
@@ -1426,6 +1434,11 @@
     history "^5.3.0"
     react-router-dom "^6.2.2"
 
+"@remix-run/router@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.1.0.tgz#b48db8148c8a888e50580a8152b6f68161c49406"
+  integrity sha512-rGl+jH/7x1KBCQScz9p54p0dtPLNeKGb3e0wD2H5/oZj41bwQUnXdzbj2TbUAFhvD7cp9EyEQA4dEgpUFa1O7Q==
+
 "@remix-run/server-runtime@1.6.5":
   version "1.6.5"
   resolved "https://registry.npmjs.org/@remix-run/server-runtime/-/server-runtime-1.6.5.tgz"
@@ -1436,6 +1449,18 @@
     cookie "^0.4.1"
     jsesc "3.0.2"
     react-router-dom "^6.2.2"
+    set-cookie-parser "^2.4.8"
+    source-map "^0.7.3"
+
+"@remix-run/server-runtime@1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.9.0.tgz#b0e1b0431fcd91daa6058691290f8ebb9519d922"
+  integrity sha512-HNJGAzdp4JZqBtDqhi9tEtTxWztuQYruuMPyTlJmSWQhK3MdaOs7F9DJtfFKAhy8LBOqniwpE5w27dkCx7trOg==
+  dependencies:
+    "@remix-run/router" "1.1.0"
+    "@types/cookie" "^0.4.0"
+    "@web3-storage/multipart-parser" "^1.0.0"
+    cookie "^0.4.1"
     set-cookie-parser "^2.4.8"
     source-map "^0.7.3"
 
