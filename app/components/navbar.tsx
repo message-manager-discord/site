@@ -73,7 +73,7 @@ export default function Navbar({ user }: { user: GetUserResponse }) {
           id="menu-items"
           className={classNames(
             active ? "" : "hidden",
-            "lg:flex w-full flex-col lg:flex-row lg:pl-6"
+            "lg:flex w-full flex-col lg:flex-row lg:pl-6" // Weird issue with not visible on lg??? TODO
           )}
         >
           <li className="py-2">

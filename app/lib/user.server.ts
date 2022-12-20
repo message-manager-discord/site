@@ -1,5 +1,5 @@
 import { redirect } from "@remix-run/cloudflare";
-import { getSession } from "./sessions.server";
+import { loginSession } from "./sessions.server";
 
 interface NotLoggedInResponse {
   loggedIn: false;
@@ -20,16 +20,20 @@ interface LoggedInResponse extends User {
 
 type GetUserResponse = LoggedInResponse | NotLoggedInResponse;
 
+const getToken = async (request: Request): Promise<any> => {
+  // pass the _HOST-session cookie
+  const cookie = request.headers.get("Cookie") ?? "";
+  const session = await loginSession.getSession(cookie);
+  const token = session.get("token");
+  return token;
+};
+
 async function _getUser({
   request,
 }: {
   request: Request;
 }): Promise<User | null> {
-  // pass the _HOST-session cookie
-  const cookie = request.headers.get("Cookie") ?? "";
-  const session = await getSession(cookie);
-  const token = session.get("token");
-
+  const token = await getToken(request);
   if (!token) {
     // Do something about unauthroized
     return null;
@@ -43,7 +47,7 @@ async function _getUser({
     credentials: "include",
   });
 
-  if (user.status !== 200) {
+  if (user.status === 401) {
     return null;
   }
   return (await user.json()) as User;
@@ -77,7 +81,6 @@ async function requireUser({ request }: { request: Request }): Promise<User> {
     // Check if searchparams include from_logout=true if then use '/' instead of url.pathname
     const fromLogout = url.searchParams.get("from_logout");
     const redirectTo = fromLogout ? "/" : url.pathname;
-    console.log(redirectTo);
 
     throw redirect(
       `/auth/login?redirect_url=${encodeURIComponent(redirectTo)}`
@@ -86,5 +89,17 @@ async function requireUser({ request }: { request: Request }): Promise<User> {
   return user;
 }
 
-export { getUser, requireUser };
+function loginIfUnauthorized(request: Request, response: Response): void {
+  const url = new URL(request.url);
+  // Check if searchparams include from_logout=true if then use '/' instead of url.pathname
+  const fromLogout = url.searchParams.get("from_logout");
+  const redirectTo = fromLogout ? "/" : url.pathname;
+  if (response.status === 401) {
+    throw redirect(
+      `/auth/login?redirect_url=${encodeURIComponent(redirectTo)}`
+    );
+  }
+}
+
+export { getUser, requireUser, getToken, loginIfUnauthorized };
 export type { GetUserResponse, User, LoggedInResponse };

@@ -1,6 +1,6 @@
 import { redirect } from "@remix-run/cloudflare";
 import type { LoaderFunction } from "@remix-run/cloudflare";
-import { commitSession, getSession } from "~/lib/sessions.server";
+import { loginSession } from "~/lib/sessions.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
   // Callback for discord oauth redirect
@@ -27,9 +27,11 @@ export const loader: LoaderFunction = async ({ request }) => {
     };
 
     const redirectUrl = data.redirectUrl ?? "/";
-    const session = await getSession(request.headers.get("Cookie"));
+    const session = await loginSession.getSession(
+      request.headers.get("Cookie")
+    );
     session.set("token", data.token);
-    const cookieHeader = await commitSession(session);
+    const cookieHeader = await loginSession.commitSession(session);
 
     return redirect(redirectUrl, {
       headers: {

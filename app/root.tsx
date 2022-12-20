@@ -14,6 +14,8 @@ import {
   useLoaderData,
 } from "@remix-run/react";
 import { withSentry } from "@sentry/remix";
+import BaseCatchBoundary from "~/components/CatchBoundary";
+import acceptLanguage from "accept-language-parser";
 
 // skipcq: JS-E1010
 import styles from "./styles/app.css";
@@ -26,6 +28,8 @@ import Navbar from "./components/navbar";
 
 import { getUser } from "./lib/user.server";
 import type { GetUserResponse } from "./lib/user.server";
+import { LocaleProvider } from "./hooks/useLocale";
+import { UserProvider } from "./hooks/useUser";
 
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
@@ -44,8 +48,26 @@ export const meta: MetaFunction = ({ location }) => ({
   "og:url": `https://message.anothercat.me/${location.pathname}`,
 });
 
+interface LoaderData {
+  user: GetUserResponse;
+  locale: string;
+}
+
 export const loader: LoaderFunction = async ({ request }) => {
-  return json<GetUserResponse>(await getUser({ request }));
+  let locale: string | undefined = undefined;
+  const languages = acceptLanguage.parse(
+    request.headers.get("Accept-Language") as string
+  );
+
+  // If somehow the header is empty, return a default locale
+  if (languages?.length < 1) locale = "en-us";
+  // If there is no region for this locale, just return the code
+  else if (!languages[0].region) locale = languages[0].code;
+  else locale = `${languages[0].code}-${languages[0].region.toLowerCase()}`;
+  return json<LoaderData>({
+    user: await getUser({ request }),
+    locale,
+  });
 };
 
 function Document({ children }: { children: React.ReactNode }) {
@@ -56,7 +78,7 @@ function Document({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <div className="flex min-h-screen flex-col items-center bg-white dark:bg-slate-800">
+        <div className="flex min-h-screen flex-col items-center bg-white dark:bg-slate-800 text-slate-800 dark:text-indigo-50">
           {children}
           <ScrollRestoration />
           <Scripts />
@@ -68,15 +90,18 @@ function Document({ children }: { children: React.ReactNode }) {
 }
 
 function App() {
-  const user = useLoaderData<GetUserResponse>();
-
+  const data = useLoaderData<LoaderData>();
   return (
     <Document>
-      <Navbar user={user} />
-      <div className="grow w-full flex flex-col">
-        <Outlet />
-      </div>
-      <Footer />
+      <LocaleProvider locale={data.locale}>
+        <UserProvider user={data.user}>
+          <Navbar user={data.user} />
+          <div className="grow w-full flex flex-col">
+            <Outlet />
+          </div>
+          <Footer />
+        </UserProvider>
+      </LocaleProvider>
     </Document>
   );
 }
@@ -84,10 +109,25 @@ function App() {
 export function ErrorBoundary({ error }: { error: Error }) {
   return (
     <Document>
-      <h1>Something went wrong</h1>
-      <pre>{error.message}</pre>
+      <div className="bg-red-100 text-red-500 flex min-h-screen flex-col items-center w-full justify-around">
+        <div className="flex flex-col items-center justify-between">
+          <p className="text-5xl font-bold p-2">500</p>
+
+          <p className="text-xl font-bold p-2">
+            This seems unexpected :( We're already working on it
+          </p>
+
+          <p className="p-2">{error.message}</p>
+        </div>
+      </div>
     </Document>
   );
+}
+
+export function CatchBoundary() {
+  <Document>
+    <BaseCatchBoundary />
+  </Document>;
 }
 export default withSentry(App, {
   errorBoundaryOptions: {
