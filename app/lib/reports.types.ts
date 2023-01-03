@@ -25,6 +25,7 @@ interface ReportMessage {
   author_id: string;
   created_at: string;
   staff_only?: boolean;
+  staff_id?: string
 }
 
 interface EmbedField {

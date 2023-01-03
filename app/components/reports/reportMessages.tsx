@@ -12,7 +12,7 @@ export default function ReportMessages({ report }: { report: Report }) {
         >
           <div className="flex flex-row justify-between items-center w-full">
             <ReportMessageWithProfile
-              id={message.author_id}
+              id={message.staff_id ?? message.author_id}
               message={message}
             />
           </div>

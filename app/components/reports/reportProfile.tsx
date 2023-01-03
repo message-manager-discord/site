@@ -4,14 +4,14 @@
 import { useApi } from "~/hooks/useAPI";
 import useLocale from "~/hooks/useLocale";
 import { getDisplayDate } from "~/lib/date.utils";
-import { ReportMessage } from "~/lib/reports.types";
+import type { ReportMessage } from "~/lib/reports.types";
 
 export default function ReportProfile({ id }: { id: string }) {
   // load the user data - with builtin fetch
   const { state, error, data } = useApi<{
     avatarPath: string;
     username: string;
-    discriminator: string;
+    discriminator: string | null;
   }>(`https://avatar-cache-mm.anothercat.workers.dev/data/${id}`);
   if (state === "LOADING") {
     return <div>Loading...</div>;
@@ -19,13 +19,15 @@ export default function ReportProfile({ id }: { id: string }) {
     return (
       <div className="inline-flex flex-row justify-around items-center">
         <img
-          src={data.avatarPath}
+          src={`${data.avatarPath}?height=32&width=32`}
           alt="User avatar"
           width="32"
           height="32"
           className="rounded-full"
         />
-        <p className="py-1 px-1 break-words min-w-0">{`${data.username}#${data.discriminator}`}</p>
+        <p className="py-1 px-1 break-words min-w-0">{`${data.username}${
+          data.discriminator !== null ? `#${data.discriminator}` : ""
+        }`}</p>
       </div>
     );
   } else {
@@ -44,27 +46,26 @@ export function ReportMessageWithProfile({
   const { error, data } = useApi<{
     avatarPath: string;
     username: string;
-    discriminator: string;
+    discriminator: string | null;
   }>(`https://avatar-cache-mm.anothercat.workers.dev/data/${id}`);
   const locale = useLocale();
   const avatarPath = data?.avatarPath
     ? data.avatarPath
     : "https://cdn.discordapp.com/embed/avatars/0.png";
-  const username =
-    data?.username && data?.discriminator ? (
-      <p className="py-1 px-1 break-words min-w-0">{`${data!.username}#${
-        data!.discriminator
-      }`}</p>
-    ) : error ? (
-      <p className="py-1 px-1 break-words min-w-0">{`Error: ${error}`}</p>
-    ) : (
-      <p className="py-1 px-1 break-words min-w-0">Loading...</p>
-    );
+  const username = data?.username ? (
+    <p className="py-1 px-1 break-words min-w-0">{`${data.username}${
+      data.discriminator !== null ? `#${data.discriminator}` : ""
+    }`}</p>
+  ) : error ? (
+    <p className="py-1 px-1 break-words min-w-0">{`Error: ${error}`}</p>
+  ) : (
+    <p className="py-1 px-1 break-words min-w-0">Loading...</p>
+  );
 
   return (
     <div className="inline-flex flex-row justify-around items-start py-2">
       <img
-        src={avatarPath}
+        src={`${avatarPath}?height=64&width=64`}
         alt="User avatar"
         width="40"
         height="40"
