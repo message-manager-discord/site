@@ -58,24 +58,19 @@ export default function ReportPage() {
   let statusColor: string;
   switch (report.status) {
     case "pending":
-      statusColor =
-        "bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
+      statusColor = "bg-blue-700 dark:bg-blue-600";
       break;
     case "spam":
-      statusColor =
-        "bg-red-700 hover:bg-red-800 focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800";
+      statusColor = "bg-red-700 dark:bg-red-600";
       break;
     case "actioned":
-      statusColor =
-        "bg-purple-700 hover:bg-purple-800 focus:ring-purple-300 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800";
+      statusColor = "bg-purple-700 dark:bg-purple-600";
       break;
     case "invalid":
-      statusColor =
-        "bg-slate-700 hover:bg-slate-800 focus:ring-slate-300 dark:bg-slate-600 dark:hover:bg-slate-700 dark:focus:ring-slate-800";
+      statusColor = "bg-slate-700 dark:bg-slate-600";
       break;
     default:
-      statusColor =
-        "bg-blue-700 hover:bg-blue-800 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800";
+      statusColor = "bg-blue-700 dark:bg-blue-600";
       break;
   }
   const [search] = useSearchParams();
@@ -268,7 +263,7 @@ export default function ReportPage() {
             <div className="flex flex-row justify-between items-center w-full">
               <H2 className="px-4">Title: {report.title}</H2>
               <div
-                className={`mt-4 text-white focus:outline-none focus:ring-4 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 ${statusColor}`}
+                className={`mt-4 text-white font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 ${statusColor}`}
               >
                 {report.status.slice(0, 1).toUpperCase() +
                   report.status.slice(1)}
