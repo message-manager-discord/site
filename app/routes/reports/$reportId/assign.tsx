@@ -3,8 +3,8 @@ import type { ActionFunction } from "@remix-run/cloudflare";
 import { useActionData, useParams } from "@remix-run/react";
 import Anchor from "~/components/anchor";
 import { isErrorReturn } from "~/lib/libUtils.types";
-import { assignReport, sendReportMessage } from "~/lib/reports.server";
-import type { Report, ReportMessage } from "~/lib/reports.types";
+import { assignReport } from "~/lib/reports.server";
+import type { Report } from "~/lib/reports.types";
 
 interface ActionErrorResponseAssignReport {
   error: string;
@@ -45,7 +45,7 @@ type AssignReportResponseType =
 
 // for no js users export a component with a success message that includes a link to the report page
 
-export default function SendMessage() {
+export default function AssignReport() {
   const id = useParams().reportId;
   const data = useActionData<AssignReportResponseType>();
   if (data === undefined) {
