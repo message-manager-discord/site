@@ -18,7 +18,9 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { sendMessageIsError } from "./send-message";
 import type { SendMessageResponseType } from "./send-message";
 import useUser from "~/hooks/useUser";
-import { AssignReportResponseType } from "./assign";
+import type { AssignReportResponseType } from "./assign";
+import { closeReportIsError } from "./close";
+import type { CloseReportResponseType } from "./close";
 
 type ReportActionOptions =
   | "send-message"
@@ -39,20 +41,42 @@ export default function ReportPage() {
   const submit = useSubmit();
   const report = useLoaderData<Report>();
   const location = useLocation();
-  const fetcher = useFetcher();
+  const sendMessageFetcher = useFetcher();
   const assignFetcher = useFetcher();
-  const isFetching =
-    fetcher.state === "loading" || fetcher.state === "submitting";
-  const fetchedData = fetcher.data as SendMessageResponseType;
-  const formRef = useRef<HTMLFormElement>(null);
+  const closeReportFetcher = useFetcher();
+  const closeReportIsFetching =
+    closeReportFetcher.state === "loading" ||
+    closeReportFetcher.state === "submitting";
+  const sendMessageisFetching =
+    sendMessageFetcher.state === "loading" ||
+    sendMessageFetcher.state === "submitting";
+  const sendMessageFetchedData =
+    sendMessageFetcher.data as SendMessageResponseType;
+  const closeReportFetchedData =
+    closeReportFetcher.data as CloseReportResponseType;
+  const sendFormRef = useRef<HTMLFormElement>(null);
+  const closeReportFormRef = useRef<HTMLFormElement>(null);
+
   const user = useUser();
   const isClosed = ["invalid", "actioned", "spam"].includes(report.status);
 
+  // for both send and closing
+  // this is to clear the fields are they have been submitted
   useEffect(() => {
-    if (!sendMessageIsError(fetchedData) && !isFetching) {
-      formRef.current?.reset();
+    if (!sendMessageIsError(sendMessageFetchedData) && !sendMessageisFetching) {
+      sendFormRef.current?.reset();
     }
-  }, [fetchedData, isFetching]);
+  }, [sendMessageFetchedData, sendMessageisFetching]);
+  useEffect(() => {
+    if (
+      !closeReportIsError(closeReportFetchedData) &&
+      !closeReportIsFetching &&
+      closeReportFetchedData
+    ) {
+      closeReportFormRef.current?.reset();
+      setActionState("send-message");
+    }
+  }, [closeReportFetchedData, closeReportIsFetching]);
 
   // pending: blue, spam: red, actioned: purple, invalid: grey, assigned: blue
   let statusColor: string;
@@ -83,7 +107,8 @@ export default function ReportPage() {
       "mark-as-spam",
       "mark-as-invalid",
       "take-action",
-    ].includes(currentAction)
+    ].includes(currentAction) ||
+    isClosed
   ) {
     currentAction = "send-message";
   }
@@ -102,9 +127,9 @@ export default function ReportPage() {
   );
 
   const sendComponent = (
-    <fetcher.Form
+    <sendMessageFetcher.Form
       method="post"
-      ref={formRef}
+      ref={sendFormRef}
       action={`${location.pathname}/send-message`}
       className=""
     >
@@ -125,9 +150,9 @@ export default function ReportPage() {
         />
         <div className="flex flex-col items-start w-full mr-4 ml-2">
           {/** display error if error */}
-          {sendMessageIsError(fetchedData) && (
+          {sendMessageIsError(sendMessageFetchedData) && (
             <div className="text-red-500 text-sm mb-1">
-              Error: {fetchedData.error}
+              Error: {sendMessageFetchedData.error}
             </div>
           )}
 
@@ -147,6 +172,9 @@ export default function ReportPage() {
           className="inline-flex justify-center p-2 text-blue-600 rounded-full cursor-pointer hover:bg-blue-100 dark:text-blue-500 dark:hover:bg-slate-600 disabled:text-slate-400 disabled:dark:text-slate-400 disabled:cursor-not-allowed disabled:hover:bg-slate-100 disabled:hover:dark:bg-slate-600"
           disabled={isClosed}
           title={isClosed ? "This report is closed" : ""}
+          onSubmit={useCallback(() => {
+            // the idea is to reset state to 'send-message' if it closes correctly
+          }, [])}
         >
           <svg
             aria-hidden="true"
@@ -160,13 +188,13 @@ export default function ReportPage() {
           <span className="sr-only">Send message</span>
         </button>
       </div>
-    </fetcher.Form>
+    </sendMessageFetcher.Form>
   );
   const generateSpamOrInvalidComponent = (type: "spam" | "invalid") => {
     return (
-      <fetcher.Form
+      <closeReportFetcher.Form
         method="post"
-        ref={formRef}
+        ref={closeReportFormRef}
         action={`${location.pathname}/close`}
         className=""
       >
@@ -184,11 +212,11 @@ export default function ReportPage() {
             height="40"
             className="rounded-full m-2"
           />
-          <div className="flex flex-col items-start w-full mr-4 ml-2 py-1">
+          <div className="flex flex-col items-start w-full mr-4 ml-2 py-2">
             {/** display error if error */}
-            {sendMessageIsError(fetchedData) && (
+            {closeReportIsError(closeReportFetchedData) && (
               <div className="text-red-500 text-sm mb-1">
-                Error: {fetchedData.error}
+                Error: {closeReportFetchedData.error}
               </div>
             )}
             <label
@@ -247,7 +275,7 @@ export default function ReportPage() {
             <span className="sr-only">Send message</span>
           </button>
         </div>
-      </fetcher.Form>
+      </closeReportFetcher.Form>
     );
   };
   const spamComponent = generateSpamOrInvalidComponent("spam");

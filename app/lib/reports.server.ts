@@ -206,6 +206,41 @@ async function assignReport({
   return await returnJSONIfOK<Report>(response);
 }
 
+async function closeReport({
+  request,
+  userId,
+  id,
+  message_to_reporting_user,
+  staff_report_reason,
+  status,
+}: {
+  request: Request;
+  userId?: string;
+  id: string;
+  message_to_reporting_user: string;
+  staff_report_reason?: string;
+  status: "invalid" | "spam";
+}): Promise<SeverFunctionReturnType<Report>> {
+  await requireUser({ request });
+
+  const token = await getToken(request)!;
+  const response = await fetch(`http://localhost:4000/v1/reports/${id}/close`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      status,
+      message_to_reporting_user,
+      staff_report_reason,
+    }),
+    credentials: "include",
+  });
+  loginIfUnauthorized(request, response);
+  return await returnJSONIfOK<Report>(response);
+}
+
 export {
   getReport,
   getReports,
@@ -213,5 +248,6 @@ export {
   createReport,
   sendReportMessage,
   assignReport,
+  closeReport,
 };
 export type { GetReportsResponse };
