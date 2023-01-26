@@ -1,6 +1,6 @@
-import { Link, useLocation } from "@remix-run/react";
+import { Link, useLocation, useNavigation } from "@remix-run/react";
 import classNames from "classnames";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { GetUserResponse } from "~/lib/user.server";
 import Down from "./icons/down";
@@ -22,6 +22,39 @@ export default function Profile({
   const [active, setActive] = useState(false);
 
   const location = useLocation();
+  const [hasClicked, setHasClicked] = useState(false);
+  const handleMenuClick = useCallback(() => {
+    setHasClicked(true);
+  }, []);
+
+  const navigation = useNavigation();
+  let isNormalLoad =
+    navigation.state === "loading" && navigation.formData == null;
+  useEffect(() => {
+    if (!isNormalLoad && hasClicked) {
+      setActive(false);
+      setHasClicked(false);
+    }
+  }, [isNormalLoad, active, hasClicked]);
+
+  // We need to also set active to false if active is true and there is a click outside the dropdown
+  const dropdownMenuRef = useRef<HTMLDivElement>(null);
+  const onClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (
+        active &&
+        dropdownMenuRef.current &&
+        !dropdownMenuRef.current.contains(event.target as Node)
+      ) {
+        setActive(false);
+      }
+    },
+    [active]
+  );
+  useEffect(() => {
+    document.addEventListener("click", onClickOutside);
+    return () => document.removeEventListener("click", onClickOutside);
+  }, [onClickOutside]);
 
   const handleClick = useCallback(() => {
     setActive(!active);
@@ -92,42 +125,46 @@ export default function Profile({
             </button>
           </div>
 
-          {active && (
-            <div className="origin-top-right absolute right-0 mt-5 w-52 rounded-md shadow-lg bg-blue-50 dark:bg-slate-700 ring-1 ring-black dark:ring-slate-500 ring-opacity-5">
-              <div
-                className={`flex-col divide-y-2 divide-slate-500 ${
-                  false ? "divide-y divide-slate-100" : ""
-                }`}
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="options-menu"
-              >
-                {items.map((item, index) => {
-                  let roundedClass = "";
-                  if (index === 0) {
-                    roundedClass = "rounded-t-md";
-                  } else if (index === items.length - 1) {
-                    roundedClass = "rounded-b-md";
-                  }
-                  return (
-                    <Link
-                      key={item.label}
-                      to={item.to}
-                      className={classNames(
-                        "block px-4 py-2 text-md text-slate-700 hover:text-slate-600 hover:bg-blue-100 dark:text-slate-200 dark:hover:text-white dark:hover:bg-slate-600",
-                        roundedClass
-                      )}
-                      role="menuitem"
-                    >
-                      <span className="flex flex-col">
-                        <span>{item.label}</span>
-                      </span>
-                    </Link>
-                  );
-                })}
-              </div>
+          <div
+            ref={dropdownMenuRef}
+            className={`${
+              active ? "" : "hidden"
+            } origin-top-right absolute right-0 mt-5 w-52 rounded-md shadow-lg bg-blue-50 dark:bg-slate-700 ring-1 ring-black dark:ring-slate-500 ring-opacity-5`}
+          >
+            <div
+              className={`flex-col divide-y-2 divide-slate-500 ${
+                false ? "divide-y divide-slate-100" : ""
+              }`}
+              role="menu"
+              aria-orientation="vertical"
+              aria-labelledby="options-menu"
+            >
+              {items.map((item, index) => {
+                let roundedClass = "";
+                if (index === 0) {
+                  roundedClass = "rounded-t-md";
+                } else if (index === items.length - 1) {
+                  roundedClass = "rounded-b-md";
+                }
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className={classNames(
+                      "block px-4 py-2 text-md text-slate-700 hover:text-slate-600 hover:bg-blue-100 dark:text-slate-200 dark:hover:text-white dark:hover:bg-slate-600",
+                      roundedClass
+                    )}
+                    onClick={handleMenuClick}
+                    role="menuitem"
+                  >
+                    <span className="flex flex-col">
+                      <span>{item.label}</span>
+                    </span>
+                  </Link>
+                );
+              })}
             </div>
-          )}
+          </div>
         </div>
       );
     } else {
