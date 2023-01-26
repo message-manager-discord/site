@@ -5,10 +5,11 @@ import {
   Link,
   useLoaderData,
   useLocation,
+  useNavigation,
   useSearchParams,
   useSubmit,
 } from "@remix-run/react";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import classNames from "classnames";
 import { getReports } from "~/lib/reports.server";
 import type { GetReportsResponse } from "~/lib/reports.server";
@@ -18,6 +19,7 @@ import { checkIfErrorReturn } from "~/lib/libUtils.types";
 import ReportProfile from "~/components/reports/reportProfile";
 import { getDisplayDate } from "~/lib/date.utils";
 import useLocale from "~/hooks/useLocale";
+import { userPreferences } from "~/lib/sessions.server";
 
 const parseStatus = (status: string | null): GetReportsStatus | null => {
   const values: string[] = Object.values(GetReportsStatus);
@@ -29,13 +31,52 @@ const parseStatus = (status: string | null): GetReportsStatus | null => {
   }
 };
 
-function StatusFilter() {
+function StatusFilter({
+  defaultStatus,
+}: {
+  defaultStatus: GetReportsStatus | undefined;
+}) {
   const [active, setActive] = useState(false);
   const onClick = useCallback(() => setActive(!active), [active]);
 
+  // We need to also set active to false if active is true and there is a click outside the dropdown
+  const dropdownMenuRef = useRef<HTMLDivElement>(null);
+  const onClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (
+        active &&
+        dropdownMenuRef.current &&
+        !dropdownMenuRef.current.contains(event.target as Node)
+      ) {
+        setActive(false);
+      }
+    },
+    [active]
+  );
+
+  useEffect(() => {
+    document.addEventListener("click", onClickOutside);
+    return () => document.removeEventListener("click", onClickOutside);
+  }, [onClickOutside]);
+
   const submit = useSubmit();
   const [searchParams] = useSearchParams();
+  const navigation = useNavigation();
+  const isSubmitting =
+    navigation.state === "loading" &&
+    navigation.formData?.get("status") !== null;
+  useEffect(() => {
+    if (!isSubmitting) {
+      setActive(false);
+    }
+  }, [isSubmitting]);
   let currentStatus = parseStatus(searchParams.get("status"));
+  if (currentStatus === null && defaultStatus !== undefined) {
+    currentStatus = defaultStatus;
+  }
+  if (!currentStatus) {
+    currentStatus = GetReportsStatus.ALL;
+  }
   const location = useLocation();
   const searchParamsWithoutStatus = new URLSearchParams(searchParams);
   searchParamsWithoutStatus.delete("status");
@@ -89,6 +130,7 @@ function StatusFilter() {
       {/* Dropdown menu */}
       <div
         id="dropdownRadio"
+        ref={dropdownMenuRef}
         className={classNames(
           "z-10 top w-48 pt-2 absolute bg-white rounded divide-y divide-slate-100 shadow dark:bg-slate-700 dark:divide-slate-600",
           {
@@ -102,7 +144,10 @@ function StatusFilter() {
         >
           {Object.values(GetReportsStatus).map((status) => (
             <li key={status}>
-              <div className="flex items-center p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-600">
+              <label
+                htmlFor={`filter-radio-status-${status}`}
+                className="flex items-center p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-600"
+              >
                 <input
                   id={`filter-radio-status-${status}`}
                   type="radio"
@@ -114,49 +159,47 @@ function StatusFilter() {
                   }
                   onChange={(e) => submit(e.currentTarget.form)}
                 />
-                <label
-                  htmlFor={`filter-radio-status-${status}`}
-                  className="ml-2 w-full text-sm font-medium text-slate-900 rounded dark:text-slate-300"
-                >
+
+                <span className="ml-2 w-full text-sm font-medium text-slate-900 dark:text-slate-300">
                   {status[0].toUpperCase() + status.slice(1)}
-                </label>
-              </div>
+                </span>
+              </label>
             </li>
           ))}
-          <li key="all">
-            <div className="flex items-center p-2 rounded hover:bg-slate-100 dark:hover:bg-slate-600">
-              <input
-                id={`filter-radio-status-all`}
-                type="radio"
-                name="status"
-                value="all"
-                className="w-4 h-4 text-blue-600 bg-slate-100 border-slate-300  dark:bg-slate-700 dark:border-slate-600"
-                checked={currentStatus?.toLowerCase() === undefined}
-                onChange={(e) => submit(e.currentTarget.form)}
-              />
-              <label
-                htmlFor={`filter-radio-status-all`}
-                className="ml-2 w-full text-sm font-medium text-slate-900 rounded dark:text-slate-300"
-              >
-                All
-              </label>
-            </div>
-          </li>
         </ul>
       </div>
     </Form>
   );
 }
 
-function FilterAndSearch() {
+function FilterAndSearch({
+  defaultStatus,
+}: {
+  defaultStatus: GetReportsStatus | undefined;
+}) {
   return (
     <div className="flex justify-between items-center p-4">
-      <StatusFilter />
+      <StatusFilter defaultStatus={defaultStatus} />
     </div>
   );
 }
 
 const reportsPerPage = 5;
+const checkStatus = (status: string | null): GetReportsStatus | undefined => {
+  if (
+    (status && !Object.values(GetReportsStatus).includes(status as any)) ||
+    !status
+  ) {
+    return undefined;
+  } else {
+    return status as GetReportsStatus | undefined;
+  }
+};
+
+interface LoaderResponse {
+  reports: GetReportsResponse;
+  status: GetReportsStatus | undefined;
+}
 
 export const loader: LoaderFunction = async ({ request }) => {
   const query = new URLSearchParams(request.url.split("?")[1]);
@@ -164,30 +207,45 @@ export const loader: LoaderFunction = async ({ request }) => {
   const skip = parseInt(query.get("skip") || "0") || 0;
   let status = query.get("status");
   // check if status is valid
-  let parsedStatus: GetReportsStatus | undefined;
-  if (
-    (status && !Object.values(GetReportsStatus).includes(status as any)) ||
-    !status
-  ) {
-    parsedStatus = undefined;
+  let parsedStatus = checkStatus(status);
+
+  // if parsedStatus exists save it in cookie
+  // otherwise attempt to fetch it from cookie
+
+  const userPreferencesSession = await userPreferences.getSession(
+    request.headers.get("Cookie")
+  );
+  console.log(parsedStatus);
+  let cookieHeader = "";
+  if (parsedStatus) {
+    userPreferencesSession.set("status", parsedStatus);
+    cookieHeader = await userPreferences.commitSession(userPreferencesSession);
   } else {
-    parsedStatus = status as GetReportsStatus | undefined;
+    parsedStatus = checkStatus(userPreferencesSession.get("status"));
   }
 
-  return json<GetReportsResponse>(
-    await checkIfErrorReturn<GetReportsResponse>(
-      await getReports({
-        request,
-        skip,
-        status: parsedStatus,
-        limit: reportsPerPage,
-      })
-    )
+  return json<LoaderResponse>(
+    {
+      reports: await checkIfErrorReturn<GetReportsResponse>(
+        await getReports({
+          request,
+          skip,
+          status: parsedStatus,
+          limit: reportsPerPage,
+        })
+      ),
+      status: parsedStatus,
+    },
+    {
+      headers: {
+        "Set-Cookie": cookieHeader,
+      },
+    }
   );
 };
 
 export default function Reports() {
-  let reports = useLoaderData<GetReportsResponse>();
+  let { reports, status } = useLoaderData<LoaderResponse>();
 
   const [searchParams] = useSearchParams();
 
@@ -245,9 +303,9 @@ export default function Reports() {
   const locale = useLocale();
 
   return (
-    <div className="overflow-x-auto relative shadow-md sm:rounded-lg flex flex-col justify-between">
+    <div className="overflow-x-auto grow relative shadow-md sm:rounded-lg flex flex-col justify-between">
       <div>
-        <FilterAndSearch />
+        <FilterAndSearch defaultStatus={status} />
         <table className="w-full text-sm text-left text-slate-500 dark:text-slate-400">
           <thead className="text-xs text-slate-700 uppercase bg-slate-50 dark:bg-slate-700 dark:text-slate-400">
             <tr>
@@ -324,6 +382,13 @@ export default function Reports() {
                   `}</td>
               </tr>
             ))}
+            {reports.reports.length === 0 && (
+              <tr className="bg-white dark:bg-slate-900 dark:border-slate-700">
+                <td className="py-4 px-6 text-center" colSpan={7}>
+                  No reports found
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

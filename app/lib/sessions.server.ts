@@ -13,4 +13,15 @@ const loginSession = createCookieSessionStorage({
   },
 });
 
-export { loginSession };
+const userPreferences = createCookieSessionStorage({
+  cookie: {
+    name: "preferences",
+    path: "/",
+    maxAge: 60 * 60 * 24 * 365, // 1 year
+    secure: true,
+    httpOnly: false,
+    sameSite: "lax",
+  },
+});
+
+export { loginSession, userPreferences };

@@ -8,6 +8,7 @@ enum GetReportsStatus {
   ACTIONED = "actioned",
   OPEN = "open",
   CLOSED = "closed",
+  ALL = "all",
 }
 
 type ReportStatus = "pending" | "spam" | "actioned" | "invalid";

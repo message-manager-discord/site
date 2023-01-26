@@ -1,6 +1,7 @@
 import { returnJSONIfOK } from "./libUtils.types";
 import type { SeverFunctionReturnType } from "./libUtils.types";
-import type { GetReportsStatus, Report, ReportMessage } from "./reports.types";
+import type { Report, ReportMessage } from "./reports.types";
+import { GetReportsStatus } from "./reports.types";
 import { getToken, loginIfUnauthorized, requireUser } from "./user.server";
 
 type GetReportsInternal = {
@@ -40,7 +41,9 @@ async function getReports({
   const token = await getToken(request)!;
   const reports = await fetch(
     `http://localhost:4000/v1/reports?skip=${skip}&limit=${limit}${
-      status !== undefined && status !== null ? `&status=${status}` : ""
+      status !== undefined && status !== null && status !== GetReportsStatus.ALL
+        ? `&status=${status}`
+        : ""
     }`,
     {
       headers: {
