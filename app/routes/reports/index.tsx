@@ -303,7 +303,7 @@ export default function Reports() {
   const locale = useLocale();
 
   return (
-    <div className="overflow-x-auto grow relative shadow-md sm:rounded-lg flex flex-col justify-between">
+    <div className="overflow-x-auto grow shadow-md sm:rounded-lg flex flex-col justify-between">
       <div>
         <FilterAndSearch defaultStatus={status} />
         <table className="w-full text-sm text-left text-slate-500 dark:text-slate-400">
