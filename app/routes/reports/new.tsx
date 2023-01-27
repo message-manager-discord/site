@@ -184,7 +184,7 @@ function MessageLinkForm() {
 }
 
 export default function NewReport() {
-  const valid = useLoaderData<LoaderResponse>();
+  const messageLinkData = useLoaderData<LoaderResponse>();
   const submitData = useActionData<ActionErrorResponse | undefined>();
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -227,77 +227,74 @@ export default function NewReport() {
     <div className="container grow mx-auto flex flex-col">
       <H3 className="text-center">Submit a Report</H3>
       <MessageLinkForm />
-      {valid.valid && (
-        <Fragment>
-          <Form
-            method="post"
-            className="p-3 pt-0"
-            action={location.pathname + location.search}
+
+      <Form
+        method="post"
+        className="p-3 pt-0"
+        action={location.pathname + location.search}
+      >
+        {!!submitData?.error && messageLinkData.error === undefined && (
+          <p
+            id="submit-error"
+            className="block mb-2 text-sm font-medium text-red-700 dark:text-red-500"
           >
-            {!!submitData?.error && (
-              <p
-                id="submit-error"
-                className="block mb-2 text-sm font-medium text-red-700 dark:text-red-500"
-              >
-                {submitData.error}
-              </p>
-            )}
-            <label
-              htmlFor="title"
-              className="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-300"
-            >
-              Report Title
-            </label>
+            {submitData.error}
+          </p>
+        )}
+        <label
+          htmlFor="title"
+          className="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-300"
+        >
+          Report Title
+        </label>
 
-            <input
-              id="title"
-              aria-describedby={submitData?.error ? "submit-error" : undefined}
-              type="text"
-              placeholder="Short summary of the report"
-              maxLength={35}
-              name="title"
-              onChange={onChange}
-              required
-              value={title}
-              className="mb-3 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            />
-            {/*Todo update on transition*/}
-            <label
-              htmlFor="reason"
-              className="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-400"
-            >
-              Report Reason
-            </label>
+        <input
+          id="title"
+          aria-describedby={submitData?.error ? "submit-error" : undefined}
+          type="text"
+          placeholder="Short summary of the report"
+          maxLength={35}
+          name="title"
+          onChange={onChange}
+          required
+          value={title}
+          className="mb-3 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        />
+        {/*Todo update on transition*/}
+        <label
+          htmlFor="reason"
+          className="block mb-2 text-sm font-medium text-slate-900 dark:text-slate-400"
+        >
+          Report Reason
+        </label>
 
-            <textarea
-              id="reason"
-              onChange={onChange}
-              aria-describedby={submitData?.error ? "submit-error" : undefined}
-              name="reason"
-              placeholder="Why are you reporting this message?"
-              className="block p-2.5 w-full text-sm text-slate-900 bg-slate-50 rounded-lg border border-slate-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              maxLength={2000}
-              value={reason}
-              required
-            />
-            <input
-              value={message_link}
-              name="message_link"
-              id="message_link"
-              readOnly
-              hidden
-              aria-hidden
-              className="hidden"
-            ></input>
-            <button
-              type="submit"
-              className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Submit
-            </button>
-          </Form>
-        </Fragment>
-      )}
+        <textarea
+          id="reason"
+          onChange={onChange}
+          aria-describedby={submitData?.error ? "submit-error" : undefined}
+          name="reason"
+          placeholder="Why are you reporting this message?"
+          className="block p-2.5 w-full text-sm text-slate-900 bg-slate-50 rounded-lg border border-slate-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          maxLength={2000}
+          value={reason}
+          required
+        />
+        <input
+          value={message_link}
+          name="message_link"
+          id="message_link"
+          readOnly
+          hidden
+          aria-hidden
+          className="hidden"
+        ></input>
+        <button
+          type="submit"
+          className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 disabled:cursor-not-allowed disabled:bg-slate-700 disabled:hover:bg-slate-700 disabled:dark:bg-slate-600 disabled:dark:hover:bg-slate-600 disabled:focus:ring-0"
+        >
+          Submit
+        </button>
+      </Form>
     </div>
   );
 }
