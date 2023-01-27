@@ -79,11 +79,13 @@ async function requireUser({ request }: { request: Request }): Promise<User> {
     // Also get the current url of the user before redirecting
     const url = new URL(request.url);
     // Check if searchparams include from_logout=true if then use '/' instead of url.pathname
-    const fromLogout = url.searchParams.get("from_logout");
-    const redirectTo = fromLogout ? "/" : url.pathname;
+    const fromLogout = url.searchParams.get("from_logout") === "true";
+    if (fromLogout) {
+      throw redirect("/");
+    }
 
     throw redirect(
-      `/auth/login?redirect_url=${encodeURIComponent(redirectTo)}`
+      `/auth/login?redirect_url=${encodeURIComponent(url.pathname)}`
     );
   }
   return user;
@@ -92,11 +94,13 @@ async function requireUser({ request }: { request: Request }): Promise<User> {
 function loginIfUnauthorized(request: Request, response: Response): void {
   const url = new URL(request.url);
   // Check if searchparams include from_logout=true if then use '/' instead of url.pathname
-  const fromLogout = url.searchParams.get("from_logout");
-  const redirectTo = fromLogout ? "/" : url.pathname;
+  const fromLogout = url.searchParams.get("from_logout") === "true";
+  if (fromLogout) {
+    throw redirect("/");
+  }
   if (response.status === 401) {
     throw redirect(
-      `/auth/login?redirect_url=${encodeURIComponent(redirectTo)}`
+      `/auth/login?redirect_url=${encodeURIComponent(url.pathname)}`
     );
   }
 }
