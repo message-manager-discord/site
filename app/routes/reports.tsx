@@ -3,6 +3,15 @@ import ErrorBoundary from "~/components/ErrorBoundary";
 import CatchBoundary from "~/components/CatchBoundary";
 import H2 from "~/components/headings/h2";
 import classNames from "classnames";
+import { json } from "@remix-run/cloudflare";
+import type { LoaderFunction } from "@remix-run/cloudflare";
+import { requireUser } from "~/lib/user.server";
+import type { User } from "@sentry/remix";
+
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = await requireUser({ request });
+  return json<User>(user);
+};
 
 export default function Reports() {
   return (
