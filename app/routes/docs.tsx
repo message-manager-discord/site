@@ -1,5 +1,5 @@
 import { Outlet } from "@remix-run/react";
-import toast from "react-hot-toast";
+//import toast from "react-hot-toast";
 import Menu from "~/components/menu";
 
 export default function Page() {

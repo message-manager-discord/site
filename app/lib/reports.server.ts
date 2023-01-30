@@ -3,6 +3,7 @@ import type { SeverFunctionReturnType } from "./libUtils.types";
 import type { Report, ReportMessage } from "./reports.types";
 import { GetReportsStatus } from "./reports.types";
 import { getToken, loginIfUnauthorized, requireUser } from "./user.server";
+import { AppLoadContext } from "@remix-run/cloudflare";
 
 type GetReportsInternal = {
   id: string;
@@ -28,19 +29,21 @@ type GetReportsResponse = {
 
 async function getReports({
   request,
+  context,
   skip,
   limit,
   status,
 }: {
   request: Request;
+  context: AppLoadContext;
   skip: number;
   limit: number;
   status?: GetReportsStatus;
 }): Promise<SeverFunctionReturnType<GetReportsResponse>> {
-  await requireUser({ request });
+  await requireUser({ request, context });
   const token = await getToken(request)!;
   const reports = await fetch(
-    `http://localhost:4000/v1/reports?skip=${skip}&limit=${limit}${
+    `${context.API_BASE_URL}/v1/reports?skip=${skip}&limit=${limit}${
       status !== undefined && status !== null && status !== GetReportsStatus.ALL
         ? `&status=${status}`
         : ""
@@ -58,18 +61,20 @@ async function getReports({
 
 async function getMessageCanBeReported({
   request,
+  context,
   message_link,
 }: {
   request: Request;
+  context: AppLoadContext;
   message_link: string;
 }): Promise<SeverFunctionReturnType<boolean>> {
-  await requireUser({ request });
+  await requireUser({ request, context });
   const token = await getToken(request)!;
 
   const { message_id, channel_id } = parseAndReturnMessageLink(message_link);
 
   const response = await fetch(
-    `http://localhost:4000/v1/reports/can-report?message_id=${message_id}&channel_id=${channel_id}`,
+    `${context.API_BASE_URL}/v1/reports/can-report?message_id=${message_id}&channel_id=${channel_id}`,
     {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -97,21 +102,23 @@ const parseAndReturnMessageLink = (
 
 async function createReport({
   request,
+  context,
   title,
   reason,
   message_link,
 }: {
   request: Request;
+  context: AppLoadContext;
   title: string;
   reason: string;
   message_link: string;
 }): Promise<SeverFunctionReturnType<Report>> {
-  await requireUser({ request });
+  await requireUser({ request, context });
   const token = await getToken(request)!;
 
   const { message_id, channel_id } = parseAndReturnMessageLink(message_link);
 
-  const response = await fetch(`http://localhost:4000/v1/reports`, {
+  const response = await fetch(`${context.API_BASE_URL}/v1/reports`, {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
@@ -131,14 +138,16 @@ async function createReport({
 
 async function getReport({
   request,
+  context,
   id,
 }: {
   request: Request;
+  context: AppLoadContext;
   id: string;
 }): Promise<SeverFunctionReturnType<Report>> {
-  await requireUser({ request });
+  await requireUser({ request, context });
   const token = await getToken(request)!;
-  const response = await fetch(`http://localhost:4000/v1/reports/${id}`, {
+  const response = await fetch(`${context.API_BASE_URL}/v1/reports/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -150,19 +159,21 @@ async function getReport({
 
 async function sendReportMessage({
   request,
+  context,
   id,
   content,
   staffOnly,
 }: {
   request: Request;
+  context: AppLoadContext;
   id: string;
   content: string;
   staffOnly?: boolean;
 }): Promise<SeverFunctionReturnType<ReportMessage>> {
-  await requireUser({ request });
+  await requireUser({ request, context });
   const token = await getToken(request)!;
   const response = await fetch(
-    `http://localhost:4000/v1/reports/${id}/messages`,
+    `${context.API_BASE_URL}/v1/reports/${id}/messages`,
     {
       method: "POST",
       headers: {
@@ -181,18 +192,20 @@ async function sendReportMessage({
 }
 async function assignReport({
   request,
+  context,
   userId,
   id,
 }: {
   request: Request;
+  context: AppLoadContext;
   userId?: string;
   id: string;
 }): Promise<SeverFunctionReturnType<Report>> {
-  const user = await requireUser({ request });
+  const user = await requireUser({ request, context });
 
   const token = await getToken(request)!;
   const response = await fetch(
-    `http://localhost:4000/v1/reports/${id}/assign`,
+    `${context.API_BASE_URL}/v1/reports/${id}/assign`,
     {
       method: "PUT",
       headers: {
@@ -211,6 +224,7 @@ async function assignReport({
 
 async function closeReport({
   request,
+  context,
   userId,
   id,
   message_to_reporting_user,
@@ -218,28 +232,32 @@ async function closeReport({
   status,
 }: {
   request: Request;
+  context: AppLoadContext;
   userId?: string;
   id: string;
   message_to_reporting_user: string;
   staff_report_reason?: string;
   status: "invalid" | "spam";
 }): Promise<SeverFunctionReturnType<Report>> {
-  await requireUser({ request });
+  await requireUser({ request, context });
 
   const token = await getToken(request)!;
-  const response = await fetch(`http://localhost:4000/v1/reports/${id}/close`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      status,
-      message_to_reporting_user,
-      staff_report_reason,
-    }),
-    credentials: "include",
-  });
+  const response = await fetch(
+    `${context.API_BASE_URL}/v1/reports/${id}/close`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        status,
+        message_to_reporting_user,
+        staff_report_reason,
+      }),
+      credentials: "include",
+    }
+  );
   loginIfUnauthorized(request, response);
   return await returnJSONIfOK<Report>(response);
 }

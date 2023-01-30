@@ -7,9 +7,11 @@ import { json } from "@remix-run/cloudflare";
 import type { LoaderFunction } from "@remix-run/cloudflare";
 import { requireUser } from "~/lib/user.server";
 import type { User } from "@sentry/remix";
+import { disable } from "~/lib/disable";
 
-export const loader: LoaderFunction = async ({ request }) => {
-  const user = await requireUser({ request });
+export const loader: LoaderFunction = async ({ request, context }) => {
+  await disable();
+  const user = await requireUser({ request, context });
   return json<User>(user);
 };
 

@@ -21,7 +21,7 @@ function sendMessageIsError(
   }
 }
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action: ActionFunction = async ({ request, params, context }) => {
   const data = await request.formData();
   const content = data.get("content")?.toString();
 
@@ -34,6 +34,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     request,
     id: params.reportId as string,
     content,
+    context,
   });
   if (isErrorReturn(report)) {
     return json<ActionErrorResponseSendMessage>({

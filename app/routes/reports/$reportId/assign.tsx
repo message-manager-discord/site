@@ -21,7 +21,7 @@ function assignReportIsError(
   }
 }
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action: ActionFunction = async ({ request, params, context }) => {
   const data = await request.formData();
   const userId = data.get("user-id")?.toString();
 
@@ -29,6 +29,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     request,
     id: params.reportId as string,
     userId,
+    context,
   });
   if (isErrorReturn(report)) {
     return json<ActionErrorResponseAssignReport>({

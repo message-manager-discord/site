@@ -34,7 +34,7 @@ interface LoaderResponse {
   valid: boolean;
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, context }) => {
   // call /check-message
   // for now just return 50/50 false or true
   const query = new URL(request.url).searchParams;
@@ -51,7 +51,11 @@ export const loader: LoaderFunction = async ({ request }) => {
     return json({ valid: false, error: "Invalid message link" });
   }
 
-  const isValid = await getMessageCanBeReported({ request, message_link });
+  const isValid = await getMessageCanBeReported({
+    request,
+    message_link,
+    context,
+  });
   if (isValid) {
     return json<LoaderResponse>({ valid: true });
   } else {
@@ -72,7 +76,7 @@ interface ActionBody {
   reason: string;
 }
 
-export const action: ActionFunction = async ({ request }) => {
+export const action: ActionFunction = async ({ request, context }) => {
   // call /report
   const data = await request.formData();
   const reason = data.get("reason")?.toString();
@@ -105,6 +109,7 @@ export const action: ActionFunction = async ({ request }) => {
     reason,
     title,
     message_link,
+    context,
   });
 
   if (isErrorReturn(newReportResponse)) {

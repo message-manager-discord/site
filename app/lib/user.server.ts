@@ -1,4 +1,4 @@
-import { redirect } from "@remix-run/cloudflare";
+import { AppLoadContext, redirect } from "@remix-run/cloudflare";
 import { loginSession } from "./sessions.server";
 
 interface NotLoggedInResponse {
@@ -30,8 +30,11 @@ const getToken = async (request: Request): Promise<any> => {
 
 async function _getUser({
   request,
+
+  context,
 }: {
   request: Request;
+  context: AppLoadContext;
 }): Promise<User | null> {
   const token = await getToken(request);
   if (!token) {
@@ -39,7 +42,7 @@ async function _getUser({
     return null;
   }
 
-  const user = await fetch("http://localhost:4000/v1/users/@me", {
+  const user = await fetch(`${context.API_BASE_URL}/v1/users/@me`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
@@ -55,10 +58,12 @@ async function _getUser({
 
 async function getUser({
   request,
+  context,
 }: {
   request: Request;
+  context: AppLoadContext;
 }): Promise<GetUserResponse> {
-  const user = await _getUser({ request });
+  const user = await _getUser({ request, context });
 
   if (!user) {
     return {
@@ -72,8 +77,14 @@ async function getUser({
   };
 }
 
-async function requireUser({ request }: { request: Request }): Promise<User> {
-  const user = await _getUser({ request });
+async function requireUser({
+  request,
+  context,
+}: {
+  request: Request;
+  context: AppLoadContext;
+}): Promise<User> {
+  const user = await _getUser({ request, context });
   if (user === null) {
     // Throw a new redirect and redirect them to login
     // Also get the current url of the user before redirecting

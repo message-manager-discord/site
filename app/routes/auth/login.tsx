@@ -1,7 +1,7 @@
 import { redirect } from "@remix-run/cloudflare";
 import type { LoaderFunction } from "@remix-run/cloudflare";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, context }) => {
   // First get user to see if they are logged in - if logged in then redirect to ?redirect_url
   // If not then call the api /auth/authorize to get a redirect url and then redirect to that url
   const redirectUrl =
@@ -9,7 +9,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
   const authorizeResponse = (await (
     await fetch(
-      `http://localhost:4000/auth/authorize${
+      `${context.API_BASE_URL}/auth/authorize${
         redirectUrl ? `?redirect_url=${redirectUrl}` : ""
       }`
     )

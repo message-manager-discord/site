@@ -31,9 +31,10 @@ type ReportActionOptions =
 export const loader: LoaderFunction = async ({
   params,
   request,
+  context,
 }): Promise<Report> => {
   const reportId = params.reportId as string;
-  const reportResponse = await getReport({ request, id: reportId });
+  const reportResponse = await getReport({ request, id: reportId, context });
   return await checkIfErrorReturn(reportResponse);
 };
 

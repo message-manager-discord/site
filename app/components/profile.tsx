@@ -76,10 +76,11 @@ export default function Profile({
     );
   } else {
     let items: ProfileLinkData[] = [
-      {
+      /*{
         label: "Reports",
         to: "reports",
-      },
+      },*/
+      { label: "Dashboard", to: "dashboard" },
       {
         label: "Logout",
         to: `/auth/logout?redirect_url=${encodeURIComponent(

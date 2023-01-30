@@ -53,7 +53,7 @@ interface LoaderData {
   locale: string;
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, context }) => {
   let locale: string | undefined = undefined;
   const languages = acceptLanguage.parse(
     request.headers.get("Accept-Language") as string
@@ -65,7 +65,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   else if (!languages[0].region) locale = languages[0].code;
   else locale = `${languages[0].code}-${languages[0].region.toLowerCase()}`;
   return json<LoaderData>({
-    user: await getUser({ request }),
+    user: await getUser({ request, context }),
     locale,
   });
 };

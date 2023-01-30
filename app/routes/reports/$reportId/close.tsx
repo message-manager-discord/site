@@ -23,7 +23,7 @@ function closeReportIsError(
   }
 }
 
-export const action: ActionFunction = async ({ request, params }) => {
+export const action: ActionFunction = async ({ request, params, context }) => {
   const data = await request.formData();
   const status = data.get("status")?.toString();
 
@@ -53,6 +53,7 @@ export const action: ActionFunction = async ({ request, params }) => {
     status,
     message_to_reporting_user,
     staff_report_reason,
+    context,
   });
   if (isErrorReturn(report)) {
     return json<ActionErrorResponseCloseReport>({

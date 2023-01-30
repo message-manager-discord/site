@@ -1,4 +1,4 @@
-import toast from "react-hot-toast";
+/*import toast from "react-hot-toast";
 
 type ServerResponseReturns<Response> = {
   response?: Response;
@@ -16,4 +16,5 @@ const parseResponseHandleToasts = async (
 };
 
 export { parseResponseHandleToasts };
-export type { ServerResponseReturns };
+export type { ServerResponseReturns };*/
+export {};

@@ -2,11 +2,11 @@ import { redirect } from "@remix-run/cloudflare";
 import type { LoaderFunction } from "@remix-run/cloudflare";
 import { loginSession } from "~/lib/sessions.server";
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, context }) => {
   // Callback for discord oauth redirect
   // Forward the request to the api
   const response = await fetch(
-    `http://localhost:4000/auth/callback?${new URLSearchParams(
+    `${context.API_BASE_URL}/auth/callback?${new URLSearchParams(
       request.url.split("?")[1]
     )}`,
     {

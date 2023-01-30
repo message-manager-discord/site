@@ -201,7 +201,7 @@ interface LoaderResponse {
   status: GetReportsStatus | undefined;
 }
 
-export const loader: LoaderFunction = async ({ request }) => {
+export const loader: LoaderFunction = async ({ request, context }) => {
   const query = new URLSearchParams(request.url.split("?")[1]);
   // parse skip correctly, and handle errors
   const skip = parseInt(query.get("skip") || "0") || 0;
@@ -232,6 +232,7 @@ export const loader: LoaderFunction = async ({ request }) => {
           skip,
           status: parsedStatus,
           limit: reportsPerPage,
+          context,
         })
       ),
       status: parsedStatus,
