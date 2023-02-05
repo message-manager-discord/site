@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function Right(props: React.SVGProps<SVGSVGElement>) {
+export default function Up(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +11,7 @@ export default function Right(props: React.SVGProps<SVGSVGElement>) {
       display="block"
       {...props}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
     </svg>
   );
 }
