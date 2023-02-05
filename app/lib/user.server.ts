@@ -47,7 +47,6 @@ async function _getUser({
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    credentials: "include",
   });
 
   if (user.status === 401) {

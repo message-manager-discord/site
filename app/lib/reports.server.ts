@@ -52,7 +52,6 @@ async function getReports({
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      credentials: "include",
     }
   );
   loginIfUnauthorized(request, reports);
@@ -79,7 +78,6 @@ async function getMessageCanBeReported({
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      credentials: "include",
     }
   );
   loginIfUnauthorized(request, response);
@@ -130,7 +128,6 @@ async function createReport({
       message_id,
       channel_id,
     }),
-    credentials: "include",
   });
   loginIfUnauthorized(request, response);
   return await returnJSONIfOK<Report>(response);
@@ -151,7 +148,6 @@ async function getReport({
     headers: {
       Authorization: `Bearer ${token}`,
     },
-    credentials: "include",
   });
   loginIfUnauthorized(request, response);
   return await returnJSONIfOK<Report>(response);
@@ -184,7 +180,6 @@ async function sendReportMessage({
         content,
         staff_only: staffOnly ?? false,
       }),
-      credentials: "include",
     }
   );
   loginIfUnauthorized(request, response);
@@ -215,7 +210,6 @@ async function assignReport({
       body: JSON.stringify({
         assigned_staff_id: userId ?? user.id,
       }),
-      credentials: "include",
     }
   );
   loginIfUnauthorized(request, response);
@@ -255,7 +249,6 @@ async function closeReport({
         message_to_reporting_user,
         staff_report_reason,
       }),
-      credentials: "include",
     }
   );
   loginIfUnauthorized(request, response);
