@@ -4,6 +4,8 @@ import type {
   LinksFunction,
   LoaderFunction,
 } from "@remix-run/cloudflare";
+// Wraps all components in the app with the root component
+
 import {
   Links,
   LiveReload,
@@ -31,8 +33,10 @@ import type { GetUserResponse } from "./lib/user.server";
 import { LocaleProvider } from "./hooks/useLocale";
 import { UserProvider } from "./hooks/useUser";
 
+// Link to styles
 export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
+// Metadata - title, description, og data, etc.
 export const meta: MetaFunction = ({ location }) => ({
   charset: "utf-8",
   title: "Message Manager",

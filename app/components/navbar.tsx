@@ -1,3 +1,4 @@
+// Navbar displayed at the top of all pages
 import { NavLink } from "@remix-run/react";
 import classNames from "classnames";
 import { useCallback, useState } from "react";
@@ -17,6 +18,7 @@ export default function Navbar({ user }: { user: GetUserResponse }) {
   const navLinkClasses =
     "transition duration-300 ease-in-out text-lg font-medium text-slate-600 hover:text-blue-500 dark:text-slate-200 dark:hover:text-white lg:px-3 xl:px-4";
 
+  // Function for if the link is active or not
   const navLinkClassesFunction: (props: {
     isActive: boolean;
   }) => string | undefined = useCallback(

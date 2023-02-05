@@ -1,3 +1,4 @@
+// Hint is a component for markdown pages to display a hint
 import classNames from "classnames";
 
 type HintType = "warn" | "info";

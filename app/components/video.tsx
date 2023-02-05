@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-
+// Used to display different videos depending on the screen size and if dark / or light mode is set
+// Some of it is broken and may be removed at a later date
 export default function Video({
   src,
   mobileSrc,

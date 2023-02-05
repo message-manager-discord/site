@@ -17,6 +17,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        // Custom color for code block
         "code-dark": "#050505",
       },
     },
