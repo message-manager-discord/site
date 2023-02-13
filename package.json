@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@types/accept-language-parser": "^1.5.3",
-    "eslint": "^8.32"
+    "eslint": "^8.34"
   },
   "engines": {
     "node": ">=14"
