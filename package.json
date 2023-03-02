@@ -14,7 +14,7 @@
   "dependencies": {
     "@cloudflare/pages-plugin-sentry": "^1.1.0",
     "@cloudflare/workers-types": "^3",
-    "@remix-run/cloudflare": "1.11",
+    "@remix-run/cloudflare": "1.14",
     "@remix-run/cloudflare-pages": "1.11",
     "@remix-run/dev": "1.11",
     "@remix-run/eslint-config": "^1.9.0",

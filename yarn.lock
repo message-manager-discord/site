@@ -1637,13 +1637,21 @@
   dependencies:
     "@remix-run/cloudflare" "1.11.1"
 
-"@remix-run/cloudflare@1.11", "@remix-run/cloudflare@1.11.1":
+"@remix-run/cloudflare@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@remix-run/cloudflare/-/cloudflare-1.11.1.tgz#75092b81dc135c477d09fddf6eaf995914001b93"
   integrity sha512-GeEyxrly7/Qkhsud2e1/jJMDDDcLsm2WLTvE/WVoXlkKAHwO/U3SElVaQ2yFuioxayRFtABsyAj1FTNW1iLXdw==
   dependencies:
     "@cloudflare/kv-asset-handler" "^0.1.3"
     "@remix-run/server-runtime" "1.11.1"
+
+"@remix-run/cloudflare@1.14":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/cloudflare/-/cloudflare-1.14.0.tgz#1f9689fe9d179dd40199ff59679169617588eab8"
+  integrity sha512-EQY0SyMdNvM4Cga7vBUG57MABsRBnRDx36hvhgFlmVbbfp2DFjzY051Qjmg2K3jQUptz9o4PCE0H3XdNMCRWjw==
+  dependencies:
+    "@cloudflare/kv-asset-handler" "^0.1.3"
+    "@remix-run/server-runtime" "1.14.0"
 
 "@remix-run/dev@1.11":
   version "1.11.1"
@@ -1738,6 +1746,11 @@
   resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.3.0.tgz#b6ee542c7f087b73b3d8215b9bf799f648be71cb"
   integrity sha512-nwQoYb3m4DDpHTeOwpJEuDt8lWVcujhYYSFGLluC+9es2PyLjm+jjq3IeRBQbwBtPLJE/lkuHuGHr8uQLgmJRA==
 
+"@remix-run/router@1.3.3":
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.3.3.tgz#d6d531d69c0fa3a44fda7dc00b20d49b44549164"
+  integrity sha512-YRHie1yQEj0kqqCTCJEfHqYSSNlZQ696QJG+MMiW4mxSl9I0ojz/eRhJS4fs88Z5i6D1SmoF9d3K99/QOhI8/w==
+
 "@remix-run/server-runtime@1.11.1":
   version "1.11.1"
   resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.11.1.tgz#58f9509ddccdafb21ad6480ee7e9cf2248d5f06a"
@@ -1745,6 +1758,19 @@
   dependencies:
     "@remix-run/router" "1.3.0"
     "@types/cookie" "^0.4.0"
+    "@web3-storage/multipart-parser" "^1.0.0"
+    cookie "^0.4.1"
+    set-cookie-parser "^2.4.8"
+    source-map "^0.7.3"
+
+"@remix-run/server-runtime@1.14.0":
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/server-runtime/-/server-runtime-1.14.0.tgz#ab6a51da8252a641d97d654e5ee2fe8155826d17"
+  integrity sha512-qkqfT7DDwVzLICtJxMGthIU4T7DVtLy+oxKAzOi9eiCFlr3aWqV30YJ5Kq6r/kP8tighlnHbj1uEo41+WbD8uA==
+  dependencies:
+    "@remix-run/router" "1.3.3"
+    "@types/cookie" "^0.4.0"
+    "@types/react" "^18.0.15"
     "@web3-storage/multipart-parser" "^1.0.0"
     cookie "^0.4.1"
     set-cookie-parser "^2.4.8"
@@ -2105,6 +2131,15 @@
   version "18.0.27"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.27.tgz#d9425abe187a00f8a5ec182b010d4fd9da703b71"
   integrity sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.0.15":
+  version "18.0.28"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.28.tgz#accaeb8b86f4908057ad629a26635fe641480065"
+  integrity sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
